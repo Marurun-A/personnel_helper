@@ -1,0 +1,2 @@
+module Company::RequestFormsHelper
+end

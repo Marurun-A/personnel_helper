@@ -1,0 +1,2 @@
+module Company::EmploymentsHelper
+end

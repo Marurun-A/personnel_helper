@@ -1,0 +1,2 @@
+module Staff::RequestsHelper
+end
