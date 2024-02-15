@@ -1,0 +1,32 @@
+<h4>雇用新規登録</h4>
+
+<% if @requests.errors.any? %>
+  <%= @requests.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @requests.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @requests, url: staff_requests_path, method: :post do |f| %>
+  <h6>会社画像</h6>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h6>名前</h6>
+  <%= f.text_field :name %>
+  <h6>フリガナ</h6>
+  <%= f.text_field :kana %>
+  <h6>可能な業務</h6>
+  <%= f.text_field :business %>
+  <h6>自己紹介</h6>
+  <%= f.text_area :introduction %>
+   <h6>日付</h6>
+  <%= f.date_field :date %>
+  <h6>時間</h6>
+  <%= f.time_field :time %>
+  <h6>場所</h6>
+  <%= f.text_field :place %>
+  <h6>連絡先</h6>
+  <%= f.text_field :contact_address %>
+  <%= f.submit '新規登録' %>
+<% end %>

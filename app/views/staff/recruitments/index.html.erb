@@ -1,0 +1,48 @@
+<h4>会社一覧</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>会社名</th>
+      <th>カナ</th>
+      <th>業務内容</th>
+      <th>業務時間</th>
+      <th>時給</th>
+      <th>場所</th>
+      <th>連絡先</th>
+      <th>業務紹介</th>
+    </tr>
+  </thead>
+
+　<tbody>
+  <% @recruitments.each do |recruitment| %>
+    <tr>
+      <td>
+        <% if recruitment.image.attached? %>
+          <%= image_tag recruitment.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to staff_recruitment_path(recruitment.id) do %>
+        <%= recruitment.name %>
+        <% end %>
+       </td>
+       <td>
+        <%= recruitment.kana %>
+       </td>
+      <td><%= recruitment.business %></td>
+      <td>
+        <%= recruitment.date %>
+        <%= recruitment.time %>
+      </td>
+      <td><%= recruitment.hourly_wage %></td>
+      <td><%= recruitment.place %></td>
+      <td><%= recruitment.contact_address %></td>
+      <td><%= recruitment.introduction %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

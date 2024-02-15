@@ -1,0 +1,2 @@
+class RecruitmentForm < ApplicationRecord
+end

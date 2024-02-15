@@ -1,0 +1,47 @@
+<h2>マイページ</h2>
+
+  <div>
+    <h5>登録情報</h5>
+    <%= link_to "編集する", edit_company_company_path(current_company) %>
+  </div>
+
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>氏名</th>
+        <th>カナ</th>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% company = @companys %>
+        <tr>
+          <td>
+          <%= company.first_name %>
+          <%= company.last_name %>
+          </td>
+          <td>
+          <%= company.first_name_kana %>
+          <%= company.last_name_kana %>
+          </td>
+          <td>
+          <%= company.postal_code %>
+          </td>
+          <td>
+          <%= company.address %>
+          </td>
+          <td>
+          <%= company.telephone_number %>
+          </td>
+          <td>
+          <%= company.email %>
+          </td>
+        </tr
+    </tbody>
+  </table>
+
+
+

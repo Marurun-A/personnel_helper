@@ -1,0 +1,44 @@
+<h2>マイページ</h2>
+
+  <div>
+    <h5>登録情報</h5>
+    <%= link_to "編集する", edit_staff_staff_path(current_staff) %>
+  </div>
+
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>氏名</th>
+        <th>カナ</th>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% staff = @staffs %>
+        <tr>
+          <td>
+          <%= staff.first_name %>
+          <%= staff.last_name %>
+          </td>
+          <td>
+          <%= staff.first_name_kana %>
+          <%= staff.last_name_kana %>
+          </td>
+          <td>
+          <%= staff.postal_code %>
+          </td>
+          <td>
+          <%= staff.address %>
+          </td>
+          <td>
+          <%= staff.telephone_number %>
+          </td>
+          <td>
+          <%= staff.email %>
+          </td>
+        </tr
+    </tbody>
+  </table>

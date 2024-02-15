@@ -1,0 +1,46 @@
+<h4>スタッフ一覧</h4>
+<p><%= link_to "新規登録", new_staff_request_path %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>スタッフ名</th>
+      <th>カナ</th>
+      <th>可能な業務</th>
+      <th>業務可能時間</th>
+      <th>場所</th>
+      <th>連絡先</th>
+      <th>自己紹介</th>
+    </tr>
+  </thead>
+
+　<tbody>
+  <% @requests.each do |request| %>
+    <tr>
+      <td>
+        <% if request.image.attached? %>
+          <%= image_tag request.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to staff_requests_path(request.id) do %>
+        <%= request.name %>
+        <% end %>
+       </td>
+       <td>
+        <%= request.kana %>
+       </td>
+      <td><%= request.business %></td>
+      <td>
+        <%= request.date %>
+        <%= request.time %>
+      </td>
+      <td><%= request.place %></td>
+      <td><%= request.contact_address %></td>
+       <td><%= request.introduction %></td>
+  <% end %>
+  </tbody>
+</table>
