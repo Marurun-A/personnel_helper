@@ -30,7 +30,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to company_recruitment_path(company.id) do %>
+        <%= link_to company_recruitment_path(company_id: recruitment.company_id, id: recruitment.id) do %>
         <%= recruitment.name %>
         <% end %>
        </td>

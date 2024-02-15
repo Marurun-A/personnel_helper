@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-<%= form_with model:  @recruitments, url: '/company/recruitments',  method: :post do |f| %>
+<%= form_with model:  @recruitments, url: company_recruitments_path, method: :post do |f| %>
   <h6>会社画像</h6>
   <%= f.file_field :image, accept: "image/*" %>
   <h6>会社名</h6>

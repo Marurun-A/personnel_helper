@@ -1,0 +1,45 @@
+<h4>雇用</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>スタッフ名</th>
+      <th>カナ</th>
+      <th>可能な業務</th>
+      <th>業務可能時間</th>
+      <th>場所</th>
+      <th>連絡先</th>
+      <th>自己紹介</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+　<tbody>
+    <tr>
+      <td>
+        <% if @request.image.attached? %>
+          <%= image_tag @request.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
+      </td>
+      <td>
+        <%= @request.name %>
+       </td>
+       <td>
+        <%= @request.kana %>
+       </td>
+      <td><%= @request.business %></td>
+      <td>
+        <%= @request.date %>
+        <%= @request.time %>
+      </td>
+      <td><%= @request.place %></td>
+      <td><%= @request.contact_address %></td>
+      <td><%= @request.introduction %></td>
+      <td><%= link_to "Edit", edit_staff_request_path(staff_id: @request.staff_id, id: @request.id) %></td>
+      <td><%= link_to "Destroy", staff_request_path(staff_id: @request.staff_id, id: @request.id), method: :delete, "data-confirm" => "Are you sure" %></td>
+  </tbody>
+</table>

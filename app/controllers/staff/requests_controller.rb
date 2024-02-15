@@ -40,9 +40,9 @@ class Staff::RequestsController < ApplicationController
   end
 
   def destroy
-    request = Request.find(params[:id])
-    request.destroy
-    redirect_to staff_request_path
+    @request = Request.find(params[:id])
+    @request.destroy
+    redirect_to staff_request_path(@request.staff_id)
   end
 
   private

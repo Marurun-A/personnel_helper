@@ -26,7 +26,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to staff_requests_path(request.id) do %>
+        <%= link_to staff_request_path(staff_id: request.staff_id, id: request.id) do %>
         <%= request.name %>
         <% end %>
        </td>
