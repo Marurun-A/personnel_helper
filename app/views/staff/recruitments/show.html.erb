@@ -1,0 +1,58 @@
+<h4>会社詳細</h4>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>会社名</th>
+        <th>カナ</th>
+        <th>業務内容</th>
+        <th>業務時間</th>
+        <th>時給</th>
+        <th>場所</th>
+        <th>連絡先</th>
+        <th>業務紹介</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+  　<tbody>
+      <tr>
+        <td>
+          <% if @recruitment.image.attached? %>
+            <%= image_tag @recruitment.image, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "100x100" %>
+          <% end %>
+        </td>
+        <td>
+          <%= @recruitment.name %>
+         </td>
+         <td>
+          <%= @recruitment.kana %>
+         </td>
+        <td><%= @recruitment.business %></td>
+        <td>
+          <%= @recruitment.date %>
+          <%= @recruitment.time %>
+        </td>
+        <td><%= @recruitment.hourly_wage %></td>
+        <td><%= @recruitment.place %></td>
+        <td><%= @recruitment.contact_address %></td>
+        <td><%= @recruitment.introduction %></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <div>
+    <%= form_with model: @recruitment_form, url: staff_recruitment_forms_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :recruitment_id, value: @recruitment.id %>
+    <%= f.submit '応募フォームに進む', class: 'btn btn-success btn-sm' %>
+    <% end %>
+  </div>
+</div>

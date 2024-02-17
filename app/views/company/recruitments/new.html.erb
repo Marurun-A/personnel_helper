@@ -16,8 +16,23 @@
   <%= f.text_field :name %>
   <h6>フリガナ</h6>
   <%= f.text_field :kana %>
+
+
   <h6>業務内容</h6>
   <%= f.text_field :business %>
+  <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+
+
+
   <h6>時給</h6>
   <%= f.text_field :hourly_wage %>
    <h6>日付</h6>

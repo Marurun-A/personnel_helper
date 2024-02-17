@@ -1,0 +1,55 @@
+<h4>スタッフ詳細</h4>
+
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>スタッフ名</th>
+        <th>カナ</th>
+        <th>可能な業務</th>
+        <th>業務可能時間</th>
+        <th>場所</th>
+        <th>連絡先</th>
+        <th>自己紹介</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+  　<tbody>
+      <tr>
+        <td>
+          <% if @request.image.attached? %>
+            <%= image_tag @request.image, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "100x100" %>
+          <% end %>
+        </td>
+        <td>
+          <%= @request.name %>
+         </td>
+         <td>
+          <%= @request.kana %>
+         </td>
+        <td><%= @request.business %></td>
+        <td>
+          <%= @request.date %>
+          <%= @request.time %>
+        </td>
+        <td><%= @request.place %></td>
+        <td><%= @request.contact_address %></td>
+        <td><%= @request.introduction %></td>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <div>
+   <%= form_with model: @request_form, url:company_request_forms_path,method: :post,local:true do |f| %>
+   <%= f.hidden_field :request_id, value: @request.id %>
+   <%= f.submit '依頼フォームに進む' ,class: 'btn btn-success btn-sm'%>
+   <% end %>
+  </div>
+</div>

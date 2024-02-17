@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h4>商品編集</h4>
+
+      <% if @request.errors.any? %>
+        <%= @request.errors.count %>errors prohibited this item from being saved:
+        <ul>
+          <% @request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= form_with model: @request, url: staff_request_path(@request.id), method: :patch do |f| %>
+
+        <div class="form-grop mt-2">
+          <h6>自己画像</h6>
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>名前</h6>
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>フリガナ</h6>
+          <%= f.text_field :kana %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>可能な業務</h6>
+          <%= f.text_field :business %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>自己紹介</h6>
+          <%= f.text_area :introduction %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>日付</h6>
+          <%= f.date_field :date %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>時間</h6>
+          <%= f.time_field :time %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>場所</h6>
+          <%= f.text_field :place %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <h6>連絡先</h6>
+          <%= f.text_field :contact_address %>
+        </div>
+
+        <div class="form-grop mt-2">
+          <%= f.submit '変更を保存', class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   sessions: 'staff/sessions'
   }
 
-
   devise_for :companys, skip: [:passwords], controllers: {
   registrations: "company/registrations",
   sessions: "company/sessions"
@@ -24,14 +23,13 @@ Rails.application.routes.draw do
     get 'companys/information/unsubscribe' => 'companys#unsubscribe'
     get 'companys/information/withdraw' => 'companys#withdraw'
     delete '/request_forms/destroy_all' => 'request_forms#destroy_all', as: 'destroy_all_request_forms'
-
     post 'emploments/confirm' => 'emploments#confirm'
     get 'emploments/complete' => 'emploments#complete'
 
     resources :requests, only: [:index, :show, :new, :create, :update, :edit]
     resources :companys, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :request_forms, only: [:index, :update, :destroy, :create]
-    resources :recruitment_forms, only: [:index, :update, :destroy, :create]
+    # resources :recruitment_forms, only: [:index, :update, :destroy, :create]
     resources :emploments, only: [:new, :confirm, :complete, :create, :index, :show]
   end
 
@@ -47,27 +45,29 @@ Rails.application.routes.draw do
 
     root to: "homes#top"
     get 'staffs/my_page' => 'staffs#top'
-
     get 'staffs/information/unsubscribe' => 'staffs#unsubscribe'
     get 'staffs/information/withdraw' => 'staffs#withdraw'
-    delete '/request_forms/destroy_all' => 'request_forms/s#destroy_all', as: 'destroy_all_request_forms'
-
     post 'emploments/confirm' => 'emploments#confirm'
     get 'emploments/complete' => 'emploments#complete'
-
+    delete '/recruitment_forms/destroy_all' => 'recuruitment_forms#destroy_all', as: 'destroy_all_recruitment_forms'
 
     resources :recruitments, only: [:index, :show, :new, :create, :update, :edit]
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
-    resources :request_forms, only: [:index, :update, :destroy, :create]
+    # resources :request_forms, only: [:index, :update, :destroy, :create]
     resources :recruitment_forms, only: [:index, :update, :destroy, :create]
     resources :works, only: [:new, :confirm, :complete, :create, :index, :show]
   end
-
 
   scope module: :staff do
       resources :staffs, only: [] do
         resources :requests
     end
   end
+
+  # scope module: :staff do
+  #   resources :staffs, only: [] do
+  #     resources :recruitment_forms
+  #   end
+  # end
 
 end

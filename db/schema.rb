@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_14_045727) do
+ActiveRecord::Schema.define(version: 2024_02_16_103209) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(version: 2024_02_14_045727) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "business_tag_relations", force: :cascade do |t|
+    t.integer "business_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["business_id"], name: "index_business_tag_relations_on_business_id"
+    t.index ["tag_id"], name: "index_business_tag_relations_on_tag_id"
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -62,7 +76,7 @@ ActiveRecord::Schema.define(version: 2024_02_14_045727) do
 
   create_table "employment_details", force: :cascade do |t|
     t.integer "employment_id", null: false
-    t.integer "recruitment_id", null: false
+    t.integer "request_id", null: false
     t.integer "salary", null: false
     t.integer "number_of_times", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -79,10 +93,18 @@ ActiveRecord::Schema.define(version: 2024_02_14_045727) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "job_tag_relations", force: :cascade do |t|
+    t.integer "job_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_id"], name: "index_job_tag_relations_on_job_id"
+    t.index ["tag_id"], name: "index_job_tag_relations_on_tag_id"
+  end
+
   create_table "recruitment_forms", force: :cascade do |t|
     t.integer "recruitment_id", null: false
-    t.integer "company_id", null: false
-    t.integer "number_of_times", null: false
+    t.integer "staff_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -104,8 +126,7 @@ ActiveRecord::Schema.define(version: 2024_02_14_045727) do
 
   create_table "request_forms", force: :cascade do |t|
     t.integer "request_id", null: false
-    t.integer "staff_id", null: false
-    t.integer "number_of_times", null: false
+    t.integer "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -144,6 +165,12 @@ ActiveRecord::Schema.define(version: 2024_02_14_045727) do
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "work_details", force: :cascade do |t|
     t.integer "work_id", null: false
     t.integer "recruitment_id", null: false
@@ -165,4 +192,8 @@ ActiveRecord::Schema.define(version: 2024_02_14_045727) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "business_tag_relations", "businesses"
+  add_foreign_key "business_tag_relations", "tags"
+  add_foreign_key "job_tag_relations", "jobs"
+  add_foreign_key "job_tag_relations", "tags"
 end

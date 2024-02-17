@@ -1,0 +1,30 @@
+<h2>依頼画面</h2>
+  <div>
+    <%= link_to "依頼をリセットする", campnay_destroy_all_request_forms_path, method: :delete %>
+
+      <table>
+        <thead>
+          <th></th>
+          <th>スタッフ名</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%#= image_tag request_form.get_image, size: "100x100" %></td>
+              <td><%= request_form.request.name %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td> <%= link_to "削除", company_request_form_path(request_form.id), method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+        <%= link_to "依頼を続ける", company_request_path(request.id) %><br>
+        <% if @request_forms.present? %>
+          <%= link_to "依頼確定に進む", new_comapny_employments_path %>
+        <% end %>
+
+  </div>

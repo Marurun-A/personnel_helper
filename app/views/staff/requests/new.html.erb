@@ -10,7 +10,7 @@
 <% end %>
 
 <%= form_with model: @requests, url: staff_requests_path, method: :post do |f| %>
-  <h6>会社画像</h6>
+  <h6>自己画像</h6>
   <%= f.file_field :image, accept: "image/*" %>
   <h6>名前</h6>
   <%= f.text_field :name %>

@@ -1,8 +1,8 @@
 class RequestForm < ApplicationRecord
 
   has_one_attached :image
-  belongs_to :requests
-  belongs_to :companys
-  belongs_to :staffs
+  belongs_to :request
+  belongs_to :company
+  belongs_to :staff
 
 end

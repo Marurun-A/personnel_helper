@@ -1,0 +1,34 @@
+<h2>応募画面</h2>
+  <div>
+    <%= link_to "応募をリセットする", staff_destroy_all_recruitment_forms_path, method: :delete %>
+
+      <table>
+        <thead>
+          <th></th>
+          <th>会社名</th>
+          <th>時給</th>
+          <th>勤務日</th>
+          <th>実施可能業務</th>
+          <th>返答期日</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @recruitment_forms.each do |recruitment_form| %>
+            <tr>
+              <td><%#= image_tag recruitment_form.get_image, size: "100x100" %></td>
+              <td><%= recruitment_form.recruitment.name %></td>
+              <td><%= recruitment_form.recruitment.hourly_wage %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td> <%= link_to "削除", staff_recruitment_form_path(recruitment_form.id), method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+        <%#= link_to "依頼を続ける", staff_recruitment_path(@recruitment.id) %><br>
+        <%# if @recruitmentt_forms.present? %>
+          <%#= link_to "購入に進む", new_staff_works_path %>
+        <%# end %>
+
+  </div>
