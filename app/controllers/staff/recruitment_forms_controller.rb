@@ -1,7 +1,6 @@
 class Staff::RecruitmentFormsController < ApplicationController
 
   def create
-    @recruitment_form = RecruitmentForm.find_by(recruitment_id: params[:recruitment_form][:recruitment_id])
     @recruitment_form = RecruitmentForm.new(recruitment_form_params)
     @recruitment_form.staff_id = current_staff.id
     @recruitment_form.save
@@ -20,7 +19,7 @@ class Staff::RecruitmentFormsController < ApplicationController
       return
     end
 
-    if @recruitment_form.update(amount: params[:recruitment_form][:amount].to_i)
+    if @recruitment_form.update(datetime: params[:recruitment_form][:datetime])
       redirect_to staff_recruitment_forms_path
     else
       redirect_to staff_recruitments_path
@@ -41,7 +40,7 @@ class Staff::RecruitmentFormsController < ApplicationController
   private
 
     def recruitment_form_params
-      params.require(:recruitment_form).permit(:amount, :recruitment_id, :staff_id)
+      params.require(:recruitment_form).permit(:datetime, :recruitment_id, :staff_id)
     end
 
 end

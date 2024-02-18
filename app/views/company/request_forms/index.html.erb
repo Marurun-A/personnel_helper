@@ -1,20 +1,30 @@
-<h2>依頼画面</h2>
+<h2>応募画面</h2>
   <div>
-    <%= link_to "依頼をリセットする", campnay_destroy_all_request_forms_path, method: :delete %>
+    <%= link_to "依頼をリセットする", company_destroy_all_request_forms_path, method: :delete %>
 
       <table>
         <thead>
           <th></th>
           <th>スタッフ名</th>
-          <th></th>
-          <th></th>
+          <th>時給</th>
+          <th>勤務日時</th>
+          <th>実施可能業務</th>
+          <th>返答期日</th>
           <th></th>
         </thead>
         <tbody>
+          <% @request_forms.each do |request_form| %>
             <tr>
-              <td><%#= image_tag request_form.get_image, size: "100x100" %></td>
+              <td><%#= image_tag recruitment_form.get_image, size: "100x100" %></td>
               <td><%= request_form.request.name %></td>
-              <td></td>
+              <td><%#= request_form.request.hourly_wage %></td>
+              <td>
+                <%= form_with model:request_form, url: company_request_form_path(request_form.id),method: :patch,local:true do |f| %>
+                <%= f.hidden_field :request_form_id, value: request_form.id %>
+                <%= f.datetime_field :datetime %>
+                <%= f.submit "日付を修正" %>
+                <% end %>
+              </td>
               <td></td>
               <td></td>
               <td> <%= link_to "削除", company_request_form_path(request_form.id), method: :delete %></td>
@@ -22,9 +32,9 @@
           <% end %>
         </tbody>
       </table>
-        <%= link_to "依頼を続ける", company_request_path(request.id) %><br>
-        <% if @request_forms.present? %>
-          <%= link_to "依頼確定に進む", new_comapny_employments_path %>
-        <% end %>
+        <%#= link_to "依頼を続ける", staff_recruitment_path(@recruitment.id) %><br>
+        <%# if @recruitmentt_forms.present? %>
+          <%#= link_to "購入に進む", new_staff_works_path %>
+        <%# end %>
 
   </div>

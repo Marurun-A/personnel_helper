@@ -1,7 +1,6 @@
 class Company::RequestFormsController < ApplicationController
 
   def create
-    @request_form = RequestForm.find_by(request_id: params[:request_form][:request_id])
     @request_form = RequestForm.new(request_form_params)
     @request_form.company_id = current_company.id
     @request_form.save
@@ -20,7 +19,7 @@ class Company::RequestFormsController < ApplicationController
       return
     end
 
-    if @request_form.update(amount: params[:request_form][:amount].to_i)
+    if @request_form.update(datetime: params[:request_form][:datetime])
       redirect_to company_request_forms_path
     else
       redirect_to company_requests_path
@@ -41,7 +40,7 @@ class Company::RequestFormsController < ApplicationController
   private
 
     def request_form_params
-      params.require(:request_form).permit(:amount, :request_id, :company_id)
+      params.require(:request_form).permit(:datetime, :request_id, :company_id)
     end
 
 end

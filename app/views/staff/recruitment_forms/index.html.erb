@@ -7,7 +7,7 @@
           <th></th>
           <th>会社名</th>
           <th>時給</th>
-          <th>勤務日</th>
+          <th>勤務日時</th>
           <th>実施可能業務</th>
           <th>返答期日</th>
           <th></th>
@@ -18,7 +18,13 @@
               <td><%#= image_tag recruitment_form.get_image, size: "100x100" %></td>
               <td><%= recruitment_form.recruitment.name %></td>
               <td><%= recruitment_form.recruitment.hourly_wage %></td>
-              <td></td>
+              <td>
+                <%= form_with model:recruitment_form, url: staff_recruitment_form_path(recruitment_form.id),method: :patch,local:true do |f| %>
+                <%= f.hidden_field :recruitment_form_id, value: recruitment_form.id %>
+                <%= f.datetime_field :datetime %>
+                <%= f.submit "日付を修正" %>
+                <% end %>
+              </td>
               <td></td>
               <td></td>
               <td> <%= link_to "削除", staff_recruitment_form_path(recruitment_form.id), method: :delete %></td>
