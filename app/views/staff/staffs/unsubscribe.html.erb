@@ -1,0 +1,13 @@
+<h4>本当に退会しますか？</h4>
+
+<p>退会すると、会員登録情報や</p>
+<p>これまでの購入履歴が観覧できなくなります。</p>
+<p>退会する場合は、「退会する」をクリックしてください。</p>
+
+<div>
+  <%= link_to "退会する",  staff_staffs_information_withdraw_path(current_staff),  "data-confirm" => "本当に退会しますか？",class: "btn btn-secondary" %>
+</div>
+
+<div>
+  <%= link_to "退会しない",  staff_staff_path(current_staff) %>
+</div>

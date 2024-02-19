@@ -10,7 +10,7 @@ class Staff::RequestsController < ApplicationController
     @request.staff_id = current_staff.id
     if @request.save
       flash[:notice] = "You have created request successfully."
-      redirect_to staff_recruitments_path
+      redirect_to staff_requests_path(current_staff)
     else
       @requests = Request.all
       redirect_to staff_recruitments_path
@@ -42,13 +42,13 @@ class Staff::RequestsController < ApplicationController
   def destroy
     @request = Request.find(params[:id])
     @request.destroy
-    redirect_to staff_request_path(@request.staff_id)
+    redirect_to staff_requests_path(current_staff)
   end
 
   private
 
   def request_params
-    params.require(:request).permit(:image, :name, :kana, :business, :introduction, :date, :time, :place, :contact_address)
+    params.require(:request).permit(:image, :name, :kana, :business, :introduction, :date, :start_time, :finish_time, :place, :contact_address, tag_ids: [])
   end
 
 

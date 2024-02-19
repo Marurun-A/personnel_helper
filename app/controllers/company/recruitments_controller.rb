@@ -9,7 +9,7 @@ class Company::RecruitmentsController < ApplicationController
     @recruitment.company_id = current_company.id
     if @recruitment.save
       flash[:notice] = "You have created recruitment successfully."
-      redirect_to company_requests_path
+      redirect_to company_recruitments_path(current_company)
     else
       @recruitments = Recruitment.all
       redirect_to company_requests_path
@@ -41,13 +41,13 @@ class Company::RecruitmentsController < ApplicationController
   def destroy
     @recruitment = Recruitment.find(params[:id])
     @recruitment.destroy
-    redirect_to company_recruitment_path(@recruitment.company.id)
+    redirect_to company_recruitments_path(current_company)
   end
 
   private
 
   def recruitment_params
-    params.require(:recruitment).permit(:image, :name, :kana, :business, :introduction, :hourly_wage, :date, :time, :place, :contact_address)
+    params.require(:recruitment).permit(:image, :name, :kana, :business, :introduction, :hourly_wage, :date, :start_time, :finish_time, :place, :contact_address, tag_ids: [])
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_16_103209) do
+ActiveRecord::Schema.define(version: 2024_02_19_050647) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,20 +38,6 @@ ActiveRecord::Schema.define(version: 2024_02_16_103209) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "business_tag_relations", force: :cascade do |t|
-    t.integer "business_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["business_id"], name: "index_business_tag_relations_on_business_id"
-    t.index ["tag_id"], name: "index_business_tag_relations_on_tag_id"
-  end
-
-  create_table "businesses", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "companies", force: :cascade do |t|
@@ -110,17 +96,28 @@ ActiveRecord::Schema.define(version: 2024_02_16_103209) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recruitment_tag_relations", force: :cascade do |t|
+    t.integer "recruitment_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recruitment_id"], name: "index_recruitment_tag_relations_on_recruitment_id"
+    t.index ["tag_id"], name: "index_recruitment_tag_relations_on_tag_id"
+  end
+
   create_table "recruitments", force: :cascade do |t|
     t.string "name", null: false
     t.string "kana", null: false
-    t.string "business", null: false
+    t.string "business"
     t.text "introduction", null: false
     t.integer "hourly_wage", null: false
     t.date "date", null: false
-    t.time "time", null: false
+    t.time "start_time", null: false
+    t.time "finish_time", null: false
     t.text "place", null: false
     t.string "contact_address"
     t.integer "company_id"
+    t.integer "tag_ids"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -133,16 +130,27 @@ ActiveRecord::Schema.define(version: 2024_02_16_103209) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "request_tag_relations", force: :cascade do |t|
+    t.integer "request_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["request_id"], name: "index_request_tag_relations_on_request_id"
+    t.index ["tag_id"], name: "index_request_tag_relations_on_tag_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string "name", null: false
     t.string "kana", null: false
-    t.string "business", null: false
+    t.string "business"
     t.text "introduction", null: false
     t.date "date", null: false
-    t.time "time", null: false
+    t.time "start_time", null: false
+    t.time "finish_time", null: false
     t.text "place", null: false
     t.string "contact_address"
     t.integer "staff_id"
+    t.integer "tag_ids"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -194,8 +202,10 @@ ActiveRecord::Schema.define(version: 2024_02_16_103209) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "business_tag_relations", "businesses"
-  add_foreign_key "business_tag_relations", "tags"
   add_foreign_key "job_tag_relations", "jobs"
   add_foreign_key "job_tag_relations", "tags"
+  add_foreign_key "recruitment_tag_relations", "recruitments"
+  add_foreign_key "recruitment_tag_relations", "tags"
+  add_foreign_key "request_tag_relations", "requests"
+  add_foreign_key "request_tag_relations", "tags"
 end

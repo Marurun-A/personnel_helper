@@ -33,7 +33,11 @@
          <td>
           <%= @request.kana %>
          </td>
-        <td><%= @request.business %></td>
+        <td>
+          <% @request.tags.each do |tag| %>
+          <span><%= tag.name %></span>
+          <% end %>
+        </td>
         <td>
           <%= @request.date %>
           <%= @request.time %>

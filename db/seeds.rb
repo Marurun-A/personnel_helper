@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Tag.create([
-  { name: 'タグ1' },
-  { name: 'タグ2' },
-  { name: 'タグ3' },
-  { name: 'タグ4' },
-  { name: 'タグ5' }
+  { name: 'ホール業務' },
+  { name: '皿洗い' },
+  { name: '荷物整理' },
+  { name: '交通整備' },
+  { name: 'レジ打ち' }
 ])

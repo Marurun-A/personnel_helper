@@ -19,8 +19,7 @@
 
 
   <h6>業務内容</h6>
-  <%= f.text_field :business %>
-  <div class='form-group'>
+    <div class='form-group'>
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
             <div class='form-check'>
                 <%= tag.label class: 'form-check-label' do %>
@@ -30,15 +29,13 @@
             </div>
         <% end %>
     </div>
-
-
-
   <h6>時給</h6>
   <%= f.text_field :hourly_wage %>
-   <h6>日付</h6>
+  <h6>日時</h6>
+  <P>日付</P>
   <%= f.date_field :date %>
-  <h6>時間</h6>
-  <%= f.time_field :time %>
+  <p>時間</p>
+  <%= f.time_field :start_time %><%= f.time_field :finish_time %>
   <h6>場所</h6>
   <%= f.text_field :place %>
   <h6>連絡先</h6>

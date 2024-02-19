@@ -16,6 +16,12 @@
   </thead>
 
 　<tbody>
+　 <%= form_tag({controller:"recruitments",action:"index"}, method: :get) do %>
+    <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+    <% end %>
+    <%= submit_tag '検索' %>
+  <% end %>
   <% @recruitments.each do |recruitment| %>
     <tr>
       <td>
@@ -33,7 +39,11 @@
        <td>
         <%= recruitment.kana %>
        </td>
-      <td><%= recruitment.business %></td>
+      <td>
+        <% recruitment.tags.each do |tag| %>
+        <span><%= tag.name %></span>
+        <% end %>
+      </td>
       <td>
         <%= recruitment.date %>
         <%= recruitment.time %>

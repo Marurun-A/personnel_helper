@@ -32,17 +32,21 @@
        <td>
         <%= @recruitment.kana %>
        </td>
-      <td><%= @recruitment.business %></td>
+      <td><%#= @recruitment.business %>
+        <% @recruitment.tags.each do |tag| %>
+        <span><%= tag.name %></span>
+        <% end %>
+      </td>
       <td>
         <%= @recruitment.date %>
-        <%= @recruitment.time %>
+        <%= @recruitment.start_time %><%= @recruitment.finish_time %>
       </td>
       <td><%= @recruitment.hourly_wage %></td>
       <td><%= @recruitment.place %></td>
       <td><%= @recruitment.contact_address %></td>
       <td><%= @recruitment.introduction %></td>
       <td><%= link_to "Edit", edit_company_recruitment_path(company_id: @recruitment.company_id, id: @recruitment.id) %></td>
-      <td><%= link_to "Destroy", company_recruitment_path(company_id: @recruitment.company_id, id: @recruitment.id), method: :delete, "data-confirm" => "Are you sure" %></td>
+      <td><%= button_to "Destroy", company_recruitment_path(company_id: @recruitment.company_id, id: @recruitment.id), method: :delete, data: { confirm: "Are you sure" } %></td>
     </tr>
   </tbody>
 </table>

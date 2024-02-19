@@ -33,10 +33,14 @@
        <td>
         <%= request.kana %>
        </td>
-      <td><%= request.business %></td>
+      <td>
+        <% request.tags.each do |tag| %>
+        <span><%= tag.name %></span>
+        <% end %>
+      </td>
       <td>
         <%= request.date %>
-        <%= request.time %>
+        <%= request.start_time %><%= request.finish_time %>
       </td>
       <td><%= request.place %></td>
       <td><%= request.contact_address %></td>

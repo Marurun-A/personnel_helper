@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BusinessTagRelationTest < ActiveSupport::TestCase
+class RecruitmentTagRelationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
