@@ -41,6 +41,8 @@
             </div>
         <% end %>
         </div>
+        <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
+        <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
 
         <div class="form-grop mt-2">
           <h6>時給</h6>

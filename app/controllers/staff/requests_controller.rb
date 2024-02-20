@@ -5,7 +5,6 @@ class Staff::RequestsController < ApplicationController
   end
 
   def create
-
     @request = Request.new(request_params)
     @request.staff_id = current_staff.id
     if @request.save

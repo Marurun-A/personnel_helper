@@ -20,7 +20,7 @@
   </thead>
 
 　<tbody>
-  <% @recruitments.each do |recruitment| %>
+　  <% @recruitments.each do |recruitment| %>
     <tr>
       <td>
         <% if recruitment.image.attached? %>
@@ -39,7 +39,7 @@
        </td>
       <td>
         <% recruitment.tags.each do |tag| %>
-        <span><%= tag.name %></span>
+        <span><%= tag.tag_name %></span>
         <% end %>
       </td>
       <td>
