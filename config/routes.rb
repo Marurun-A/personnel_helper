@@ -23,14 +23,13 @@ Rails.application.routes.draw do
     get 'companys/information/unsubscribe' => 'companys#unsubscribe'
     get 'companys/information/withdraw' => 'companys#withdraw'
     delete '/request_forms/destroy_all' => 'request_forms#destroy_all', as: 'destroy_all_request_forms'
-    post 'emploments/confirm' => 'emploments#confirm'
-    get 'emploments/complete' => 'emploments#complete'
+    post 'employments/confirm' => 'employments#confirm'
+    get 'employments/complete' => 'employments#complete'
 
     resources :requests, only: [:index, :show, :new, :create, :update, :edit]
     resources :companys, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :request_forms, only: [:index, :update, :destroy, :create]
-    # resources :recruitment_forms, only: [:index, :update, :destroy, :create]
-    resources :emploments, only: [:new, :confirm, :complete, :create, :index, :show]
+    resources :employments, only: [:new, :confirm, :complete, :create, :index, :show]
   end
 
   scope module: :company do
@@ -47,13 +46,12 @@ Rails.application.routes.draw do
     get 'staffs/my_page' => 'staffs#top'
     get 'staffs/information/unsubscribe' => 'staffs#unsubscribe'
     get 'staffs/information/withdraw' => 'staffs#withdraw'
-    post 'emploments/confirm' => 'emploments#confirm'
-    get 'emploments/complete' => 'emploments#complete'
+    post 'employments/confirm' => 'employments#confirm'
+    get 'employments/complete' => 'employments#complete'
     delete '/recruitment_forms/destroy_all' => 'recuruitment_forms#destroy_all', as: 'destroy_all_recruitment_forms'
 
     resources :recruitments, only: [:index, :show, :new, :create, :update, :edit]
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
-    # resources :request_forms, only: [:index, :update, :destroy, :create]
     resources :recruitment_forms, only: [:index, :update, :destroy, :create]
     resources :works, only: [:new, :confirm, :complete, :create, :index, :show]
   end
@@ -63,11 +61,5 @@ Rails.application.routes.draw do
         resources :requests
     end
   end
-
-  # scope module: :staff do
-  #   resources :staffs, only: [] do
-  #     resources :recruitment_forms
-  #   end
-  # end
 
 end

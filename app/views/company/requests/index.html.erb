@@ -18,7 +18,7 @@
 　<tbody>
 　 <%= form_tag({controller:"requests",action:"index"}, method: :get) do %>
     <% Tag.all.each do |t| %>
-        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+        <li><%= check_box :tag_name, t.tad_name %><%= t.tag_name %></li>
     <% end %>
     <%= submit_tag '検索' %>
   <% end %>
@@ -41,12 +41,12 @@
        </td>
       <td>
         <% request.tags.each do |tag| %>
-        <span><%= tag.name %></span>
+        <span><%= tag.tag_name %></span>
         <% end %>
       </td>
       <td>
         <%= request.date %>
-        <%= request.time %>
+        <%= request.start_time %><%= request.finish_time %>
       </td>
       <td><%= request.place %></td>
       <td><%= request.contact_address %></td>

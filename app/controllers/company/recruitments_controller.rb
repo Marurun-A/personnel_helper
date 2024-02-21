@@ -6,7 +6,7 @@ class Company::RecruitmentsController < ApplicationController
   def create
     @recruitment = Recruitment.new(recruitment_params)
     @recruitment.company_id = current_company.id
-    tag_list = params[:recruitment][:tag_name].split(',') | params[:recruitment][:tag_ids]
+    tag_list = params[:recruitment][:tag_name].split(',') | params[:recruitment][:tag_ids].compact_blank
     if @recruitment.save
       @recruitment.save_tags(tag_list)
       flash[:notice] = "You have created recruitment successfully."
@@ -35,9 +35,9 @@ class Company::RecruitmentsController < ApplicationController
 
   def update
     @recruitment = Recruitment.find(params[:id])
-    tag_list=params[:recruitment][:tag_name].split(',')
+    tag_list=params[:recruitment][:tag_name].split(',') | params[:request][:tag_ids].compact_blank
       if @recruitment.update(recruitment_params)
-        @workout.save_tags(tag_list)
+        @recruitment.save_tags(tag_list)
         flash[:notice] = "You have updated recruitment successfully."
         redirect_to company_recruitment_path(@recruitment)
       else
@@ -51,11 +51,11 @@ class Company::RecruitmentsController < ApplicationController
     redirect_to company_recruitments_path(current_company)
   end
 
-  def search_tag
-    @tag_list = Tag.all
-    @tag = Tag.find(params[:recruitment_tag_id])
-    @recruitments = @tag.recruitments
-  end
+  # def search_tag
+  #   @tag_list = Tag.all
+  #   @tag = Tag.find(params[:recruitment_tag_id])
+  #   @recruitments = @tag.recruitments
+  # end
 
   private
 

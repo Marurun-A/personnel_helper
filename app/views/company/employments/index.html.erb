@@ -1,24 +1,24 @@
-<h4>注文履歴</h4>
+<h4>雇用履歴</h4>
 
-  <table>
+ <table>
     <thead>
       <th></th>
       <th>スタッフ名</th>
-      <th>勤務可能日時</th>
-      <th>実施可能業務</th>
+      <th>雇用日時</th>
+      <th>実施業務</th>
       <th>雇用日</th>
       <th>希望支払方法</th>
     </thead>
     <tbody>
-      <% @emploments.each do |emploment| %>
+      <% @employments.each do |emploment| %>
         <tr>
           <td>
-            <%= emploments.created_at.strftime("%Y/%m/%d") %>
+            <%= employments.created_at.strftime("%Y/%m/%d") %>
           </td>
-          <td><%= emploments.emploment_details.staff.name %></td>
-          <td><%= emploments.           %></td>
-          <td><%= link_to "表示する", comapany_emploment_path(emploment) %></td>
+          <td><%= employments.emploment_details.staff.name %></td>
+          <td><%= link_to "表示する", comapany_employment_path(employment) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  

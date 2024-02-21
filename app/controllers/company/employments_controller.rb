@@ -33,8 +33,8 @@ class Company::EmploymentsController < ApplicationController
   end
 
   def index
-    @employments = Employment.where(campnay_id: current_campany.id)
-    @employment_details = EmploymentDetail.find_by(employment_id: @employment.first.id)
+    @employments = Employment.where(company_id: current_company.id)
+    # @employment_details = EmploymentDetail.find_by(employment_id: @employment.first.id)
   end
 
   def show

@@ -6,7 +6,7 @@
       <tr>
         <th></th>
         <th>会社名</th>
-        <th>カナ</th>
+        <th>フリガナ</th>
         <th>業務内容</th>
         <th>業務時間</th>
         <th>時給</th>
@@ -35,12 +35,12 @@
          </td>
         <td>
           <% @recruitment.tags.each do |tag| %>
-          <span><%= tag.name %></span>
+          <span><%= tag.tag_name %></span>
           <% end %>
         </td>
         <td>
           <%= @recruitment.date %>
-          <%= @recruitment.time %>
+          <%= @recruitment.start_time %><%= @recruitment.finish_time %>
         </td>
         <td><%= @recruitment.hourly_wage %></td>
         <td><%= @recruitment.place %></td>

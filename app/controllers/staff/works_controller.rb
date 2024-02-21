@@ -33,7 +33,7 @@ class Staff::WorksController < ApplicationController
 
   def index
     @works = Work.where(staff_id: current_staff.id)
-    @work_details = WorkDetail.find_by(work_id: @work.first.id)
+    # @work_details = WorkDetail.find_by(@work.first.id, staff_id: @staff.id)
   end
 
   def show
@@ -47,9 +47,5 @@ class Staff::WorksController < ApplicationController
   def work_params
     params.require(:work).permit(:staff_id, :response_deadline, :total_amount, :payment_method)
   end
-
-
-end
-
 
 end

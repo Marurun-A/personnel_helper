@@ -16,8 +16,6 @@
   <%= f.text_field :name %>
   <h6>フリガナ</h6>
   <%= f.text_field :kana %>
-
-
   <h6>業務内容</h6>
     <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
         <div class='form-check'>

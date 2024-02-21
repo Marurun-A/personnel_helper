@@ -32,17 +32,17 @@
         <div class="form-grop mt-2">
           <h6>業務内容</h6>
           <div class='form-group'>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-            <div class='form-check'>
-                <%= tag.label class: 'form-check-label' do %>
-                    <%= tag.check_box class: 'form-check-input' %>
-                    <%= tag.text %>
-                <% end %>
-            </div>
-        <% end %>
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
+              <div class='form-check'>
+                  <%= tag.label class: 'form-check-label' do %>
+                      <%= tag.check_box class: 'form-check-input' %>
+                      <%= tag.text %>
+                  <% end %>
+              </div>
+          <% end %>
         </div>
         <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
-        <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
+        <%= f.text_field :tagname,value: @tag_list, class: 'form-control' %>
 
         <div class="form-grop mt-2">
           <h6>時給</h6>

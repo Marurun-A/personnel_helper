@@ -1,0 +1,24 @@
+<h4>勤務履歴</h4>
+
+
+  <table>
+    <thead>
+      <th></th>
+      <th>会社名</th>
+      <th>勤務日時</th>
+      <th>実施業務</th>
+      <th>雇用日</th>
+      <th>希望支払方法</th>
+    </thead>
+    <tbody>
+      <% @works.each do |work| %>
+        <tr>
+          <td>
+            <%= works.created_at.strftime("%Y/%m/%d") %>
+          </td>
+          <td><%= work.work_details.company.name %></td>
+          <td><%= link_to "表示する", staff_work_path(work.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
