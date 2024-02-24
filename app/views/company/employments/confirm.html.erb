@@ -1,0 +1,65 @@
+<h2>依頼確認画面</h2>
+
+      <table>
+        <thead>
+          <th>スタッフ名</th>
+          <th>雇用場所</th>
+          <th>勤務日時</th>
+          <th>勤務時間</th>
+          <th>時給<th>
+          <th>業務説明</th>
+          <th>連絡先</th>
+          <tH>返答期限</tH>
+        </thead>
+        <tbody>
+  <% @total = 0 %>
+  <% @total_hours = 0 %>
+  <% @employments.each do |employment| %>
+    <tr>
+      <td><%#= @request_form.request.name %></td>
+      <td><%= employment.place_of_employment %></td>
+      <td>
+        <%= employment.date.strftime("%-m月%-d日") %><%= employment.start_time.strftime("%H時%M分") %> <%= employment.finish_time.strftime("%H時%M分") %>
+      </td>
+      <td><%= employment.hours.strftime("%-H") %>時間</td>
+      <td><%= employment.hourly_wage %></td>
+      <td><%= employment.introduction %></td>
+      <td><%= employment.contact_address %></td>
+      <td><%= employment.response_deadline.strftime("%-m月%-d日") %></td>
+    </tr>
+  <% end %>
+</tbody>
+<table>
+  <tr>
+    <th>支払い方法</th>
+    <td><%#= payment_method_label(@employment.payment_method) %></td>
+  </tr>
+  <tr>
+    <th>合計勤務時間</th>
+    <% @total_hours += @employment.hours.strftime("%-H").to_i  %>
+    <td><%= @total_hours %>時間</td>
+  </tr>
+  <tr>
+    <th>支払総額</th>
+    <% @total += @employment.hourly_wage %>
+    <% total_payment = @total * @total_hours %>
+    <%= total_payment %>
+    <td><%= total_payment %></td>
+  </tr>
+</table>
+
+<%= form_with model: @employment, url: company_employments_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :place_of_employment,  value: @employment.place_of_employment %>
+  <%= f.hidden_field :date,           value: @employment.date %>
+  <%= f.hidden_field :start_time,     value: @employment.start_time %>
+  <%= f.hidden_field :finish_time,    value: @employment.finish_time %>
+  <%= f.hidden_field :hours,          value: @employment.hours %>
+  <%= f.hidden_field :hourly_wage,    value: @employment.hourly_wage %>
+  <%= f.hidden_field :payment_method, value: @employment.payment_method %>
+  <%= f.hidden_field :delivery_name,  value: @employment.place_of_employment %>
+  <%= f.hidden_field :introduction,   value: @employment.introduction %>
+  <%= f.hidden_field :contact_address,value: @employment.contact_address %>
+  <%= f.hidden_field :response_deadline,value: @employment.response_deadline %>
+  <%= f.hidden_field :total_payment_amount, value: total_payment %>
+  <%= f.submit "注文を確定する", class: "btn btn-success" %>
+<% end %>

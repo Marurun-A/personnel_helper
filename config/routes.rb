@@ -46,9 +46,9 @@ Rails.application.routes.draw do
     get 'staffs/my_page' => 'staffs#top'
     get 'staffs/information/unsubscribe' => 'staffs#unsubscribe'
     get 'staffs/information/withdraw' => 'staffs#withdraw'
-    post 'employments/confirm' => 'employments#confirm'
-    get 'employments/complete' => 'employments#complete'
-    delete '/recruitment_forms/destroy_all' => 'recuruitment_forms#destroy_all', as: 'destroy_all_recruitment_forms'
+    post 'works/confirm' => 'works#confirm'
+    get 'works/complete' => 'works#complete'
+    delete '/recruitment_forms/destroy_all' => 'recruitment_forms#destroy_all', as: 'destroy_all_recruitment_forms'
 
     resources :recruitments, only: [:index, :show, :new, :create, :update, :edit]
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]

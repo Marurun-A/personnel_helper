@@ -6,8 +6,8 @@ class Staff < ApplicationRecord
 
   has_one_attached :image
   has_many :requests, dependent: :destroy
-  has_many :employments, dependent: :destroy
-
+  has_many :works, dependent: :destroy
+  has_many :recruitment_forms, foreign_key: :staff_id, dependent: :destroy
 
 
 end

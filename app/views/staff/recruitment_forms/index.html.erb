@@ -1,6 +1,6 @@
 <h2>応募画面</h2>
 
-<%= link_to "応募をリセットする", staff_destroy_all_recruitment_forms_path, method: :delete %>
+<%= button_to "応募をリセットする", staff_destroy_all_recruitment_forms_path, method: :delete %>
 
 <table>
   <thead>
@@ -11,7 +11,6 @@
     <th>実施可能業務</th>
     <th>返答期日</th>
     <th></th>
-    <td></td>
   </thead>
   <tbody>
     <% @recruitment_forms.each do |recruitment_form| %>
@@ -22,8 +21,12 @@
         <td>
           <%= form_with model:recruitment_form, url: staff_recruitment_form_path(recruitment_form.id),method: :patch,local:true do |f| %>
             <%= f.hidden_field :recruitment_form_id, value: recruitment_form.id %>
+            <h6>日付</h6>
             <%= f.date_field :date %>
-            <%= f.time_field :start_time %><%= f.time_field :finish_time %>
+            <h6>希望開始時間</h6>
+            <%= f.time_field :start_time %>
+            <h6>希望終了時間</h6>
+            <%= f.time_field :finish_time %>
             <%#= f.submit "日付を修正" %>
           <% end %>
         </td>
@@ -38,12 +41,16 @@
             <%= f.date_field :response_deadline %>
             <% end %>
           </td>
-          <td><%= link_to "削除", staff_recruitment_form_path(recruitment_form.id), method: :delete %></td>
+          <td><%= button_to "削除", staff_recruitment_form_path(recruitment_form.id), method: :delete %></td>
         </tr>
     <% end %>
   </tbody>
 </table>
+
+<div>
   <%= link_to "依頼を続ける", staff_recruitments_path %>
-  <% if @recruitmentt_forms.present? %>
-    <%= link_to "購入に進む", new_staff_works_path %>
-  <% end %>
+  <%# if @recruitmentt_forms.present? %>
+    <%= link_to "購入に進む", staff_works_confirm_path %>
+  <%# end %>
+</div>
+

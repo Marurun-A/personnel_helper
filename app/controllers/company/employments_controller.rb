@@ -2,7 +2,6 @@ class Company::EmploymentsController < ApplicationController
 
   def new
     @employments = Employment.new
-
   end
 
   def create
@@ -10,23 +9,24 @@ class Company::EmploymentsController < ApplicationController
     @employment.company_id = current_company.id
     @employment.save
 
-    current_company.recruitment_forms.each do |recruitment_form|
+    current_company.request_forms.each do |request_form|
       @employment_details = EmploymentDetail.new
-      @employment_details.emproitment_id = request_form.request.id
-      @employment_details.request_id = @request.id
-      @employment_details.sarary =
-      # @employment_details.number_of_times =
+      @employment_details.employment_id = @employment.id
+      @employment_details.request_id = request_form.request.id
+      @employment_details.total_payment_amount = @employment.total_payment_amount
       @employment_details.save
       end
 
       current_company.request_forms.destroy_all
-      redirect_to  comapny_requests_complete_path
+      redirect_to  company_employments_complete_path
   end
 
   def confirm
-    @employment = Employment.new(employment_params)
+      @employment = Employment.new(employment_params)
       @request_forms = current_company.request_forms
-      @request.campany_id = current_campany.id
+      @employment.company_id = current_company.id
+
+      @employments = [@employment]
   end
 
   def complete
@@ -34,7 +34,7 @@ class Company::EmploymentsController < ApplicationController
 
   def index
     @employments = Employment.where(company_id: current_company.id)
-    # @employment_details = EmploymentDetail.find_by(employment_id: @employment.first.id)
+    @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
   end
 
   def show
@@ -46,8 +46,10 @@ class Company::EmploymentsController < ApplicationController
   private
 
   def employment_params
-    params.require(:employtment).permit(:company_id, :response_deadline, :total_amount, :transportation_expenses, :payment_method)
+  params.require(:employment).permit(:company_id, :response_deadline, :date,  :start_time,  :finish_time, :hours, :hourly_wage, :payment_method, :place_of_employment, :introduction, :contact_address, :total_payment_amount)
   end
+
+
 
 
 end

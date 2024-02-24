@@ -13,12 +13,11 @@
       <% @employments.each do |emploment| %>
         <tr>
           <td>
-            <%= employments.created_at.strftime("%Y/%m/%d") %>
+            <%= employment.created_at.strftime("%Y/%m/%d") %>
           </td>
-          <td><%= employments.emploment_details.staff.name %></td>
+          <td><%= employment.employment_details.staff.name %></td>
           <td><%= link_to "表示する", comapany_employment_path(employment) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  

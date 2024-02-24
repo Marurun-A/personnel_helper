@@ -18,7 +18,7 @@
 　<tbody>
 　 <%= form_tag({controller:"requests",action:"index"}, method: :get) do %>
     <% Tag.all.each do |t| %>
-        <li><%= check_box :tag_name, t.tad_name %><%= t.tag_name %></li>
+        <li><%= check_box :tag_name, t.tag_name %><%= t.tag_name %></li>
     <% end %>
     <%= submit_tag '検索' %>
   <% end %>
