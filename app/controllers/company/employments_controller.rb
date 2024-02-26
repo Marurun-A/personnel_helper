@@ -34,7 +34,7 @@ class Company::EmploymentsController < ApplicationController
 
   def index
     @employments = Employment.where(company_id: current_company.id)
-    @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
+    
   end
 
   def show

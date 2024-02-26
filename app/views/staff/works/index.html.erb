@@ -14,7 +14,7 @@
           <tbody>
             <% @works.each do |work| %>
               <tr>
-                <td><%#= @request_form.request.name %></td>
+                <td><%= work.work_details.first.recruitment.name %></td>
                 <td><%= work.whereabouts %></td>
                 <td>
                   <%= work.date.strftime("%-m月%-d日") %><%= work.start_time.strftime("%H時%M分") %> <%= work.finish_time.strftime("%H時%M分") %>

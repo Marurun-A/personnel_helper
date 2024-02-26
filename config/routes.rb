@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
     root to: "homes#top"
     get 'staffs/my_page' => 'staffs#top'
+    # get 'staffs/my_work' => 'works#index'
     get 'staffs/information/unsubscribe' => 'staffs#unsubscribe'
     get 'staffs/information/withdraw' => 'staffs#withdraw'
     post 'works/confirm' => 'works#confirm'
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
     resources :recruitments, only: [:index, :show, :new, :create, :update, :edit]
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :recruitment_forms, only: [:index, :update, :destroy, :create]
-    resources :works, only: [:new, :confirm, :complete, :create, :show]
+    resources :works, only: [:new, :confirm, :complete, :create, :index, :show]
   end
 
   scope module: :staff do
@@ -62,10 +63,10 @@ Rails.application.routes.draw do
     end
   end
 
-  scope module: :staff do
-      resources :staffs, only: [:index] do
-        resources :works, path: 'works', as: 'staff_works'
-    end
-  end
+  # scope module: :staff do
+  #     resources :staffs, only: [:index] do
+  #       resources :works, path: 'works', as: 'staff_works'
+  #   end
+  # end
 
 end

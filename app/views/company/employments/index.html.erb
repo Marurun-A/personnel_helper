@@ -1,23 +1,33 @@
-<h4>雇用履歴</h4>
+<h2>依頼確認画面</h2>
 
- <table>
-    <thead>
-      <th></th>
-      <th>スタッフ名</th>
-      <th>雇用日時</th>
-      <th>実施業務</th>
-      <th>雇用日</th>
-      <th>希望支払方法</th>
-    </thead>
-    <tbody>
-      <% @employments.each do |emploment| %>
-        <tr>
-          <td>
-            <%= employment.created_at.strftime("%Y/%m/%d") %>
-          </td>
-          <td><%= employment.employment_details.staff.name %></td>
-          <td><%= link_to "表示する", comapany_employment_path(employment) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      <table>
+        <thead>
+          <th>スタッフ名</th>
+          <th>雇用場所</th>
+          <th>勤務日時</th>
+          <th>勤務時間</th>
+          <th>時給<th>
+          <th>業務説明</th>
+          <th>連絡先</th>
+          <tH>返答期限</tH>
+        </thead>
+        <tbody>
+  <% @employments.each do |employment| %>
+    <tr>
+      <td><%#= @request_form.request.name %></td>
+      <td><%= employment.place_of_employment %></td>
+      <td>
+        <%= employment.date.strftime("%-m月%-d日") %><%= employment.start_time.strftime("%H時%M分") %> <%= employment.finish_time.strftime("%H時%M分") %>
+      </td>
+      <td><%= employment.hours.strftime("%-H") %>時間</td>
+      <td><%= employment.hourly_wage %></td>
+      <td><%= employment.introduction %></td>
+      <td><%= employment.contact_address %></td>
+      <td><%= employment.response_deadline.strftime("%-m月%-d日") %></td>
+      <td><%= link_to "表示する", company_employment_path(employment.id) %></td>
+    </tr>
+  <% end %>
+</tbody>
+
+
+

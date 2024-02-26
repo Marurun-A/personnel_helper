@@ -27,7 +27,6 @@ class Staff::WorksController < ApplicationController
       @work.staff_id = current_staff.id
       @works =[@work]
 
-      puts @recruitment_forms
   end
 
   def complete
@@ -35,7 +34,8 @@ class Staff::WorksController < ApplicationController
 
   def index
     @works = Work.where(staff_id: current_staff.id)
-    # @work_details = WorkDetail.find_by(@work.first.id, staff_id: @staff.id)
+    @work_details = WorkDetail.find_by(work_id: @works.first.id)
+    @recruitment_id = @work_details.recruitment_id
   end
 
   def show
