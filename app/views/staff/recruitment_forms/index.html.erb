@@ -2,55 +2,47 @@
 
 <%= button_to "応募をリセットする", staff_destroy_all_recruitment_forms_path, method: :delete %>
 
-<table>
-  <thead>
-    <th></th>
-    <th>会社名</th>
-    <th>時給</th>
-    <th>勤務日時</th>
-    <th>実施可能業務</th>
-    <th>返答期日</th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @recruitment_forms.each do |recruitment_form| %>
-      <tr>
-        <td><%#= recruitment_form.get_image, size: "100x100" %></td>
-        <td><%= recruitment_form.recruitment.name %></td>
-        <td><%= recruitment_form.recruitment.hourly_wage %></td>
-        <td>
-          <%= form_with model:recruitment_form, url: staff_recruitment_form_path(recruitment_form.id),method: :patch,local:true do |f| %>
-            <%= f.hidden_field :recruitment_form_id, value: recruitment_form.id %>
-            <h6>日付</h6>
-            <%= f.date_field :date %>
-            <h6>希望開始時間</h6>
-            <%= f.time_field :start_time %>
-            <h6>希望終了時間</h6>
-            <%= f.time_field :finish_time %>
-            <%#= f.submit "日付を修正" %>
-          <% end %>
-        </td>
-        <td>
-          <% recruitment_form.recruitment.tags.each do |tag| %>
+  <table>
+    <thead>
+      <th></th>
+      <th>会社名</th>
+      <th>フリガナ</th>
+      <th>実施業務</th>
+      <th>勤務日時</th>
+      <th>時給</th>
+      <th>場所</th>
+      <th>連絡先</th>
+      <th>業務紹介</th>
+    </thead>
+    <tbody>
+      <% @recruitment_forms.each do |recruitment_form| %>
+        <tr>
+          <td><%#= image_tag request_form.get_image, size: "100x100" %></td>
+          <td><%= recruitment_form.recruitment.name %></td>
+          <td><%= recruitment_form.recruitment.kana %></td>
+          <td>
+            <% recruitment_form.recruitment.tags.each do |tag| %>
             <span><%= tag.tag_name %></span>
-          <% end %>
-        </td>
-        <td>
-          <%= form_with model:recruitment_form, url: staff_recruitment_form_path(recruitment_form.id),method: :patch,local:true do |f| %>
-            <%= f.hidden_field :recruitment_form_id, value: recruitment_form.id %>
-            <%= f.date_field :response_deadline %>
             <% end %>
           </td>
-          <td><%= button_to "削除", staff_recruitment_form_path(recruitment_form.id), method: :delete %></td>
+          <td>
+            <%= recruitment_form.recruitment.date.strftime("%-m月%d日") %><br/>
+            <%= recruitment_form.recruitment.start_time.strftime("%H時%M分") %><%= recruitment_form.recruitment.finish_time.strftime("%H時%M分") %>
+           </td>
+          <td><%= recruitment_form.recruitment.hourly_wage %></td>
+          <td><%= recruitment_form.recruitment.place %></td>
+          <td><%= recruitment_form.recruitment.contact_address %></td>
+          <td><%= recruitment_form.recruitment.introduction %></td>
+          <td> <%= button_to "削除", staff_recruitment_form_path(recruitment_form.id), method: :delete %></td>
         </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 
-<div>
-  <%= link_to "依頼を続ける", staff_recruitments_path %>
-  <%# if @recruitmentt_forms.present? %>
-    <%= link_to "購入に進む", staff_works_confirm_path %>
-  <%# end %>
-</div>
+  <div>
+    <%= link_to "依頼を続ける", staff_recruitments_path %>
+    <%# if @recruitmentt_forms.present? %>
+      <%= link_to "購入に進む", new_staff_work_path, method: :post %>
+    <%# end %>
+  </div>
 

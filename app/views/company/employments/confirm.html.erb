@@ -32,7 +32,7 @@
 <table>
   <tr>
     <th>支払い方法</th>
-    <td><%#= payment_method_label(@employment.payment_method) %></td>
+    <td><%= @employment.payment_method %></td>
   </tr>
   <tr>
     <th>合計勤務時間</th>
@@ -56,7 +56,6 @@
   <%= f.hidden_field :hours,          value: @employment.hours %>
   <%= f.hidden_field :hourly_wage,    value: @employment.hourly_wage %>
   <%= f.hidden_field :payment_method, value: @employment.payment_method %>
-  <%= f.hidden_field :delivery_name,  value: @employment.place_of_employment %>
   <%= f.hidden_field :introduction,   value: @employment.introduction %>
   <%= f.hidden_field :contact_address,value: @employment.contact_address %>
   <%= f.hidden_field :response_deadline,value: @employment.response_deadline %>

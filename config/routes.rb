@@ -53,12 +53,18 @@ Rails.application.routes.draw do
     resources :recruitments, only: [:index, :show, :new, :create, :update, :edit]
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :recruitment_forms, only: [:index, :update, :destroy, :create]
-    resources :works, only: [:new, :confirm, :complete, :create, :index, :show]
+    resources :works, only: [:new, :confirm, :complete, :create, :show]
   end
 
   scope module: :staff do
       resources :staffs, only: [] do
         resources :requests
+    end
+  end
+
+  scope module: :staff do
+      resources :staffs, only: [:index] do
+        resources :works, path: 'works', as: 'staff_works'
     end
   end
 

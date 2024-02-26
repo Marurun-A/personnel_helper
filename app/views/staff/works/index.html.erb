@@ -1,24 +1,35 @@
-<h4>勤務履歴</h4>
-
+<h4>依頼履歴</h4>
 
   <table>
-    <thead>
-      <th></th>
-      <th>会社名</th>
-      <th>勤務日時</th>
-      <th>実施業務</th>
-      <th>雇用日</th>
-      <th>希望支払方法</th>
-    </thead>
-    <tbody>
-      <% @works.each do |work| %>
-        <tr>
-          <td>
-            <%= works.created_at.strftime("%Y/%m/%d") %>
-          </td>
-          <td><%= work.work_details.company.name %></td>
-          <td><%= link_to "表示する", staff_work_path(work.id) %></td>
-        </tr>
-      <% end %>
-    </tbody>
+          <thead>
+            <th>会社名</th>
+            <th>通勤開始場所</th>
+            <th>希望勤務日時</th>
+            <th>希望勤務時間</th>
+            <th>希望交通手段<th>
+            <th>自己紹介</th>
+            <th>連絡先</th>
+            <tH>返答期限</tH>
+          </thead>
+          <tbody>
+            <% @works.each do |work| %>
+              <tr>
+                <td><%#= @request_form.request.name %></td>
+                <td><%= work.whereabouts %></td>
+                <td>
+                  <%= work.date.strftime("%-m月%-d日") %><%= work.start_time.strftime("%H時%M分") %> <%= work.finish_time.strftime("%H時%M分") %>
+                </td>
+                <td><%= work.hours.strftime("%-H") if work.hours %> 時間</td>
+                <td><%= work.transportation %></td>
+                <td><%= work.introduction %></td>
+                <td><%= work.contact_address %></td>
+                <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
+                <td><%= link_to "表示する", staff_work_path(work.id) %></td>
+              </tr>
+            <% end %>
+          </tbody>
   </table>
+
+
+
+

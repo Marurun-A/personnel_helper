@@ -1,5 +1,5 @@
 <h2>依頼情報入力</h2>
-<%= form_with model: @employments, url: '/company/employments/confirm',  method: :post do |f| %>
+<%= form_with model: @works, url: '/staff/works/confirm',  method: :post do |f| %>
   <h3>支払方法</h3>
     <%= f.radio_button :payment_method, "cash" %>
     <%= f.label :payment_method_cash, "現金払い", checked: "checked" %>
@@ -16,7 +16,7 @@
            <td><%= f.text_field :address %></td>
         </tr>
          <tr>
-          <td><%= f.label :name, "会社名" %></td>
+          <td><%= f.label :name, "名前" %></td>
           <td><%= f.text_field :name %></td>
          </tr>
      </table>
@@ -24,25 +24,25 @@
   <table>
     <tbody>
         <thead>
-        <th>雇用場所</th>
-        <th>勤務日時</th>
-        <th>勤務時間</th>
-        <th>時給</th>
-        <th>業務説明</th>
+        <th>通勤開始場所</th>
+        <th>希望勤務日時</th>
+        <th>希望勤務時間</th>
+        <th>希望交通手段</th>
+        <th>自己紹介</th>
         <th>連絡先</th>
         <tH>返答期限</tH>
     </thead>
     <tbody>
-    <td><%= f.text_field :place_of_employment %></td>
+    <td><%= f.text_field :whereabouts %></td>
     <td>
     <%= f.date_field :date %><%= f.time_field :start_time %><%= f.time_field :finish_time %>
     </td>
     <td><%= f.text_field :hours %>時間</td>
-    <td><%= f.text_field :hourly_wage %></td>
+    <td><%= f.text_field :transportation %></td>
     <td><%= f.text_field :introduction %></td>
     <td><%= f.text_field :contact_address %></td>
     <td><%= f.date_field :response_deadline %></td>
-　　<td>
+　　<td
     </tbody>
   </table>
 

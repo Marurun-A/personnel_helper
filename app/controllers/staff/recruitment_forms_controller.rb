@@ -40,7 +40,7 @@ class Staff::RecruitmentFormsController < ApplicationController
   private
 
     def recruitment_form_params
-      params.require(:recruitment_form).permit(:datetime, :recruitment_id, :staff_id)
+      params.require(:recruitment_form).permit(:recruitment_id, :staff_id)
     end
 
 end
