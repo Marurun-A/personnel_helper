@@ -7,6 +7,7 @@ class Company::EmploymentsController < ApplicationController
   def create
     @employment = Employment.new(employment_params)
     @employment.company_id = current_company.id
+    @employment.staff_id = current_company.request_forms.first.staff_id
     @employment.save
 
     current_company.request_forms.each do |request_form|
@@ -34,7 +35,8 @@ class Company::EmploymentsController < ApplicationController
 
   def index
     @employments = Employment.where(company_id: current_company.id)
-    
+    @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
+    @request_id = @employment_details.request_id
   end
 
   def show
@@ -46,7 +48,7 @@ class Company::EmploymentsController < ApplicationController
   private
 
   def employment_params
-  params.require(:employment).permit(:company_id, :response_deadline, :date,  :start_time,  :finish_time, :hours, :hourly_wage, :payment_method, :place_of_employment, :introduction, :contact_address, :total_payment_amount)
+  params.require(:employment).permit(:company_id, :staff_id, :response_deadline, :date,  :start_time,  :finish_time, :hours, :hourly_wage, :payment_method, :place_of_employment, :introduction, :contact_address, :total_payment_amount)
   end
 
 

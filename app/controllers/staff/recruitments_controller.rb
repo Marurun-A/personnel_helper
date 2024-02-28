@@ -15,6 +15,7 @@ class Staff::RecruitmentsController < ApplicationController
   def show
     @recruitment = Recruitment.find(params[:id])
     @recruitment_form = RecruitmentForm.new
+    @company = Company.find(@recruitment.company_id)
   end
 
 end

@@ -53,6 +53,7 @@
   <div>
    <%= form_with model: @request_form, url: company_request_forms_path, method: :post,local:true do |f| %>
    <%= f.hidden_field :request_id, value: @request.id %>
+   <%= f.hidden_field :staff_id, value: @staff.id %>
    <%= f.submit '依頼フォームに進む' ,class: 'btn btn-success btn-sm'%>
    <% end %>
   </div>

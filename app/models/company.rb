@@ -8,4 +8,6 @@ class Company < ApplicationRecord
   has_many :recruitments, dependent: :destroy
   has_many :employments, dependent: :destroy
   has_many :request_forms, foreign_key: :company_id, dependent: :destroy
+  has_many :works, dependent: :destroy
+  has_many :recruitment_forms, foreign_key: :company_id, dependent: :destroy
 end

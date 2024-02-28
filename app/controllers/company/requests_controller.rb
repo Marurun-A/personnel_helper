@@ -16,6 +16,7 @@ class Company::RequestsController < ApplicationController
   def show
     @request = Request.find(params[:id])
     @request_form = RequestForm.new
+    @staff = Staff.find(@request.staff_id)
   end
 
 end

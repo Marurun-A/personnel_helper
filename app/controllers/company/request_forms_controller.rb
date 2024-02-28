@@ -40,7 +40,7 @@ class Company::RequestFormsController < ApplicationController
   private
 
     def request_form_params
-      params.require(:request_form).permit(:datetime, :request_id, :company_id)
+      params.require(:request_form).permit(:request_id, :company_id, :staff_id)
     end
 
 end

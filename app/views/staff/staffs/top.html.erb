@@ -1,10 +1,12 @@
 <h4>依頼中の勤務</h4>
 
 <h4>
-  <%= link_to "勤務履歴",   staff_works_path(current_staff) %>
+  <%= link_to "依頼要請履歴",   staff_works_path(current_staff) %>
 </h4>
 
-<h4>お気に入り</h4>
+<h4>
+  <%= link_to "企業からの依頼", staff_employments_path(current_staff) %>
+</h4>
 
 <h4>
   <%= link_to "ユーザー情報", staff_staff_path(current_staff) %>

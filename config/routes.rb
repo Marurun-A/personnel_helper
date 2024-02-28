@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :companys, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :request_forms, only: [:index, :update, :destroy, :create]
     resources :employments, only: [:new, :confirm, :complete, :create, :index, :show]
+    resources :works, only: [:index, :show]
   end
 
   scope module: :company do
@@ -55,6 +56,7 @@ Rails.application.routes.draw do
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :recruitment_forms, only: [:index, :update, :destroy, :create]
     resources :works, only: [:new, :confirm, :complete, :create, :index, :show]
+    resources :employments, only: [:index, :show]
   end
 
   scope module: :staff do

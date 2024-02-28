@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
 
   create_table "employments", force: :cascade do |t|
     t.integer "company_id", null: false
+    t.integer "staff_id", null: false
     t.date "response_deadline", null: false
     t.integer "total_payment_amount", null: false
     t.text "introduction", null: false
@@ -85,18 +86,10 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "job_tag_relations", force: :cascade do |t|
-    t.integer "job_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["job_id"], name: "index_job_tag_relations_on_job_id"
-    t.index ["tag_id"], name: "index_job_tag_relations_on_tag_id"
-  end
-
   create_table "recruitment_forms", force: :cascade do |t|
     t.integer "recruitment_id", null: false
     t.integer "staff_id", null: false
+    t.integer "company_id", null: false
     t.date "date"
     t.time "start_time"
     t.time "finish_time"
@@ -134,6 +127,7 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
   create_table "request_forms", force: :cascade do |t|
     t.integer "request_id", null: false
     t.integer "company_id", null: false
+    t.integer "staff_id", null: false
     t.date "date"
     t.time "start_time"
     t.time "finish_time"
@@ -203,6 +197,7 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
 
   create_table "works", force: :cascade do |t|
     t.integer "staff_id", null: false
+    t.integer "company_id", null: false
     t.date "response_deadline", null: false
     t.integer "total_payment_amount", null: false
     t.text "introduction", null: false
@@ -220,8 +215,6 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "job_tag_relations", "jobs"
-  add_foreign_key "job_tag_relations", "tags"
   add_foreign_key "recruitment_tag_relations", "recruitments"
   add_foreign_key "recruitment_tag_relations", "tags"
   add_foreign_key "request_tag_relations", "requests"

@@ -1,5 +1,5 @@
 class WorkDetail < ApplicationRecord
   # has_many :recruitments, dependent: :destroy
   belongs_to :work
-  belongs_to :recruitment
+  belongs_to :recruitment, dependent: :destroy
 end

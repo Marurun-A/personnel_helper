@@ -2,6 +2,7 @@ class CreateWorks < ActiveRecord::Migration[6.1]
   def change
     create_table :works do |t|
       t.integer :staff_id, null: false
+      t.integer :company_id, null: false
       t.date :response_deadline, null: false
       t.integer :total_payment_amount, null: false
       t.text :introduction, null: false
