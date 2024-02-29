@@ -1,0 +1,34 @@
+<h4>受信依頼一覧画面</h4>
+
+<table>
+  <thead>
+      <th>依頼者名</th>
+      <th>通勤開始場所</th>
+      <th>希望勤務日時</th>
+      <th>希望勤務時間</th>
+      <th>希望交通手段<th>
+      <th>自己紹介</th>
+      <th>連絡先</th>
+      <tH>返答期限</tH>
+      <th>リクエストステータス</th>
+  </thead>
+  <tbody>
+    <% @works.each do |work| %>
+      <tr>
+      <td><%= work.name %></td>
+      <td><%= work.kana %></td>
+      <td><%= work.whereabouts %></td>
+      <td>
+        <%= work.date.strftime("%-m月%-d日") %><%= work.start_time.strftime("%H時%M分") %> <%= work.finish_time.strftime("%H時%M分") %>
+      </td>
+      <td><%= work.hours.strftime("%-H") if work.hours %> 時間</td>
+      <td><%= work.transportation %></td>
+      <td><%= work.introduction %></td>
+      <td><%= work.contact_address %></td>
+      <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
+      <td><%= link_to "表示する", company_work_path(work.id) %></td>
+      <td><%= I18n.t("enums.work.work_status.#{work.work_status}") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

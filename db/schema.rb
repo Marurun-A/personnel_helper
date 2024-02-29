@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.text "place_of_employment", null: false
     t.string "contact_address"
     t.integer "payment_method"
+    t.integer "employment_status"
+    t.string "name"
+    t.string "kana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -209,6 +212,9 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.text "whereabouts", null: false
     t.string "contact_address", null: false
     t.integer "payment_method", null: false
+    t.integer "work_status", null: false
+    t.string "name"
+    t.string "kana"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -10,6 +10,7 @@
             <th>自己紹介</th>
             <th>連絡先</th>
             <tH>返答期限</tH>
+            <th>リクエストステータス</th>
           </thead>
           <tbody>
             <% @works.each do |work| %>
@@ -25,6 +26,7 @@
                 <td><%= work.contact_address %></td>
                 <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
                 <td><%= link_to "表示する", staff_work_path(work.id) %></td>
+                <tD><%= I18n.t("enums.work.work_status.#{work.work_status}") %></td>
               </tr>
             <% end %>
           </tbody>

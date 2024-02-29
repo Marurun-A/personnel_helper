@@ -14,6 +14,9 @@ class CreateWorks < ActiveRecord::Migration[6.1]
       t.text :whereabouts, null: false
       t.string :contact_address, null: false
       t.integer :payment_method, null: false
+      t.integer :work_status, null: false
+      t.string :name, nill: false
+      t.string :kana, nill: false
       t.timestamps
     end
   end

@@ -34,8 +34,20 @@ class Company::RecruitmentsController < ApplicationController
   end
 
   def update
-    @recruitment = Recruitment.find(params[:id])
-    tag_list=params[:recruitment][:tag_name].split(',') | params[:request][:tag_ids].compact_blank
+      @recruitment = Recruitment.find(params[:id])
+      tag_name = params[:recruitment][:tag_name]
+      tag_ids = params[:recruitment][:tag_ids]
+
+      if tag_name.present? && tag_ids.present?
+        tag_list = tag_name.split(',') | tag_ids.compact_blank
+      elsif tag_name.present?
+        tag_list = tag_name.split(',')
+      elsif tag_ids.present?
+        tag_list = tag_ids.compact_blank
+      else
+        tag_list = []
+      end
+
       if @recruitment.update(recruitment_params)
         @recruitment.save_tags(tag_list)
         flash[:notice] = "You have updated recruitment successfully."
@@ -50,12 +62,6 @@ class Company::RecruitmentsController < ApplicationController
     @recruitment.destroy
     redirect_to company_recruitments_path(current_company)
   end
-
-  # def search_tag
-  #   @tag_list = Tag.all
-  #   @tag = Tag.find(params[:recruitment_tag_id])
-  #   @recruitments = @tag.recruitments
-  # end
 
   private
 

@@ -1,8 +1,9 @@
-<h4>送信依頼一覧</h4>
+<h4>依頼リスト一覧画面</h4>
 
       <table>
         <thead>
-          <th>スタッフ名</th>
+          <th>会社名</th>
+          <th>フリガナ</th>
           <th>雇用場所</th>
           <th>勤務日時</th>
           <th>勤務時間</th>
@@ -15,7 +16,8 @@
         <tbody>
   <% @employments.each do |employment| %>
     <tr>
-      <td><%= employment.employment_details.first.request.name %></td>
+      <td><%= employment.name %></td>
+      <td><%= employment.kana %></td>
       <td><%= employment.place_of_employment %></td>
       <td>
         <%= employment.date.strftime("%-m月%-d日") %><%= employment.start_time.strftime("%H時%M分") %> <%= employment.finish_time.strftime("%H時%M分") %>
@@ -25,11 +27,8 @@
       <td><%= employment.introduction %></td>
       <td><%= employment.contact_address %></td>
       <td><%= employment.response_deadline.strftime("%-m月%-d日") %></td>
-      <td><%= link_to "表示する", company_employment_path(employment.id) %></td>
+      <td><%= link_to "表示する", staff_employment_path(employment.id) %></td>
       <td><%= I18n.t("enums.employment.employment_status.#{employment.employment_status}") %></td>
     </tr>
   <% end %>
 </tbody>
-
-
-

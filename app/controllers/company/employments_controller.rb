@@ -8,6 +8,7 @@ class Company::EmploymentsController < ApplicationController
     @employment = Employment.new(employment_params)
     @employment.company_id = current_company.id
     @employment.staff_id = current_company.request_forms.first.staff_id
+    @employment.employment_status = 0
     @employment.save
 
     current_company.request_forms.each do |request_form|
@@ -26,7 +27,6 @@ class Company::EmploymentsController < ApplicationController
       @employment = Employment.new(employment_params)
       @request_forms = current_company.request_forms
       @employment.company_id = current_company.id
-
       @employments = [@employment]
   end
 
@@ -48,7 +48,7 @@ class Company::EmploymentsController < ApplicationController
   private
 
   def employment_params
-  params.require(:employment).permit(:company_id, :staff_id, :response_deadline, :date,  :start_time,  :finish_time, :hours, :hourly_wage, :payment_method, :place_of_employment, :introduction, :contact_address, :total_payment_amount)
+  params.require(:employment).permit(:company_id, :staff_id, :name, :kana, :response_deadline, :date,  :start_time,  :finish_time, :hours, :hourly_wage, :payment_method, :place_of_employment, :introduction, :contact_address, :total_payment_amount, :employment_status)
   end
 
 

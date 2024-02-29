@@ -8,6 +8,7 @@ class Staff::WorksController < ApplicationController
     @work = Work.new(work_params)
     @work.staff_id = current_staff.id
     @work.company_id = current_staff.recruitment_forms.first.company_id
+    @work.work_status = 0
     @work.save
 
     current_staff.recruitment_forms.each do |recruitment_form|
@@ -48,7 +49,7 @@ class Staff::WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:staff_id, :company_id, :response_deadline, :date,  :start_time,  :finish_time, :hours, :transportation, :payment_method, :whereabouts, :introduction, :contact_address, :total_payment_amount)
+    params.require(:work).permit(:staff_id, :company_id, :name, :kana, :response_deadline, :date,  :start_time,  :finish_time, :hours, :transportation, :payment_method, :whereabouts, :introduction, :contact_address, :total_payment_amount, :work_status)
   end
 
 end

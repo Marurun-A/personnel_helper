@@ -14,6 +14,9 @@ class CreateEmployments < ActiveRecord::Migration[6.1]
       t.text :place_of_employment, null: false
       t.string :contact_address
       t.integer :payment_method, nill: false
+      t.integer :employment_status, nill: false
+      t.string :name, nill: false
+      t.string :kana, nill: false
       t.timestamps
     end
   end

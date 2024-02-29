@@ -1,4 +1,4 @@
-<h2>依頼確認画面</h2>
+<h2>送信依頼確認画面</h2>
 
       <table>
         <thead>
@@ -9,11 +9,12 @@
           <th>時給<th>
           <th>業務説明</th>
           <th>連絡先</th>
-          <tH>返答期限</tH>
+          <th>返答期限</th>
+          <th>リクエストステータス</th>
         </thead>
         <tbody>
     <tr>
-      <td><%#= @request_form.request.name %></td>
+      <td><%= @employment.employment_details.first.request.name %></td>
       <td><%= @employment.place_of_employment %></td>
       <td>
         <%= @employment.date.strftime("%-m月%-d日") %><%= @employment.start_time.strftime("%H時%M分") %> <%= @employment.finish_time.strftime("%H時%M分") %>
@@ -23,5 +24,6 @@
       <td><%= @employment.introduction %></td>
       <td><%= @employment.contact_address %></td>
       <td><%= @employment.response_deadline.strftime("%-m月%-d日") %></td>
+      <td><%= I18n.t("enums.employment.employment_status.#{@employment.employment_status}") %></td>
     </tr>
 </tbody>
