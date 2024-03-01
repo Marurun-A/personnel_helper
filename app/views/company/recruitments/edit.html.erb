@@ -21,12 +21,12 @@
 
         <div class="form-grop mt-2">
           <h6>会社名</h6>
-          <%= f.text_field :name %>
+          <%= f.text_field :recruitment_kananame %>
         </div>
 
         <div class="form-grop mt-2">
           <h6>フリガナ</h6>
-          <%= f.text_field :kana %>
+          <%= f.text_field :recruitment_kana %>
         </div>
 
         <div class="form-grop mt-2">
@@ -42,7 +42,7 @@
           <% end %>
         </div>
         <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
-        <%= f.text_field :tagname,value: @tag_list, class: 'form-control' %>
+        <%= f.text_field :tag_name,value: @tag_list, class: 'form-control' %>
 
         <div class="form-grop mt-2">
           <h6>時給</h6>
@@ -57,8 +57,8 @@
         </div>
 
         <div class="form-grop mt-2">
-          <h6>時間</h6>
-          <%= f.text_field :time %>
+          <6>最低勤務時間</6>
+          <%= f.number_field :minimum_time, in: 1..10 %>
         </div>
 
         <div class="form-grop mt-2">

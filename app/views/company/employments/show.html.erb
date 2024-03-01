@@ -3,6 +3,7 @@
       <table>
         <thead>
           <th>スタッフ名</th>
+          <th>フリガナ</th>
           <th>雇用場所</th>
           <th>勤務日時</th>
           <th>勤務時間</th>
@@ -14,7 +15,8 @@
         </thead>
         <tbody>
     <tr>
-      <td><%= @employment.employment_details.first.request.name %></td>
+      <td><%= @employment.employment_details.first.request.request_name %></td>
+      <td><%= @employment.employment_details.first.request.request_kana %></td>
       <td><%= @employment.place_of_employment %></td>
       <td>
         <%= @employment.date.strftime("%-m月%-d日") %><%= @employment.start_time.strftime("%H時%M分") %> <%= @employment.finish_time.strftime("%H時%M分") %>

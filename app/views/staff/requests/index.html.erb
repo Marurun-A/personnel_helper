@@ -27,11 +27,11 @@
       </td>
       <td>
         <%= link_to staff_request_path(staff_id: request.staff_id, id: request.id) do %>
-        <%= request.name %>
+        <%= request.request_name %>
         <% end %>
        </td>
        <td>
-        <%= request.kana %>
+        <%= request.request_kana %>
        </td>
       <td>
         <% request.tags.each do |tag| %>
@@ -42,6 +42,7 @@
         <%= request.date %>
         <%= request.start_time %><%= request.finish_time %>
       </td>
+      <td><%= request.maximum_time %></td>
       <td><%= request.place %></td>
       <td><%= request.contact_address %></td>
        <td><%= request.introduction %></td>

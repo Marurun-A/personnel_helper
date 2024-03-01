@@ -2,67 +2,69 @@
 <html>
   <head>
     <title>PtHelper</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width,initial-scale=1", maximum-scale=1">
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/aa4cccd1bf.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100>
 
-    <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-        <a class="navbar-brand" >
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light"">
+        <div class="container">
+        <a class="navbar-brand p-3" href="/" >
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <%= link_to "Logo", staff_root_path %>
         </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
               <% if company_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "スタッフ一覧", company_requests_path %>
+                  <%= link_to "スタッフ一覧", company_requests_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "マイページ", company_companys_my_page_path %>
+                  <%= link_to "マイページ", company_companys_my_page_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "トップページ", company_root_path %>
+                  <%= link_to "トップページ", company_root_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_company_session_path, method: :delete %>
+                  <%= link_to "ログアウト", destroy_company_session_path, method: :delete, class: 'nav-link text-dark' %>
                 </li>
 
               <% elsif staff_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "会社一覧", staff_recruitments_path %>
+                  <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "マイページ", staff_staffs_my_page_path %>
+                  <%= link_to "マイページ", staff_staffs_my_page_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "トップページ",  staff_root_path %>
+                  <%= link_to "トップページ",  staff_root_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_staff_session_path, method: :delete %>
+                  <%= link_to "ログアウト", destroy_staff_session_path, method: :delete, class: 'nav-link text-dark' %>
                 </li>
 
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "会社一覧", staff_recruitments_path %>
+                  <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "スタッフ一覧", company_requests_path %>
+                  <%= link_to "スタッフ一覧", company_requests_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", company_homes_confirm_registration_path %>
+                  <%= link_to "新規登録", company_homes_confirm_registration_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", company_homes_confirm_session_path %>
+                  <%= link_to "ログイン", company_homes_confirm_session_path, class: 'nav-link text-dark' %>
                 </li>
               <% end %>
             </ul>
@@ -70,7 +72,8 @@
         </div>
       </nav>
     </header>
-
+    <main class="mb-auto">
     <%= yield %>
+    </main>
   </body>
 </html>

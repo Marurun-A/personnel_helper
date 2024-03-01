@@ -3,8 +3,11 @@ class Company::RequestFormsController < ApplicationController
   def create
     @request_form = RequestForm.new(request_form_params)
     @request_form.company_id = current_company.id
-    @request_form.save
-    redirect_to company_request_forms_path
+    if @request_form.save
+       redirect_to company_request_forms_path
+    else
+      render action: :new
+    end
   end
 
   def index

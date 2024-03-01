@@ -2,8 +2,12 @@ class Company::WorksController < ApplicationController
 
   def index
     @works = Work.where(company_id: current_company.id)
-    @work_details = WorkDetail.find_by(work_id: @works.first.id)
-    @recruitment_id = @work_details.recruitment_id
+      if @works.empty?
+        @works = []
+      else
+        @work_details = WorkDetail.find_by(work_id: @works.first.id)
+        @recruitment_id = @work_details.recruitment_id
+      end
   end
 
   def show

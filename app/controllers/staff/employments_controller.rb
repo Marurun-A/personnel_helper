@@ -2,8 +2,12 @@ class Staff::EmploymentsController < ApplicationController
 
    def index
     @employments = Employment.where(staff_id: current_staff.id)
+    if @employments.empty?
+    @employments = []
+    else
     @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
     @request_id = @employment_details.request_id
+    end
   end
 
   def show

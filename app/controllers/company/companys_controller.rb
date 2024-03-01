@@ -1,6 +1,21 @@
 class Company::CompanysController < ApplicationController
 
   def top
+     @employments = Employment.where(company_id: current_company.id)
+    if @employments.empty?
+    @employments = []
+    else
+    @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
+    @request_id = @employment_details.request_id
+    end
+    
+    @works = Work.where(company_id: current_company.id)
+      if @works.empty?
+        @works = []
+      else
+        @work_details = WorkDetail.find_by(work_id: @works.first.id)
+        @recruitment_id = @work_details.recruitment_id
+      end
   end
 
   def show

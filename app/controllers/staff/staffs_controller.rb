@@ -1,5 +1,20 @@
 class Staff::StaffsController < ApplicationController
   def top
+    @works = Work.where(staff_id: current_staff.id)
+    if @works.empty?
+      @works = []
+    else
+      @work_details = WorkDetail.find_by(work_id: @works.first.id)
+      @recruitment_id = @work_details.recruitment_id
+    end
+
+    @employments = Employment.where(staff_id: current_staff.id)
+    if @employments.empty?
+    @employments = []
+    else
+    @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
+    @request_id = @employment_details.request_id
+    end
   end
 
   def show

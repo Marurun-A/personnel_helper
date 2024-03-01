@@ -5,30 +5,13 @@
     <%= f.label :payment_method_cash, "現金払い", checked: "checked" %>
     <%= f.radio_button :payment_method, "transfer" %>
     <%= f.label :payment_method_transfer, "銀行振込" %>
-  <h3>勤務場所</h3>
-    <table>
-         <tr>
-           <td><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
-           <td><%= f.text_field :postal_code %></td>
-        </tr>
-        <tr>
-           <td><%= f.label :address, "住所" %></td>
-           <td><%= f.text_field :address %></td>
-        </tr>
-         <tr>
-          <td><%= f.label :name, "会社名" %></td>
-          <td><%= f.text_field :name %></td>
-         </tr>
-         <tr>
-           <td><%= f.label :kana, "フリガナ" %></td>
-          <td><%= f.text_field :kana%></td>
-         </tr>
-     </table>
-  <h2>依頼詳細入力</h2>
+  <h3>依頼詳細入力</h3>
   <table>
     <tbody>
         <thead>
-        <th>雇用場所</th>
+        <th>勤務先名</th>
+        <th>フリガナ</th>
+        <th>雇用場所（住所）</th>
         <th>勤務日時</th>
         <th>勤務時間</th>
         <th>時給</th>
@@ -37,11 +20,13 @@
         <tH>返答期限</tH>
     </thead>
     <tbody>
+    <td><%= f.text_field :employment_name %></td>
+    <td><%= f.text_field :employment_kana%></td>
     <td><%= f.text_field :place_of_employment %></td>
     <td>
     <%= f.date_field :date %><%= f.time_field :start_time %><%= f.time_field :finish_time %>
     </td>
-    <td><%= f.text_field :hours %>時間</td>
+    <td><%= f.number_field :hours, in: 1..10 %>時間</td>
     <td><%= f.text_field :hourly_wage %></td>
     <td><%= f.text_field :introduction %></td>
     <td><%= f.text_field :contact_address %></td>

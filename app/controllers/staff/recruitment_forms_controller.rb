@@ -3,8 +3,11 @@ class Staff::RecruitmentFormsController < ApplicationController
   def create
     @recruitment_form = RecruitmentForm.new(recruitment_form_params)
     @recruitment_form.staff_id = current_staff.id
-    @recruitment_form.save
-    redirect_to staff_recruitment_forms_path
+    if @recruitment_form.save
+       redirect_to staff_recruitment_forms_path
+    else
+      render action: :new
+    end
   end
 
   def index

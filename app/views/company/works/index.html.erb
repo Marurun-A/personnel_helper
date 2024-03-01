@@ -3,6 +3,7 @@
 <table>
   <thead>
       <th>依頼者名</th>
+      <th>フリガナ</th>
       <th>通勤開始場所</th>
       <th>希望勤務日時</th>
       <th>希望勤務時間</th>
@@ -15,8 +16,8 @@
   <tbody>
     <% @works.each do |work| %>
       <tr>
-      <td><%= work.name %></td>
-      <td><%= work.kana %></td>
+      <td><%= work.work_name %></td>
+      <td><%= work.work_kana %></td>
       <td><%= work.whereabouts %></td>
       <td>
         <%= work.date.strftime("%-m月%-d日") %><%= work.start_time.strftime("%H時%M分") %> <%= work.finish_time.strftime("%H時%M分") %>

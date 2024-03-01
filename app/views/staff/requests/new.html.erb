@@ -13,9 +13,9 @@
   <h6>自己画像</h6>
   <%= f.file_field :image, accept: "image/*" %>
   <h6>名前</h6>
-  <%= f.text_field :name %>
+  <%= f.text_field :request_name %>
   <h6>フリガナ</h6>
-  <%= f.text_field :kana %>
+  <%= f.text_field :request_kana %>
   <h6>可能な業務</h6>
     <div class='form-group'>
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
@@ -34,6 +34,8 @@
   <%= f.date_field :date %>
   <p>時間</p>
   <%= f.time_field :start_time %><%= f.time_field :finish_time %>
+  <h6>最大勤務時間</h6>
+  <%= f.number_field :maximum_time, in: 1..10 %>
   <h6>場所</h6>
   <%= f.text_field :place %>
   <h6>連絡先</h6>

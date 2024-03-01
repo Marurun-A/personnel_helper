@@ -13,7 +13,7 @@ class Company::RecruitmentsController < ApplicationController
       redirect_to company_recruitments_path(current_company)
     else
       @recruitments = Recruitment.all
-      redirect_to company_requests_path
+      render action: :new
     end
   end
 
@@ -66,7 +66,7 @@ class Company::RecruitmentsController < ApplicationController
   private
 
   def recruitment_params
-    params.require(:recruitment).permit(:image, :name, :kana, :business, :introduction, :hourly_wage, :date, :start_time, :finish_time, :place, :contact_address)
+    params.require(:recruitment).permit(:image, :name, :kana, :business, :introduction, :hourly_wage, :date, :start_time, :finish_time, :place, :contact_address, :minimum_time)
   end
 
 end

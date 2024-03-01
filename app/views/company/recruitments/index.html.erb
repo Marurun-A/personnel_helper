@@ -10,6 +10,7 @@
       <th>カナ</th>
       <th>業務内容</th>
       <th>業務時間</th>
+      <th>最低勤務時間</th>
       <th>時給</th>
       <th>場所</th>
       <th>連絡先</th>
@@ -31,11 +32,11 @@
       </td>
       <td>
         <%= link_to company_recruitment_path(company_id: recruitment.company_id, id: recruitment.id) do %>
-        <%= recruitment.name %>
+        <%= recruitment.recruitment_name %>
         <% end %>
        </td>
        <td>
-        <%= recruitment.kana %>
+        <%= recruitment.recruitment_kana %>
        </td>
       <td>
         <% recruitment.tags.each do |tag| %>
@@ -46,6 +47,7 @@
         <%= recruitment.date %>
         <%= recruitment.start_time %><%= recruitment.finish_time %>
       </td>
+      <td><%= recruitment.minimum_time %></td>
       <td><%= recruitment.hourly_wage %></td>
       <td><%= recruitment.place %></td>
       <td><%= recruitment.contact_address %></td>

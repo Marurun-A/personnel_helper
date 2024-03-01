@@ -14,7 +14,7 @@ class Staff::RequestsController < ApplicationController
       redirect_to staff_requests_path(current_staff)
     else
       @requests = Request.all
-      redirect_to staff_recruitments_path
+      render action: :new
     end
   end
 
@@ -55,7 +55,7 @@ class Staff::RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:image, :name, :kana, :business, :introduction, :date, :start_time, :finish_time, :place, :contact_address)
+    params.require(:request).permit(:image, :request_name, :request_kana, :business, :introduction, :date, :start_time, :finish_time, :place, :contact_address, :maximum_time)
   end
 
 
