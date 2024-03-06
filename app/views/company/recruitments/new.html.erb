@@ -30,11 +30,11 @@
   <h6>時給</h6>
   <%= f.text_field :hourly_wage %>
   <h6>日時</h6>
-  <P>日付</P>
-  <%= f.date_field :date %>
+  <P>募集期間</P>
+  <%= f.date_field :start_date %><%= f.date_field :finish_date %>
   <p>時間</p>
   <%= f.time_field :start_time %><%= f.time_field :finish_time %>
-  <6>最低勤務時間</6>
+  <h6>最低勤務時間</h6>
   <%= f.number_field :minimum_time, in: 1..10 %>
   <h6>場所</h6>
   <%= f.text_field :place %>

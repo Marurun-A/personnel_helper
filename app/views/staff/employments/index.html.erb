@@ -16,7 +16,11 @@
     <tbody>
       <% @employments.each do |employment| %>
         <tr>
-          <td><%= employment.employment_name %></td>
+          <td>
+            <%= link_to staff_employment_path(employment.id) do %>
+            <%= employment.employment_name %>
+            <% end %>
+          </td>
           <td><%= employment.employment_kana %></td>
           <td><%= employment.place_of_employment %></td>
           <td>
@@ -27,7 +31,6 @@
           <td><%= employment.introduction %></td>
           <td><%= employment.contact_address %></td>
           <td><%= employment.response_deadline.strftime("%-m月%-d日") %></td>
-          <td><%= link_to "表示する", staff_employment_path(employment.id) %></td>
           <td><%= I18n.t("enums.employment.employment_status.#{employment.employment_status}") %></td>
         </tr>
       <% end %>

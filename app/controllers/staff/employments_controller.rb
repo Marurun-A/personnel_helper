@@ -1,13 +1,13 @@
 class Staff::EmploymentsController < ApplicationController
 
-   def index
+  def index
     @employments = Employment.where(staff_id: current_staff.id)
-    if @employments.empty?
-    @employments = []
-    else
-    @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
-    @request_id = @employment_details.request_id
-    end
+      if @employments.empty?
+        @employments = []
+      else
+        @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
+        @request_id = @employment_details.request_id
+      end
   end
 
   def show
@@ -27,8 +27,7 @@ class Staff::EmploymentsController < ApplicationController
   end
 
   def employment_params
-    employment_status = params[:employment][:employment_status]
-    params.require(:employment).permit(employment_status)
+    params.require(:employment).permit(:employment_status)
   end
 
 end

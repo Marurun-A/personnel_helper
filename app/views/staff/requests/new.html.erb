@@ -30,8 +30,8 @@
         <%= f.text_field :tag_name,value: @tag_list, class: 'form-control' %>
   <h6>自己紹介</h6>
   <%= f.text_area :introduction %>
-   <P>日付</P>
-  <%= f.date_field :date %>
+   <P>受付期間</P>
+  <%= f.date_field :start_date %><%= f.date_field :finish_date %>
   <p>時間</p>
   <%= f.time_field :start_time %><%= f.time_field :finish_time %>
   <h6>最大勤務時間</h6>

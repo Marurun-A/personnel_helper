@@ -7,7 +7,9 @@
       <th>会社名</th>
       <th>カナ</th>
       <th>業務内容</th>
+      <th>募集期間</th>
       <th>業務時間</th>
+      <th>最低勤務時間</th>
       <th>時給</th>
       <th>場所</th>
       <th>連絡先</th>
@@ -33,21 +35,20 @@
       </td>
       <td>
         <%= link_to staff_recruitment_path(recruitment.id) do %>
-        <%= recruitment.recruitmen_name %>
+        <%= recruitment.recruitment_name %>
         <% end %>
        </td>
        <td>
-        <%= recruitment.recruitmen_kana %>
+        <%= recruitment.recruitment_kana %>
        </td>
       <td>
         <% recruitment.tags.each do |tag| %>
         <span><%= tag.tag_name %></span>
         <% end %>
       </td>
-      <td>
-        <%= recruitment.date %>
-        <%= recruitment.start_time %><%= recruitment.finish_time %>
-      </td>
+      <td><%= recruitment.start_date.strftime("%-m月%-d日") %><%= recruitment.finish_date.strftime("%-m月%-d日") %></td>
+      <td><%= recruitment.start_time.strftime("%H時%M分")  %><%= recruitment.finish_time.strftime("%H時%M分")  %></td>
+       <td><%= recruitment.minimum_time.strftime("%-H") %></td>
       <td><%= recruitment.hourly_wage %></td>
       <td><%= recruitment.place %></td>
       <td><%= recruitment.contact_address %></td>
@@ -56,3 +57,62 @@
   <% end %>
   </tbody>
 </table>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+
+    <div class="row">
+      <% @recruitments.each do |recruitment| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <% if recruitment.image.attached? %>
+              <%= image_tag recruitment.image, size: "100x100" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "100x100" %>
+            <% end %>
+
+        <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
+
+          <div class="card-body">
+            <p class="card-text">
+              <%= link_to staff_recruitment_path(company_id: recruitment.company_id, id: recruitment.id) do %>
+              会社名：<%= recruitment.recruitment_name %>
+              <% end %>
+            </p>
+            <p class="card-text">
+              カナ：<%= recruitment.recruitment_kana %>
+            </P>
+            <p class="card-text">
+              <% recruitment.tags.each do |tag| %>
+            <span>業務内容：<%= tag.tag_name %></span>
+            <% end %>
+            </P>
+            <p class="card-text">
+              募集期間：<%= recruitment.start_date.strftime("%-m月%d日") %><%= recruitment.finish_date.strftime("%-m月%d日") %>
+            </P>
+            <p class="card-text">
+              業務時間：<%= recruitment.start_time.strftime("%H時%M分")  %><%= recruitment.finish_time.strftime("%H時%M分")  %>
+            </P>
+            <p class="card-text">
+              最低勤務時間：<%= recruitment.minimum_time.strftime("%-H") %>時間
+            </P>
+            <p class="card-text">
+              時給：<%= recruitment.hourly_wage %>円
+            </P>
+            <p class="card-text">
+              勤務場所：<%= recruitment.place %>
+            </P>
+            <p class="card-text">
+              連絡先：<%= recruitment.contact_address %>
+            </P>
+            <p class="card-text">
+              業務詳細：<%= recruitment.introduction %>
+            </P>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
     <title>PtHelper</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width,initial-scale=1", maximum-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1", maximum-scale=1" >
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,57 +14,57 @@
   <body class="d-flex flex-column vh-100>
 
     <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light"">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
         <div class="container">
         <a class="navbar-brand p-3" href="/" >
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <%= link_to "Logo", staff_root_path %>
+        <%= link_to "Logo", staff_root_path, class: 'nav-link text-white' %>
         </a>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if company_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "スタッフ一覧", company_requests_path, class: 'nav-link text-dark' %>
+                  <%= link_to "スタッフ一覧", company_requests_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "マイページ", company_companys_my_page_path, class: 'nav-link text-dark' %>
+                  <%= link_to "マイページ", company_companys_my_page_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "トップページ", company_root_path, class: 'nav-link text-dark' %>
+                  <%= link_to "トップページ", company_root_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_company_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to "ログアウト", destroy_company_session_path, class: 'nav-link text-white' %>
                 </li>
 
               <% elsif staff_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-dark' %>
+                  <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "マイページ", staff_staffs_my_page_path, class: 'nav-link text-dark' %>
+                  <%= link_to "マイページ", staff_staffs_my_page_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "トップページ",  staff_root_path, class: 'nav-link text-dark' %>
+                  <%= link_to "トップページ",  staff_root_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_staff_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to "ログアウト", destroy_staff_session_path, class: 'nav-link text-white' %>
                 </li>
 
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-dark' %>
+                  <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "スタッフ一覧", company_requests_path, class: 'nav-link text-dark' %>
+                  <%= link_to "スタッフ一覧", company_requests_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", company_homes_confirm_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to "新規登録", company_homes_confirm_registration_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", company_homes_confirm_session_path, class: 'nav-link text-dark' %>
+                  <%= link_to "ログイン", company_homes_confirm_session_path, class: 'nav-link text-white' %>
                 </li>
               <% end %>
             </ul>
@@ -72,7 +72,44 @@
         </div>
       </nav>
     </header>
+    
     <main class="mb-auto">
+      <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-center" style="background-color: gray;" >
+          <% if company_signed_in? || staff_signed_in? %>
+          <div class="col-md-2 bs-component mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active">
+              <%= link_to "雇用要請履歴", company_employments_path(current_company), class: 'text-black p-2'  %>
+              </li>
+            </ol>
+          </div>
+          <div class="col-md-2 bs-component mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active">
+              <%= link_to "スタッフからの依頼", company_works_path(current_company), class: 'text-black p-2'  %>
+              </li>
+            </ol>
+          </div>
+          <div class="col-md-2 bs-component mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active">
+              <%= link_to "ユーザー情報", company_company_path(current_company), class: 'text-black p-2'  %>
+              </li>
+            </ol>
+          </div>
+          <div class="col-md-2 bs-component mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active">
+              <%= link_to "雇用登録情報", company_recruitments_path(current_company), class: 'text-black p-2'  %>
+              </li>
+            </ol>
+          </div>
+          <% else %>
+
+          <% end %>
+        </nav>
+      </div>
     <%= yield %>
     </main>
   </body>

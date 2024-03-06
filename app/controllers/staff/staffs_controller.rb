@@ -1,6 +1,6 @@
 class Staff::StaffsController < ApplicationController
   def top
-    @works = Work.where(staff_id: current_staff.id)
+    @works = Work.where(staff_id: current_staff.id, work_status: :waiting_for_reply)
     if @works.empty?
       @works = []
     else
@@ -8,7 +8,7 @@ class Staff::StaffsController < ApplicationController
       @recruitment_id = @work_details.recruitment_id
     end
 
-    @employments = Employment.where(staff_id: current_staff.id)
+    @employments = Employment.where(staff_id: current_staff.id, employment_status: :waiting_for_reply)
     if @employments.empty?
     @employments = []
     else

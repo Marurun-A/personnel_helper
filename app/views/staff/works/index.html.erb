@@ -16,7 +16,11 @@
           <tbody>
             <% @works.each do |work| %>
               <tr>
-                <td><%= work.work_details.first.recruitment.recruitment_name %></td>
+                <td>
+                  <%= link_to staff_work_path(work.id) do %>
+                  <%= work.work_details.first.recruitment.recruitment_name %>
+                  <% end %>
+                </td>
                 <td><%= work.work_details.first.recruitment.recruitment_kana %></td>
                 <td><%= work.whereabouts %></td>
                 <td>
@@ -27,7 +31,6 @@
                 <td><%= work.introduction %></td>
                 <td><%= work.contact_address %></td>
                 <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
-                <td><%= link_to "表示する", staff_work_path(work.id) %></td>
                 <tD><%= I18n.t("enums.work.work_status.#{work.work_status}") %></td>
               </tr>
             <% end %>

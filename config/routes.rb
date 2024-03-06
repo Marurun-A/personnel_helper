@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   sessions: "company/sessions"
   }
 
+  # devise_scope :companyr do
+  #   get '/company/sign_out' => 'devise/sessions#destroy'
+  # end
+
   root to: "staff/homes#top"
 
    namespace :company do
@@ -24,12 +28,13 @@ Rails.application.routes.draw do
     get 'companys/information/withdraw' => 'companys#withdraw'
     delete '/request_forms/destroy_all' => 'request_forms#destroy_all', as: 'destroy_all_request_forms'
     post 'employments/confirm' => 'employments#confirm'
+    post 'employments/new' => 'employments#new'
     get 'employments/complete' => 'employments#complete'
 
     resources :requests, only: [:index, :show, :new, :create, :update, :edit]
     resources :companys, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :request_forms, only: [:index, :update, :destroy, :create]
-    resources :employments, only: [:new, :confirm, :complete, :create, :index, :show]
+    resources :employments, only: [:confirm, :complete, :create, :index, :show]
     resources :works, only: [:index, :show, :update] do
       member do
         patch :update_status
@@ -72,11 +77,5 @@ Rails.application.routes.draw do
         resources :requests
     end
   end
-
-  # scope module: :staff do
-  #     resources :staffs, only: [:index] do
-  #       resources :works, path: 'works', as: 'staff_works'
-  #   end
-  # end
 
 end

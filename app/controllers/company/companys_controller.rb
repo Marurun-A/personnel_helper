@@ -1,7 +1,7 @@
 class Company::CompanysController < ApplicationController
 
   def top
-     @employments = Employment.where(company_id: current_company.id)
+     @employments = Employment.where(company_id: current_company.id, employment_status: :waiting_for_reply)
     if @employments.empty?
     @employments = []
     else
@@ -9,7 +9,7 @@ class Company::CompanysController < ApplicationController
     @request_id = @employment_details.request_id
     end
     
-    @works = Work.where(company_id: current_company.id)
+    @works = Work.where(company_id: current_company.id, work_status: :waiting_for_reply)
       if @works.empty?
         @works = []
       else

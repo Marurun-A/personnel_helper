@@ -66,7 +66,7 @@ class Company::RecruitmentsController < ApplicationController
   private
 
   def recruitment_params
-    params.require(:recruitment).permit(:image, :name, :kana, :business, :introduction, :hourly_wage, :date, :start_time, :finish_time, :place, :contact_address, :minimum_time)
+    params.require(:recruitment).permit(:image, :recruitment_name, :recruitment_kana, :business, :introduction, :hourly_wage, :start_date, :finish_date, :start_time, :finish_time, :place, :contact_address, :minimum_time)
   end
 
 end

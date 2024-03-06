@@ -115,7 +115,8 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.string "recruitment_kana", null: false
     t.text "introduction", null: false
     t.integer "hourly_wage", null: false
-    t.date "date", null: false
+    t.date "start_date", null: false
+    t.date "finish_date", null: false
     t.time "start_time", null: false
     t.time "finish_time", null: false
     t.time "minimum_time", null: false
@@ -152,7 +153,8 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.string "request_name", null: false
     t.string "request_kana", null: false
     t.text "introduction", null: false
-    t.date "date", null: false
+    t.date "start_date", null: false
+    t.date "finish_date", null: false
     t.time "start_time", null: false
     t.time "finish_time", null: false
     t.time "maximum_time", null: false

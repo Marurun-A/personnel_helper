@@ -1,57 +1,73 @@
 <h4>スタッフ一覧</h4>
+ <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+ <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-9">
+     <div class="card mb-4 shadow-sm">
+     <%= form_tag({controller:"requests",action:"index"}, method: :get) do %>
+        <% Tag.all.each do |t| %>
+            <li><%= check_box :tag_name, t.tag_name %><%= t.tag_name %></li>
+        <% end %>
+        <%= submit_tag '検索' %>
+      <% end %>
+      </div>
+    </div>
+   </div>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>スタッフ名</th>
-      <th>カナ</th>
-      <th>可能な業務</th>
-      <th>業務可能時間</th>
-      <th>可能な最大勤務時間</th>
-      <th>場所</th>
-      <th>連絡先</th>
-      <th>自己紹介</th>
-    </tr>
-  </thead>
+    <div class="row">
+      <% @requests.each do |request| %>
+      <div class="col-md-9">
+        <div class="card mb-4 shadow-sm">
+          <% if request.image.attached? %>
+              <%= image_tag request.image, size: "100x100" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "100x100" %>
+            <% end %>
 
-　<tbody>
-　 <%= form_tag({controller:"requests",action:"index"}, method: :get) do %>
-    <% Tag.all.each do |t| %>
-        <li><%= check_box :tag_name, t.tag_name %><%= t.tag_name %></li>
-    <% end %>
-    <%= submit_tag '検索' %>
-  <% end %>
-  <% @requests.each do |request| %>
-    <tr>
-      <td>
-        <% if request.image.attached? %>
-          <%= image_tag request.image, size: "100x100" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "100x100" %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to company_request_path(request.id) do %>
-        <%= request.request_name %>
-        <% end %>
-       </td>
-       <td>
-        <%= request.request_kana %>
-       </td>
-      <td>
-        <% request.tags.each do |tag| %>
-        <span><%= tag.tag_name %></span>
-        <% end %>
-      </td>
-      <td>
-        <%= request.date %>
-        <%= request.start_time %><%= request.finish_time %>
-      </td>
-      <td><%= request.maximum_time %></td>
-      <td><%= request.place %></td>
-      <td><%= request.contact_address %></td>
-       <td><%= request.introduction %></td>
-  <% end %>
-  </tbody>
-</table>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                 <p class="card-text">
+                <%= link_to company_request_path(staff_id: request.staff_id, id: request.id) do %>
+                スタッフ名：<%= request.request_name %>
+                <% end %>
+                </p>
+                <p class="card-text">
+                カナ：<%= request.request_kana %>
+                </P>
+                <p class="card-text">
+                <% request.tags.each do |tag| %>
+                <span>可能な業務：<%= tag.tag_name %></span>
+                <% end %>
+                </P>
+                <p class="card-text">
+                受付期間：<%= request.start_date.strftime("%-m月%d日") %> - <%= request.finish_date.strftime("%-m月%d日") %>
+                </P>
+                <p class="card-text">
+                業務時間：<%= request.start_time.strftime("%H時%M分")  %> - <%= request.finish_time.strftime("%H時%M分")  %>
+                </P>
+                <p class="card-text">
+                可能な最大業務時間：<%= request.maximum_time.strftime("%-H") %>時間
+                </P>
+                <p class="card-text">
+                勤務場所：<%= request.place %>
+                </P>
+                <p class="card-text">
+                連絡先：<%= request.contact_address %>
+                </P>
+              </div>
+              <div class="col-md-5">
+               <p class="card-text">
+                自己紹介：<%= request.introduction %>
+                </P>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  </main>
+</div>

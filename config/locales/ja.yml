@@ -6,16 +6,16 @@ ja:
         transfer: "銀行振込"
       employment_status:
         waiting_for_reply: "返答まち"
-        accepted: "承諾済み"
-        was_denied: "拒否されました"
+        accepted: "承諾"
+        was_denied: "拒否"
     work:
       payment_method:
         cash: "現金"
         transfer: "銀行振込"
       work_status:
         waiting_for_reply: "返答まち"
-        accepted: "承諾済み"
-        was_denied: "拒否されました"
+        accepted: "承諾"
+        was_denied: "拒否"
   activerecord:
     errors:
       messages:

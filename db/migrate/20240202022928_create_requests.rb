@@ -4,7 +4,8 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.string :request_name, null: false
       t.string :request_kana, null: false
       t.text :introduction, null: false
-      t.date :date, null: false
+      t.date :start_date, null: false
+      t.date :finish_date, null: false
       t.time :start_time, null: false
       t.time :finish_time, null: false
       t.time :maximum_time, null: false

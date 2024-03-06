@@ -1,39 +1,49 @@
-<h2>依頼情報入力</h2>
-<%= form_with model: @employments, url: '/company/employments/confirm',  method: :post do |f| %>
-  <h3>支払方法</h3>
-    <%= f.radio_button :payment_method, "cash" %>
-    <%= f.label :payment_method_cash, "現金払い", checked: "checked" %>
-    <%= f.radio_button :payment_method, "transfer" %>
-    <%= f.label :payment_method_transfer, "銀行振込" %>
-  <h3>依頼詳細入力</h3>
-  <table>
-    <tbody>
-        <thead>
-        <th>勤務先名</th>
-        <th>フリガナ</th>
-        <th>雇用場所（住所）</th>
-        <th>勤務日時</th>
-        <th>勤務時間</th>
-        <th>時給</th>
-        <th>業務説明</th>
-        <th>連絡先</th>
-        <tH>返答期限</tH>
-    </thead>
-    <tbody>
-    <td><%= f.text_field :employment_name %></td>
-    <td><%= f.text_field :employment_kana%></td>
-    <td><%= f.text_field :place_of_employment %></td>
-    <td>
-    <%= f.date_field :date %><%= f.time_field :start_time %><%= f.time_field :finish_time %>
-    </td>
-    <td><%= f.number_field :hours, in: 1..10 %>時間</td>
-    <td><%= f.text_field :hourly_wage %></td>
-    <td><%= f.text_field :introduction %></td>
-    <td><%= f.text_field :contact_address %></td>
-    <td><%= f.date_field :response_deadline %></td>
-　　<td>
-    </tbody>
-  </table>
+<h4>依頼情報入力</h4>
 
-<%= f.submit '確認画面に進む' %>
-<% end %>
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-body">
+        <%= form_with model: @employments, url: '/company/employments/confirm',  method: :post do |f| %>
+          <h4>支払方法</h4>
+          <div class="form-group">
+            <%= f.radio_button :payment_method, "cash" %>
+            <%= f.label :payment_method_cash, "現金払い", checked: "checked" %>
+          </div>
+          <div class="form-group">
+            <%= f.radio_button :payment_method, "transfer" %>
+            <%= f.label :payment_method_transfer, "銀行振込" %>
+          </div>
+          <h4>依頼詳細入力</h4>
+          <table class="table">
+            <tbody>
+                <thead>
+                <th >勤務先名</th>
+                <th>フリガナ</th>
+                <th>雇用場所（住所）</th>
+                <th>勤務日時</th>
+                <th>勤務時間</th>
+                <th>時給</th>
+                <th>業務説明</th>
+                <th>連絡先</th>
+                <tH>返答期限</tH>
+            </thead>
+            <tbody>
+            <td><%= f.text_field :employment_name, class: "form-control" %></td>
+            <td><%= f.text_field :employment_kana, class: "form-control"%></td>
+            <td><%= f.text_field :place_of_employment, class: "form-control" %></td>
+            <td>
+            <%= f.date_field :date, class: "form-control" %><%= f.time_field :start_time, class: "form-control" %><%= f.time_field :finish_time, class: "form-control" %>
+            </td>
+            <td><%= f.number_field :hours, in: 1..10, class: "form-control" %>時間</td>
+            <td><%= f.text_field :hourly_wage, class: "form-control" %></td>
+            <td><%= f.text_field :introduction, class: "form-control" %></td>
+            <td><%= f.text_field :contact_address, class: "form-control" %></td>
+            <td><%= f.date_field :response_deadline, class: "form-control" %></td>
+        　　<td>
+            </tbody>
+          </table>
+        <%= f.submit '確認画面に進む', class: "btn btn-default" %>
+        <% end %>
+        </div>
+      </div>
+    </div>

@@ -55,7 +55,7 @@ class Staff::RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:image, :request_name, :request_kana, :business, :introduction, :date, :start_time, :finish_time, :place, :contact_address, :maximum_time)
+    params.require(:request).permit(:image, :request_name, :request_kana, :business, :introduction, :start_date, :finish_date, :start_time, :finish_time, :place, :contact_address, :maximum_time)
   end
 
 

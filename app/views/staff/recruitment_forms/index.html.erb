@@ -19,18 +19,16 @@
       <% @recruitment_forms.each do |recruitment_form| %>
         <tr>
           <td><%#= image_tag request_form.get_image, size: "100x100" %></td>
-          <td><%= recruitment_form.recruitment.recruitmen_name %></td>
-          <td><%= recruitment_form.recruitment.recruitmen_kana %></td>
+          <td><%= recruitment_form.recruitment.recruitment_name %></td>
+          <td><%= recruitment_form.recruitment.recruitment_kana %></td>
           <td>
             <% recruitment_form.recruitment.tags.each do |tag| %>
             <span><%= tag.tag_name %></span>
             <% end %>
           </td>
-          <td>
-            <%= recruitment_form.recruitment.date.strftime("%-m月%d日") %><br/>
-            <%= recruitment_form.recruitment.start_time.strftime("%H時%M分") %><%= recruitment_form.recruitment.finish_time.strftime("%H時%M分") %>
-           </td>
-          <td><%= recruitment_form.recruitment.minimum_time %></td>
+          <td><%= recruitment_form.recruitment.start_date.strftime("%-m月%d日") %><%= recruitment_form.recruitment.finish_date.strftime("%-m月%d日") %></td>
+          <td><%= recruitment_form.recruitment.start_time.strftime("%H時%M分") %><%= recruitment_form.recruitment.finish_time.strftime("%H時%M分") %></td>
+          <td><%= recruitment_form.recruitment.minimum_time.strftime("%-H") %></td>
           <td><%= recruitment_form.recruitment.hourly_wage %></td>
           <td><%= recruitment_form.recruitment.place %></td>
           <td><%= recruitment_form.recruitment.contact_address %></td>

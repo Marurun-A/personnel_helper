@@ -7,6 +7,7 @@
       <th>スタッフ名</th>
       <th>カナ</th>
       <th>可能な業務</th>
+      <th>受付期間</th>
       <th>業務可能時間</th>
       <th>最大勤務時間</th>
       <th>場所</th>
@@ -37,11 +38,9 @@
         <span><%= tag.tag_name %></span>
         <% end %>
       </td>
-      <td>
-        <%= @request.date %>
-        <%= @request.start_time %><%= @request.finish_time %>
-      </td>
-      <td><%= @request.maximum_time %></td>
+      <td><%= @request.start_date.strftime("%-m月%d日") %><%= @request.finish_date.strftime("%-m月%d日") %></td>
+      <td><%= @request.start_time.strftime("%H時%M分") %><%= @request.finish_time.strftime("%H時%M分") %></td>
+      <td><%= @request.maximum_time.strftime("%-H") %></td>
       <td><%= @request.place %></td>
       <td><%= @request.contact_address %></td>
       <td><%= @request.introduction %></td>
@@ -49,3 +48,66 @@
       <td><%= button_to "Destroy", staff_request_path(staff_id: @request.staff_id, id: @request.id), method: :delete, "data-confirm" => "Are you sure" %></td>
   </tbody>
 </table>
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <% if @request.image.attached? %>
+              <%= image_tag @request.image, size: "100x100" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "100x100" %>
+            <% end %>
+
+        <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
+
+          <div class="card-body">
+            <p class="card-text">
+              スタッフ名：<%= @request.request_name %>
+            </p>
+            <p class="card-text">
+              カナ：<%= @request.request_kana %>
+            </P>
+            <p class="card-text">
+              <% @request.tags.each do |tag| %>
+            <span>可能な業務：<%= tag.tag_name %></span>
+            <% end %>
+            </P>
+            <p class="card-text">
+              募集期間：<%= @request.start_date.strftime("%-m月%d日") %> - <%= @request.finish_date.strftime("%-m月%d日") %>
+            </P>
+            <p class="card-text">
+              業務時間：<%= @request.start_time.strftime("%H時%M分")  %> - <%= @request.finish_time.strftime("%H時%M分")  %>
+            </P>
+            <p class="card-text">
+              最大勤務時間：<%= @request.maximum_time.strftime("%-H") %>時間
+            </P>
+            <p class="card-text">
+              勤務場所：<%= @request.place %>
+            </P>
+            <p class="card-text">
+              連絡先：<%= @request.contact_address %>
+            </P>
+            <p class="card-text">
+              業務詳細：<%= @request.introduction %>
+            </P>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to edit_staff_request_path(staff_id: @request.staff_id, id: @request.id) do %>
+                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <% end %>
+                <%= link_to staff_request_path(staff_id: @request.staff_id, id: @request.id), method: :delete, data: { confirm: "Are you sure" } do %>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                <% end %>
+              </div>
+              <!--<small class="text-muted">9 mins</small>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
