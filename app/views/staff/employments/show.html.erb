@@ -1,37 +1,48 @@
-<h2>依頼確認画面</h2>
+<div class="container-fluid">
+  <div class="row">
 
-  <table>
-    <thead>
-      <th>会社名</th>
-      <th>フリガナ</th>
-      <th>雇用場所</th>
-      <th>勤務日時</th>
-      <th>勤務時間</th>
-      <th>時給<th>
-      <th>業務説明</th>
-      <th>連絡先</th>
-      <tH>返答期限</tH>
-      <th>リクエストステータス</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @employment.employment_name %></td>
-        <td><%= @employment.employment_kana %></td>
-        <td><%= @employment.place_of_employment %></td>
-        <td>
-        <%= @employment.date.strftime("%-m月%-d日") %><%= @employment.start_time.strftime("%H時%M分") %> <%= @employment.finish_time.strftime("%H時%M分") %>
-        </td>
-        <td><%= @employment.hours.strftime("%-H") %>時間</td>
-        <td><%= @employment.hourly_wage %></td>
-        <td><%= @employment.introduction %></td>
-        <td><%= @employment.contact_address %></td>
-        <td><%= @employment.response_deadline.strftime("%-m月%-d日") %></td>
-        <td>
-         <%= form_with model: @employment, url: update_status_staff_employment_path(@employment), method: :patch do |f| %>
-         <%= f.select :employment_status, Employment.employment_statuses_i18n, class: "form-control" %>
-         <%= f.submit "更新", class: "btn btn-primary" %>
-         <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <h4>受信依頼一覧</h4>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            
+                <thead>
+                  <th>会社名</th>
+                  <th>フリガナ</th>
+                  <th>雇用場所</th>
+                  <th>勤務日時</th>
+                  <th>勤務時間</th>
+                  <th>時給<th>
+                  <th>業務説明</th>
+                  <th>連絡先</th>
+                  <tH>返答期限</tH>
+                  <th>リクエストステータス</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= @employment.employment_name %></td>
+                    <td><%= @employment.employment_kana %></td>
+                    <td><%= @employment.place_of_employment %></td>
+                    <td>
+                    <%= @employment.date.strftime("%-m月%-d日") %><%= @employment.start_time.strftime("%H時%M分") %> <%= @employment.finish_time.strftime("%H時%M分") %>
+                    </td>
+                    <td><%= @employment.hours.strftime("%-H") %>時間</td>
+                    <td><%= @employment.hourly_wage %></td>
+                    <td><%= @employment.introduction %></td>
+                    <td><%= @employment.contact_address %></td>
+                    <td><%= @employment.response_deadline.strftime("%-m月%-d日") %></td>
+                    <td>
+                     <%= form_with model: @employment, url: update_status_staff_employment_path(@employment), method: :patch do |f| %>
+                     <%= f.select :employment_status, Employment.employment_statuses_i18n, class: "form-control" %>
+                     <%= f.submit "更新", class: "btn btn-primary" %>
+                     <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      </div>
+      </div>
+    </main>
+  </div>
+ </div>

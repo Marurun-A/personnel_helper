@@ -1,5 +1,6 @@
 class Staff::StaffsController < ApplicationController
   def top
+    @staffs = current_staff
     @works = Work.where(staff_id: current_staff.id, work_status: :waiting_for_reply)
     if @works.empty?
       @works = []

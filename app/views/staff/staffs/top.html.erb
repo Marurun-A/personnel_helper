@@ -1,60 +1,80 @@
-<h4>依頼中の勤務</h4>
+<h4>マイページ</h4>
 
-<h4>
-  <%= link_to "依頼要請履歴",   staff_works_path(current_staff) %>
-</h4>
-
-<h4>
-  <%= link_to "企業からの依頼", staff_employments_path(current_staff) %>
-</h4>
-
-<h4>
-  <%= link_to "ユーザー情報", staff_staff_path(current_staff) %>
-</h4>
-<h4>
-  <%= link_to "雇用登録情報", staff_requests_path(current_staff) %>
-</h4>
-
-<h4>返答まちの勤務希望依頼</h4>
- <table>
-    <thead>
-      <th>会社名</th>
-      <tH>返答期限</tH>
-      <th>リクエストステータス</th>
-    </thead>
-    <tbody>
-      <% @works.each do |work| %>
-        <tr>
-          <td>
-            <%= link_to staff_work_path(work.id) do %>
-            <%= work.work_details.first.recruitment.recruitment_name %>
-            <% end %>
-          </td>
-          <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
-          <tD><%= I18n.t("enums.work.work_status.#{work.work_status}") %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <h4>返答していない雇用希望依頼</h4>
-   <table>
-    <thead>
-      <th>会社名</th>
-      <tH>返答期限</tH>
-      <th>リクエストステータス</th>
-    </thead>
-    <tbody>
-      <% @employments.each do |employment| %>
-        <tr>
-          <td>
-            <%= link_to staff_employment_path(employment.id) do %>
-            <%= employment.employment_name %>
-            <% end %>
-            </td>
-          <td><%= employment.response_deadline.strftime("%-m月%-d日") %></td>
-          <td><%= I18n.t("enums.employment.employment_status.#{employment.employment_status}") %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container-fluid">
+  <div class="row">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <% staff = @staffs %>
+         <div class="col-md-9">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+             <div class="row">
+              <div class="col-md-4">
+                <h4>ログインユーザー</h4>
+                <p class="card-text">
+                 氏名 <%= staff.first_name %><%= staff.last_name %>
+                </p>
+                  <%= link_to "ユーザー情報へ", staff_staff_path(current_staff) %>
+              </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="row">
+        <div class="col-md-4">
+        <h4>返答まちの勤務希望依頼</h4>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>会社名</th>
+                  <th>返答期限</th>
+                  <th>リクエストステータス</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @works.each do |work| %>
+                <tr>
+                  <td>
+                    <%= link_to staff_work_path(work.id) do %>
+                    <%= work.work_details.first.recruitment.recruitment_name %>
+                    <% end %>
+                  </td>
+                  <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
+                  <td><%= I18n.t("enums.work.work_status.#{work.work_status}") %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-4">
+        <h4>返答していない雇用希望依頼</h4>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>会社名</th>
+                  <th>返答期限</th>
+                  <th>リクエストステータス</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @employments.each do |employment| %>
+                <tr>
+                  <td>
+                    <%= link_to staff_employment_path(employment.id) do %>
+                    <%= employment.employment_name %>
+                    <% end %>
+                  </td>
+                  <td><%= employment.response_deadline.strftime("%-m月%-d日") %></td>
+                  <td><%= I18n.t("enums.employment.employment_status.#{employment.employment_status}") %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+ </div>

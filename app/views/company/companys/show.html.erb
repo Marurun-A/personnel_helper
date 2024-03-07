@@ -1,47 +1,46 @@
-<h2>マイページ</h2>
-
-  <div>
-    <h5>登録情報</h5>
-    <%= link_to "編集する", edit_company_company_path(current_company) %>
+<div class="container">
+  <div class="row">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div>
+       <h4>ログインユーザー</h4>
+      </div>  
+        <div class="col-md-9">
+          
+        
+          <div class="row">
+          <% company = @companys %>
+           <div class="col-md-9">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+               <div class="row">
+                <div class="col-md-4">
+                  <p class="card-text">
+                   氏名 <%= company.first_name %><%= company.last_name %>
+                  </p>
+                  <p class="card-text">
+                    カナ <%= company.first_name_kana %><%= company.last_name_kana %>
+                  </P>
+                   <p class="card-text">
+                     郵便番号 <%= company.postal_code %>
+                  </P>
+                   <p class="card-text">
+                     住所 <%= company.address %>
+                  </P>
+                   <p class="card-text">
+                     電話番号 <%= company.telephone_number %>
+                  </P>
+                   <p class="card-text">
+                     メールアドレス <%= company.email %>
+                  </P>
+                    <%= link_to "編集する", edit_company_company_path(current_company) %>
+                </div>  
+              </div>    
+            </div>       
+          </div>  
+        </div>    
+    </main>
   </div>
-
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>氏名</th>
-        <th>カナ</th>
-        <th>郵便番号</th>
-        <th>住所</th>
-        <th>電話番号</th>
-        <th>メールアドレス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% company = @companys %>
-        <tr>
-          <td>
-          <%= company.first_name %>
-          <%= company.last_name %>
-          </td>
-          <td>
-          <%= company.first_name_kana %>
-          <%= company.last_name_kana %>
-          </td>
-          <td>
-          <%= company.postal_code %>
-          </td>
-          <td>
-          <%= company.address %>
-          </td>
-          <td>
-          <%= company.telephone_number %>
-          </td>
-          <td>
-          <%= company.email %>
-          </td>
-        </tr
-    </tbody>
-  </table>
-
-
-
+</div>
+  
+  
+  

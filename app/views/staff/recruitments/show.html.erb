@@ -1,70 +1,8 @@
-<h4>会社詳細</h4>
-
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>会社名</th>
-        <th>フリガナ</th>
-        <th>業務内容</th>
-        <th>募集期間</th>
-        <th>業務時間</th>
-        <th>最低勤務時間</th>
-        <th>時給</th>
-        <th>場所</th>
-        <th>連絡先</th>
-        <th>業務紹介</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-  　<tbody>
-      <tr>
-        <td>
-          <% if @recruitment.image.attached? %>
-            <%= image_tag @recruitment.image, size: "100x100" %>
-          <% else %>
-            <%= image_tag 'no_image', size: "100x100" %>
-          <% end %>
-        </td>
-        <td>
-          <%= @recruitment.recruitment_name %>
-         </td>
-         <td>
-          <%= @recruitment.recruitment_kana %>
-         </td>
-        <td>
-          <% @recruitment.tags.each do |tag| %>
-          <span><%= tag.tag_name %></span>
-          <% end %>
-        </td>
-        <td><%= @recruitment.start_date.strftime("%-m月%-d日") %><%= @recruitment.finish_date.strftime("%-m月%-d日") %></td>
-        <td><%= @recruitment.start_time.strftime("%H時%M分")  %><%= @recruitment.finish_time.strftime("%H時%M分")  %></td>
-        <td><%= @recruitment.minimum_time.strftime("%-H") %></td>
-        <td><%= @recruitment.hourly_wage %></td>
-        <td><%= @recruitment.place %></td>
-        <td><%= @recruitment.contact_address %></td>
-        <td><%= @recruitment.introduction %></td>
-
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div>
-  <div>
-    <%= form_with model: @recruitment_form, url: staff_recruitment_forms_path, method: :post, local: true do |f| %>
-    <%= f.hidden_field :recruitment_id, value: @recruitment.id %>
-    <%= f.hidden_field :company_id, value: @company.id %>
-    <%= f.submit '応募フォームに進む', class: 'btn btn-success btn-sm' %>
-    <% end %>
-  </div>
-</div>
-
- <div class="row">
-      <div class="col-md-4">
+<h4>スタッフ詳細</h4>
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+   <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
         <div class="card mb-4 shadow-sm">
           <% if @recruitment.image.attached? %>
               <%= image_tag @recruitment.image, size: "100x100" %>
@@ -74,52 +12,57 @@
 
         <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
 
-          <div class="card-body">
-            <p class="card-text">
-              会社名：<%= @recruitment.recruitment_name %>
-            </p>
-            <p class="card-text">
-              カナ：<%= @recruitment.recruitment_kana %>
-            </P>
-            <p class="card-text">
-              <% @recruitment.tags.each do |tag| %>
-            <span>業務内容：<%= tag.tag_name %></span>
-            <% end %>
-            </P>
-            <p class="card-text">
-              募集期間：<%= @recruitment.start_date.strftime("%-m月%d日") %><%= @recruitment.finish_date.strftime("%-m月%d日") %>
-            </P>
-            <p class="card-text">
-              業務時間：<%= @recruitment.start_time.strftime("%H時%M分")  %><%= @recruitment.finish_time.strftime("%H時%M分")  %>
-            </P>
-            <p class="card-text">
-              最低勤務時間：<%= @recruitment.minimum_time.strftime("%-H") %>時間
-            </P>
-            <p class="card-text">
-              時給：<%= @recruitment.hourly_wage %>円
-            </P>
-            <p class="card-text">
-              勤務場所：<%= @recruitment.place %>
-            </P>
-            <p class="card-text">
-              連絡先：<%= @recruitment.contact_address %>
-            </P>
-            <p class="card-text">
-              業務詳細：<%= @recruitment.introduction %>
-            </P>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <%= form_with model: @recruitment_form, url: staff_recruitment_forms_path, method: :post, local: true do |f| %>
-                <%= f.hidden_field :recruitment_id, value: @recruitment.id %>
-                <%= f.hidden_field :company_id, value: @company.id %>
-                <%= f.submit '応募フォームに進む', class: 'btn btn-success btn-sm' %>
-                <% end %>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <p class="card-text">
+                      会社名：<%= @recruitment.recruitment_name %>
+                    </p>
+                    <p class="card-text">
+                      カナ：<%= @recruitment.recruitment_kana %>
+                    </P>
+                    <p class="card-text">
+                      <% @recruitment.tags.each do |tag| %>
+                    <span>業務内容：<%= tag.tag_name %></span>
+                    <% end %>
+                    </P>
+                    <p class="card-text">
+                      募集期間：<%= @recruitment.start_date.strftime("%-m月%d日") %><%= @recruitment.finish_date.strftime("%-m月%d日") %>
+                    </P>
+                    <p class="card-text">
+                      業務時間：<%= @recruitment.start_time.strftime("%H時%M分")  %><%= @recruitment.finish_time.strftime("%H時%M分")  %>
+                    </P>
+                    <p class="card-text">
+                      最低勤務時間：<%= @recruitment.minimum_time.strftime("%-H") %>時間
+                    </P>
+                    <p class="card-text">
+                      時給：<%= @recruitment.hourly_wage %>円
+                    </P>
+                    <p class="card-text">
+                      勤務場所：<%= @recruitment.place %>
+                    </P>
+                    <p class="card-text">
+                      連絡先：<%= @recruitment.contact_address %>
+                    </P>
+                  </div>
+                  <div class="col-md-5">
+                    <p class="card-text">
+                      業務詳細：<%= @recruitment.introduction %>
+                    </P>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <%= form_with model: @recruitment_form, url: staff_recruitment_forms_path, method: :post, local: true do |f| %>
+                        <%= f.hidden_field :recruitment_id, value: @recruitment.id %>
+                        <%= f.hidden_field :company_id, value: @company.id %>
+                        <%= f.submit '応募フォームに進む', class: 'btn btn-success btn-sm' %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <!--<small class="text-muted">9 mins</small>-->
-            </div>
+
+
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>

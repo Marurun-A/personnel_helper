@@ -1,44 +1,46 @@
-<h2>マイページ</h2>
 
-  <div>
-    <h5>登録情報</h5>
-    <%= link_to "編集する", edit_staff_staff_path(current_staff) %>
+  
+<div class="container">
+  <div class="row">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div>
+       <h4>ログインユーザー</h4>
+      </div>  
+        <div class="col-md-9">
+          
+        
+          <div class="row">
+          <% staff = @staffs %>
+           <div class="col-md-9">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+               <div class="row">
+                <div class="col-md-4">
+                  <p class="card-text">
+                   氏名 <%= staff.first_name %><%= staff.last_name %>
+                  </p>
+                  <p class="card-text">
+                    カナ <%= staff.first_name_kana %><%= staff.last_name_kana %>
+                  </P>
+                   <p class="card-text">
+                     郵便番号 <%= staff.postal_code %>
+                  </P>
+                   <p class="card-text">
+                     住所 <%= staff.address %>
+                  </P>
+                   <p class="card-text">
+                     電話番号 <%= staff.telephone_number %>
+                  </P>
+                   <p class="card-text">
+                     メールアドレス <%= staff.email %>
+                  </P>
+                    <%= link_to "編集する", edit_staff_staff_path(current_staff) %>
+                </div>  
+              </div>    
+            </div>       
+          </div>  
+        </div>    
+    </main>
   </div>
-
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>氏名</th>
-        <th>カナ</th>
-        <th>郵便番号</th>
-        <th>住所</th>
-        <th>電話番号</th>
-        <th>メールアドレス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% staff = @staffs %>
-        <tr>
-          <td>
-          <%= staff.first_name %>
-          <%= staff.last_name %>
-          </td>
-          <td>
-          <%= staff.first_name_kana %>
-          <%= staff.last_name_kana %>
-          </td>
-          <td>
-          <%= staff.postal_code %>
-          </td>
-          <td>
-          <%= staff.address %>
-          </td>
-          <td>
-          <%= staff.telephone_number %>
-          </td>
-          <td>
-          <%= staff.email %>
-          </td>
-        </tr
-    </tbody>
-  </table>
+</div>
+  

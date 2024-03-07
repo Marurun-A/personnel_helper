@@ -1,6 +1,7 @@
 class Company::CompanysController < ApplicationController
 
   def top
+     @companys = current_company
      @employments = Employment.where(company_id: current_company.id, employment_status: :waiting_for_reply)
     if @employments.empty?
     @employments = []
