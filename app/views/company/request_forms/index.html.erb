@@ -1,6 +1,7 @@
 <h2>依頼画面</h2>
 
-<main role="main" class="col-md-9 mx-auto col-lg-10 px-4">
+<%= button_to "応募をリセットする", company_destroy_all_request_forms_path, method: :delete %>
+<div class="col-md-9 mx-auto col-lg-10 px-4">
       <h4>受信依頼一覧</h4>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
@@ -41,12 +42,12 @@
           <div>
           <%= link_to "依頼を続ける", company_requests_path %>
           <%# if @recruitmentt_forms.present? %>
-          <%= link_to "購入に進む",  company_employments_new_path, method: :post %>
+          <%= link_to "依頼に進む",  company_employments_new_path, method: :post %>
           <%# end %>
           </div>
         </div>
       </div>
       </div>
-    </main>
+    </div>
   </div>
  </div>

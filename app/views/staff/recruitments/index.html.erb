@@ -2,10 +2,10 @@
 <div>
      <h4>会社一覧</h4>
   </div>
-  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
   <div class="container-fluid">
    <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-10">
      <div class="card mb-4 shadow-sm">
      <%= form_tag({controller:"recruitments",action:"index"}, method: :get) do %>
         <% Tag.all.each do |t| %>
@@ -19,17 +19,16 @@
 
     <div class="row">
       <% @recruitments.each do |recruitment| %>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <div class="card mb-4 shadow-sm">
-          <% if recruitment.image.attached? %>
-              <%= image_tag recruitment.image, size: "100x100" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "100x100" %>
-            <% end %>
+
 
           <div class="card-body">
             <div class="row">
               <div class="col-md-4">
+                <%= image_tag recruitment.image, size: "250x250" %>
+              </div>
+              <div class="col-md-3">
                  <p class="card-text">
                 <%= link_to staff_recruitment_path(company_id: recruitment.company_id, id: recruitment.id) do %>
                 会社名：<%= recruitment.recruitment_name %>
@@ -39,8 +38,9 @@
                 カナ：<%= recruitment.recruitment_kana %>
                 </P>
                 <p class="card-text">
+                業務内容：
                 <% recruitment.tags.each do |tag| %>
-                <span>業務内容：<%= tag.tag_name %></span>
+                <span><%= tag.tag_name %></span>
                 <% end %>
                 </P>
                 <p class="card-text">
@@ -62,7 +62,7 @@
                 連絡先：<%= recruitment.contact_address %>
                 </P>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-3">
                <p class="card-text">
                 業務紹介：<%= recruitment.introduction %>
                 </P>
@@ -74,6 +74,6 @@
       <% end %>
     </div>
   </div>
-  </main>
+  </div>
  </div>
 </div>

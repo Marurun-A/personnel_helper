@@ -1,59 +1,55 @@
-<h4> 勤登録情覧</h4>
-<p><%= link_to "新規登録", new_staff_request_path %></p>
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+<h4>依頼登録情覧</h4>
+<p><%= link_to "依頼新規登録", new_staff_request_path %></p>
+<div class="col-md-10 ml-sm-auto col-lg-10 px-4">
   <div class="container-fluid">
     <div class="row">
-      <% @requests.each do |request| %>
-      <div class="col-md-9">
+      <div class="col-md-10">
+        <% @requests.each do |request| %>
         <div class="card mb-4 shadow-sm">
-          <% if request.image.attached? %>
-              <%= image_tag request.image, size: "100x100" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "100x100" %>
-            <% end %>
-
-        <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
-
           <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
-                  <p class="card-text">
-                    <%= link_to staff_request_path(staff_id: request.staff_id, id: request.id) do %>
-                    会社名：<%= request.request_name %>
-                    <% end %>
-                  </p>
-                  <p class="card-text">
-                    カナ：<%= request.request_kana %>
-                  </P>
-                  <p class="card-text">
-                    <% request.tags.each do |tag| %>
-                  <span>業務内容：<%= tag.tag_name %></span>
+              <div class="col-md-4">
+                <%= image_tag request.image, size: "300x300" %>
+              </div>
+              <div class="col-md-3">
+                <p class="card-text">
+                  <%= link_to staff_request_path(staff_id: request.staff_id, id: request.id) do %>
+                  会社名：<%= request.request_name %>
                   <% end %>
-                  </P>
-                  <p class="card-text">
-                    募集期間：<%= request.start_date.strftime("%-m月%d日") %><%= request.finish_date.strftime("%-m月%d日") %>
-                  </P>
-                  <p class="card-text">
-                    業務時間：<%= request.start_time.strftime("%H時%M分")  %><%= request.finish_time.strftime("%H時%M分")  %>
-                  </P>
-                  <p class="card-text">
-                    最大勤務時間：<%= request.maximum_time.strftime("%-H") %>時間
-                  </P>
-                  <p class="card-text">
-                    勤務場所：<%= request.place %>
-                  </P>
-                  <p class="card-text">
-                    連絡先：<%= request.contact_address %>
-                  </P>
-                </div>
-                <div class="col-md-5">  
-                  <p class="card-text">
-                    業務詳細：<%= request.introduction %>
-                  </P>
-                </div>
+                </p>
+                <p class="card-text">
+                  カナ：<%= request.request_kana %>
+                </P>
+                <p class="card-text">
+                  <% request.tags.each do |tag| %>
+                <span>業務内容：<%= tag.tag_name %></span>
+                <% end %>
+                </P>
+                <p class="card-text">
+                  募集期間：<%= request.start_date.strftime("%-m月%d日") %><%= request.finish_date.strftime("%-m月%d日") %>
+                </P>
+                <p class="card-text">
+                  業務時間：<%= request.start_time.strftime("%H時%M分")  %><%= request.finish_time.strftime("%H時%M分")  %>
+                </P>
+                <p class="card-text">
+                  最大勤務時間：<%= request.maximum_time.strftime("%-H") %>時間
+                </P>
+                <p class="card-text">
+                  勤務場所：<%= request.place %>
+                </P>
+                <p class="card-text">
+                  連絡先：<%= request.contact_address %>
+                </P>
+              </div>
+              <div class="col-md-3">
+                <p class="card-text">
+                  業務詳細：<%= request.introduction %>
+                </P>
               </div>
             </div>
-            <% end %>
           </div>
         </div>
-</main>
+      <% end %>
+    </div>
+  </div>
+</div>

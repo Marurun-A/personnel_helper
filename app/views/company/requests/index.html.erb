@@ -4,14 +4,16 @@
   <div>
      <h4>スタッフ一覧</h4>
   </div>
-  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
   <div class="container-fluid">
    <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-10">
      <div class="card mb-4 shadow-sm">
      <%= form_tag({controller:"requests",action:"index"}, method: :get) do %>
         <% Tag.all.each do |t| %>
-            <li><%= check_box :tag_name, t.tag_name %><%= t.tag_name %></li>
+            <li>
+              <%= check_box :tag_name, t.tag_name %><%= t.tag_name %>
+              </li>
         <% end %>
         <%= submit_tag '検索' %>
       <% end %>
@@ -21,17 +23,15 @@
 
     <div class="row">
       <% @requests.each do |request| %>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <div class="card mb-4 shadow-sm">
-          <% if request.image.attached? %>
-              <%= image_tag request.image, size: "100x100" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "100x100" %>
-            <% end %>
 
           <div class="card-body">
             <div class="row">
               <div class="col-md-4">
+                <%= image_tag request.image, size: "250x250" %>
+              </div>
+              <div class="col-md-3">
                  <p class="card-text">
                 <%= link_to company_request_path(staff_id: request.staff_id, id: request.id) do %>
                 スタッフ名：<%= request.request_name %>
@@ -41,8 +41,9 @@
                 カナ：<%= request.request_kana %>
                 </P>
                 <p class="card-text">
+                可能な業務：
                 <% request.tags.each do |tag| %>
-                <span>可能な業務：<%= tag.tag_name %></span>
+                <span><%= tag.tag_name %></span>
                 <% end %>
                 </P>
                 <p class="card-text">
@@ -61,7 +62,7 @@
                 連絡先：<%= request.contact_address %>
                 </P>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-3">
                <p class="card-text">
                 自己紹介：<%= request.introduction %>
                 </P>
@@ -73,6 +74,6 @@
       <% end %>
     </div>
   </div>
-  </main>
+  </div>
  </div>
 </div>

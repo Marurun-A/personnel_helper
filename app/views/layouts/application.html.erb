@@ -4,14 +4,14 @@
     <title>PtHelper</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width,initial-scale=1", maximum-scale=1" >
+    <meta name="viewport" content="width=device-width,initial-scale=1", maximum-scale=1 >
 
+    <script src="https://kit.fontawesome.com/aa4cccd1bf.js" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/aa4cccd1bf.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="d-flex flex-column vh-100>
+  <body class="d-flex flex-column vh-100">
 
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
@@ -21,7 +21,10 @@
                       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <%= link_to "Logo", staff_root_path, class: 'nav-link text-white' %>
+        <%= link_to staff_root_path, class: 'nav-link text-white' do %>
+         <i class="fa-solid fa-house"></i> トップへ
+        <% end %>
+          <i class="fa-regular fa-handshake"></i>
         </a>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
@@ -33,10 +36,12 @@
                   <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "トップページ", company_root_path, class: 'nav-link text-white' %>
+                  <%= link_to "ログアウト", destroy_company_session_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_company_session_path, class: 'nav-link text-white' %>
+                  <%= link_to company_request_forms_path(current_company), class: 'nav-link text-white' do %>
+                   <i class="fa-regular fa-file"></i> フォーム
+                  <% end %>
                 </li>
 
               <% elsif staff_signed_in? %>
@@ -47,10 +52,12 @@
                   <%= link_to "スタッフ一覧", company_requests_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "トップページ",  staff_root_path, class: 'nav-link text-white' %>
+                  <%= link_to "ログアウト", destroy_staff_session_path, class: 'nav-link text-white' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_staff_session_path, class: 'nav-link text-white' %>
+                  <%= link_to staff_recruitment_forms_path(current_staff), class: 'nav-link text-white' do %>
+                    <i class="fa-regular fa-file"></i>フォーム
+                  <% end %>
                 </li>
 
               <% else %>
@@ -80,7 +87,7 @@
           <div class="col-md-2 bs-component mt-3">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active">
-              <%= link_to "雇用要請履歴", company_employments_path(current_company), class: 'text-black p-2'  %>
+              <%= link_to "依頼履歴", company_employments_path(current_company), class: 'text-black p-2'  %>
               </li>
             </ol>
           </div>
@@ -109,14 +116,14 @@
           <div class="col-md-2 bs-component mt-3">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active">
-              <%= link_to "雇用要請履歴", staff_works_path(current_staff), class: 'text-black p-2'  %>
+              <%= link_to "依頼履歴", staff_works_path(current_staff), class: 'text-black p-2'  %>
               </li>
             </ol>
           </div>
           <div class="col-md-2 bs-component mt-3">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active">
-              <%= link_to "スタッフからの依頼", staff_employments_path(current_staff), class: 'text-black p-2'  %>
+              <%= link_to "会社からの依頼", staff_employments_path(current_staff), class: 'text-black p-2'  %>
               </li>
             </ol>
           </div>
@@ -130,16 +137,49 @@
           <div class="col-md-2 bs-component mt-3">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active">
-              <%= link_to "雇用登録情報", staff_requests_path(current_staff), class: 'text-black p-2'  %>
+              <%= link_to "勤務登録情報", staff_requests_path(current_staff), class: 'text-black p-2'  %>
               </li>
             </ol>
           </div>
           <% else %>
+          <div class="col-md-3 bs-component mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active">
+                <%= link_to "仕事を探している方はこちら", new_staff_session_path, class: 'text-black p-2'%>
+              </li>
+            </ol>
+          </div>
+          <div class="col-md-3 bs-component mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active">
+                <%= link_to "人を雇いたい方はこちらから", new_company_session_path, class: 'text-black p-2' %>
+              </li>
+            </ol>
+          </div>
 
           <% end %>
         </nav>
       </div>
     <%= yield %>
     </main>
+    <footer class="text-white pt-5" style="background-color: black;">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-8">
+            <h6 class="text-white mt-2 mb-3"></h6>
+            <ul class="p-0 list-unstyled">
+              <li>
+
+              </li>
+              <li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

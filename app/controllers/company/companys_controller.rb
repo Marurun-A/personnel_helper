@@ -9,7 +9,7 @@ class Company::CompanysController < ApplicationController
     @employment_details = EmploymentDetail.find_by(employment_id: @employments.first.id)
     @request_id = @employment_details.request_id
     end
-    
+
     @works = Work.where(company_id: current_company.id, work_status: :waiting_for_reply)
       if @works.empty?
         @works = []

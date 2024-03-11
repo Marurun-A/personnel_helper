@@ -61,7 +61,7 @@ class Company::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_in_path_for(resource)
-    company_root_path
+    company_companys_my_page_path
   end
 
   def after_sign_out_path_for(resource)

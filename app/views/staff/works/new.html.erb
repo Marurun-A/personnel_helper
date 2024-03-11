@@ -3,6 +3,16 @@
   <div class="container">
       <div class="panel panel-default">
         <div class="panel-body">
+
+          <% if @works.errors.any? %>
+          <%= @works.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @works.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+            <% end %>
+          </ul>
+          <% end %>
+
           <%= form_with model: @works, url: '/staff/works/confirm',  method: :post do |f| %>
             <h4>支払方法</h4>
               <div class="form-group">

@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>登録情報編集</h1>
 
-      <%= form_with model: @staff, url: edit_staff_staff_path(@staff.id), method: :patch do |f| %>
+      <%= form_with model: @staff, url: staff_staff_path(@staff.id), method: :patch do |f| %>
 
         <div class="form-grop mt-3">
           <h6>氏名</h6>

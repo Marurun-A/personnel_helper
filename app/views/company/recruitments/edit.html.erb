@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h4>商品編集</h4>
-
       <% if @recruitment.errors.any? %>
         <%= @recruitment.errors.count %>errors prohibited this item from being saved:
         <ul>
@@ -11,73 +10,44 @@
           <% end %>
         </ul>
       <% end %>
-
       <%= form_with model: @recruitment, url: company_recruitment_path(@recruitment.id), method: :patch do |f| %>
-
-        <div class="form-grop mt-2">
-           <h6>会社画像</h6>
-           <%= f.file_field :image, accept: "image/*" %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>会社名</h6>
-          <%= f.text_field :recruitment_kananame %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>フリガナ</h6>
-          <%= f.text_field :recruitment_kana %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>業務内容</h6>
-          <div class='form-group'>
-          <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
-              <div class='form-check'>
-                  <%= tag.label class: 'form-check-label' do %>
-                      <%= tag.check_box class: 'form-check-input' %>
-                      <%= tag.text %>
-                  <% end %>
-              </div>
-          <% end %>
-        </div>
-        <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
-        <%= f.text_field :tag_name,value: @tag_list, class: 'form-control' %>
-
-        <div class="form-grop mt-2">
-          <h6>時給</h6>
-          <%= f.text_field :hourly_wage %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <P>日付</P>
-          <%= f.date_field :date %>
-          <p>時間</p>
-          <%= f.time_field :start_time %><%= f.time_field :finish_time %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <6>最低勤務時間</6>
-          <%= f.number_field :minimum_time, in: 1..10 %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>場所</h6>
-          <%= f.text_field :place %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>連絡先</h6>
-          <%= f.text_field :contact_address %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>雇用説明</h6>
-          <%= f.text_area :introduction %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <%= f.submit '変更を保存', class: "btn btn-success" %>
+        <div class="row">
+          <div class="col-6">
+            <p>会社画像</p>
+            <%= f.file_field :image, accept: "image/*" %>
+            <p>会社名</p>
+            <%= f.text_field :recruitment_kananame, class: 'form-control' %>
+            <p>フリガナ</p>
+            <%= f.text_field :recruitment_kana, class: 'form-control' %>
+            <p>業務内容</p>
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
+            <div class='form-check'>
+            <%= tag.label class: 'form-check-label' do %>
+            <%= tag.check_box class: 'form-check-input' %>
+            <%= tag.text %>
+            <% end %>
+            </div>
+            <% end %>
+            <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
+            <%= f.text_field :tag_name,value: @tag_list, class: 'form-control' %>
+            <p>時給</p>
+            <%= f.text_field :hourly_wage, class: 'form-control' %>
+            <P>日付</P>
+            <%= f.date_field :date, class: 'form-control' %>
+          </div>
+          <div class="col-6">
+            <p>時間</p>
+            <%= f.time_field :start_time, class: 'form-control' %><%= f.time_field :finish_time, class: 'form-control' %>
+            <p>最低勤務時間</p>
+            <%= f.number_field :minimum_time, in: 1..10, class: 'form-control'%>
+            <p>場所</p>
+            <%= f.text_field :place, class: 'form-control' %>
+            <p>連絡先</p>
+            <%= f.text_field :contact_address, class: 'form-control' %>
+            <p>雇用説明</p>
+            <%= f.text_area :introduction, class: 'form-control' %>
+            <%= f.submit '変更を保存', class: "btn btn-success" %>
+          </div>
         </div>
       <% end %>
     </div>

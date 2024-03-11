@@ -3,11 +3,18 @@ class Company::RequestFormsController < ApplicationController
   def create
     @request_form = RequestForm.new(request_form_params)
     @request_form.company_id = current_company.id
-    if @request_form.save
-       redirect_to company_request_forms_path
+
+    request_id = request_form_params[:request_id].to_i
+    registered_request_forms = current_company.request_forms
+
+    if registered_request_forms.blank? || registered_request_forms.first.request_id == request_id
+      @request_form.save
+      redirect_to company_request_forms_path
     else
-      render action: :new
+      flash[:notice] = "一度の依頼で送れる依頼は同一スタッフのみです、別のスタッフに依頼を送るには一度依頼を完了してからにしてください。"
+      redirect_to company_requests_path
     end
+
   end
 
   def index

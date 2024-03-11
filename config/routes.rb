@@ -58,13 +58,14 @@ Rails.application.routes.draw do
     get 'staffs/information/unsubscribe' => 'staffs#unsubscribe'
     get 'staffs/information/withdraw' => 'staffs#withdraw'
     post 'works/confirm' => 'works#confirm'
+    post 'works/new' => 'works#new'
     get 'works/complete' => 'works#complete'
     delete '/recruitment_forms/destroy_all' => 'recruitment_forms#destroy_all', as: 'destroy_all_recruitment_forms'
 
     resources :recruitments, only: [:index, :show, :new, :create, :update, :edit]
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :recruitment_forms, only: [:index, :update, :destroy, :create]
-    resources :works, only: [:new, :confirm, :complete, :create, :index, :show]
+    resources :works, only: [:confirm, :complete, :create, :index, :show]
     resources :employments, only: [:index, :show, :update] do
       member do
         patch :update_status

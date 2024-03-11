@@ -3,10 +3,16 @@ class Staff::RecruitmentFormsController < ApplicationController
   def create
     @recruitment_form = RecruitmentForm.new(recruitment_form_params)
     @recruitment_form.staff_id = current_staff.id
-    if @recruitment_form.save
-       redirect_to staff_recruitment_forms_path
+
+    recruitment_id = recruitment_form_params[:recruitment_id].to_i
+    registered_recruitment_forms = current_staff.recruitment_forms
+
+    if registered_recruitment_forms.blank? || registered_recruitment_forms.first.recruitment_id == recruitment_id
+      @recruitment_form.save
+      redirect_to staff_recruitment_forms_path
     else
-      render action: :new
+      flash[:notice] = "一度の依頼で送れる依頼は同一スタッフのみです、別のスタッフに依頼を送るには一度依頼を完了してからにしてください。"
+      redirect_to staff_recruitments_path
     end
   end
 

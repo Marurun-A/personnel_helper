@@ -1,80 +1,53 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h4>商品編集</h4>
-
-      <% if @request.errors.any? %>
-        <%= @request.errors.count %>errors prohibited this item from being saved:
-        <ul>
-          <% @request.errors.full_messages.each do |message| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h4>商品編集</h4>
+          <% if @request.errors.any? %>
+            <%= @request.errors.count %>errors prohibited this item from being saved:
+            <ul>
+            <% @request.errors.full_messages.each do |message| %>
             <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <%= form_with model: @request, url: staff_request_path(@request.id), method: :patch do |f| %>
-
-        <div class="form-grop mt-2">
-          <h6>自己画像</h6>
-          <%= f.file_field :image, accept: "image/*" %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>名前</h6>
-          <%= f.text_field :request_name %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>フリガナ</h6>
-          <%= f.text_field :request_kana %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>可能な業務</h6>
-          <div class='form-group'>
-            <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
-                <div class='form-check'>
-                    <%= tag.label class: 'form-check-label' do %>
-                        <%= tag.check_box class: 'form-check-input' %>
-                        <%= tag.text %>
-                    <% end %>
-                </div>
             <% end %>
-        </div>
-        <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
-        <%= f.text_field :tag_name,value: @tag_list, class: 'form-control' %>
-
-        <div class="form-grop mt-2">
-          <h6>自己紹介</h6>
-          <%= f.text_area :introduction %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>日時</h6>
-          <P>日付</P>
-          <%= f.date_field :date %>
-          <p>時間</p>
-          <%= f.time_field :start_time %><%= f.time_field :finish_time %>
-        </div>
-
-        <div>
-          <td><%= f.number_field :maximum_time, in: 1..10 %></td>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>場所</h6>
-          <%= f.text_field :place %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <h6>連絡先</h6>
-          <%= f.text_field :contact_address %>
-        </div>
-
-        <div class="form-grop mt-2">
-          <%= f.submit '変更を保存', class: "btn btn-success" %>
-        </div>
-      <% end %>
+            </ul>
+          <% end %>
+        <%= form_with model: @request, url: staff_request_path(@request.id), method: :patch do |f| %>
+          <div class="row">
+            <div class="col-6">
+              <p>自己画像</p>
+              <%= f.file_field :image, accept: "image/*" %>
+              <p>名前</p>
+              <%= f.text_field :request_name, class: 'form-control' %>
+              <p>フリガナ</p>
+              <%= f.text_field :request_kana, class: 'form-control' %>
+              <p>可能な業務</p>
+              <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
+              <div class='form-check'>
+              <%= tag.label class: 'form-check-label' do %>
+              <%= tag.check_box class: 'form-check-input' %>
+              <%= tag.text %>
+              <% end %>
+              </div>
+              <% end %>
+              <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
+              <%= f.text_field :tag_name,value: @tag_list, class: 'form-control' %>
+              <P>日付</P>
+               <%= f.date_field :date, class: 'form-control' %>
+              <p>時間</p>
+              <%= f.time_field :start_time, class: 'form-control' %><%= f.time_field :finish_time, class: 'form-control' %>
+            </div>
+            <div class="col-6">
+              <P>可能な最大勤務時間</P>
+                <%= f.number_field :maximum_time, in: 1..10, class: 'form-control' %>
+              <p>場所</p>
+                <%= f.text_field :place, class: 'form-control' %>
+              <p>連絡先</p>
+              <%= f.text_field :contact_address, class: 'form-control' %>
+              <p>自己紹介</p>
+              <%= f.text_area :introduction, class: 'form-control' %>
+              <%= f.submit '変更を保存', class: "btn btn-success" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>

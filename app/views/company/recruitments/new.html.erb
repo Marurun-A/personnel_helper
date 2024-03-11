@@ -1,8 +1,7 @@
  <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">     
+    <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h4>雇用新規登録</h4>
-      
       <% if  @recruitments.errors.any? %>
         <%=  @recruitments.errors.count %>件のエラーが発生しました
         <ul>
@@ -11,17 +10,17 @@
           <% end %>
         </ul>
       <% end %>
-      
+
       <%= form_with model:  @recruitments, url: company_recruitments_path, method: :post do |f| %>
         <div class="row">
           <div class="col-6">
-            <h6>会社画像</h6>
+            <p>会社画像</p>
             <%= f.file_field :image, accept: "image/*" %>
-            <h6>会社名</h6>
-            <%= f.text_field :recruitment_name %>
-            <h6>フリガナ</h6>
-            <%= f.text_field :recruitment_kana %>
-            <h6>業務内容</h6>
+            <p>会社名</p>
+            <%= f.text_field :recruitment_name, class: 'form-control' %>
+            <p>フリガナ</p>
+            <%= f.text_field :recruitment_kana, class: 'form-control' %>
+            <p>業務内容</p>
               <%= f.collection_check_boxes(:tag_ids, Tag.all, :tag_name, :tag_name) do |tag| %>
                   <div class='form-check'>
                       <%= tag.label class: 'form-check-label' do %>
@@ -32,23 +31,23 @@
               <% end %>
               <label>タグを追加する(,で区切ると複数タグ登録できます)</label></br>
               <%= f.text_field :tag_name,value: @tag_list, class: 'form-control' %>
-            <h6>時給</h6>
-            <%= f.text_field :hourly_wage %>
-            <h6>日時</h6>
-            <P>募集期間</P>
-            <%= f.date_field :start_date %><%= f.date_field :finish_date %>
-            <p>時間</p>
-            <%= f.time_field :start_time %><%= f.time_field :finish_time %>
-            <h6>最低勤務時間</h6>
-            <%= f.number_field :minimum_time, in: 1..10 %>
+            <p>時給</p>
+            <%= f.text_field :hourly_wage, class: 'form-control' %>
+            <p>日時</p>
+            <p>募集期間</p>
+            <%= f.date_field :start_date, class: 'form-control' %><%= f.date_field :finish_date, class: 'form-control' %>
             </div>
             <div class="col-6">
-            <h6>場所</h6>
-            <%= f.text_field :place %>
-            <h6>連絡先</h6>
-            <%= f.text_field :contact_address %>
-            <h6>雇用説明</h6>
-            <%= f.text_area :introduction %>
+            <p>時間</p>
+            <%= f.time_field :start_time, class: 'form-control' %><%= f.time_field :finish_time, class: 'form-control' %>
+            <p>最低勤務時間</p>
+            <%= f.number_field :minimum_time, in: 1..10, class: 'form-control' %>
+            <p>場所</p>
+            <%= f.text_field :place, class: 'form-control' %>
+            <p>連絡先</p>
+            <%= f.text_field :contact_address, class: 'form-control' %>
+            <p>雇用説明</p>
+            <%= f.text_area :introduction, class: 'form-control' %>
             <%= f.submit '新規登録' %>
            </div>
           </div>

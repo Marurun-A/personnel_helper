@@ -1,71 +1,76 @@
 <h2>依頼確認画面</h2>
-
-      <table>
-        <thead>
-          <th>会社名</th>
-          <th>フリガナ</th>
-          <th>通勤開始場所</th>
-          <th>希望勤務日時</th>
-          <th>希望勤務時間</th>
-          <th>希望交通手段<th>
-          <th>自己紹介</th>
-          <th>連絡先</th>
-          <tH>返答期限</tH>
-        </thead>
-        <tbody>
-  <% @total = 0 %>
-  <% @total_hours = 0 %>
-  <% @total_payment = 0 %>
-  <% @works.each do |work| %>
-    <tr>
-      <td><%= work.work_name %></td>
-      <td><%= work.work_kana %></td>
-      <td><%= work.whereabouts %></td>
-      <td>
-        <%= work.date.strftime("%-m月%-d日") %><%= work.start_time.strftime("%H時%M分") %> <%= work.finish_time.strftime("%H時%M分") %>
-      </td>
-      <td><%= work.hours.strftime("%-H") if work.hours %> 時間</td>
-      <td><%= work.transportation %></td>
-      <td><%= work.introduction %></td>
-      <td><%= work.contact_address %></td>
-      <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
-    </tr>
-  <% end %>
-</tbody>
-<table>
-  <tr>
-    <th>受取方法</th>
-    <td><%= @work.payment_method %></td>
-  </tr>
-  <tr>
-    <th>合計勤務時間</th>
-    <% @total_hours += @work.hours.strftime("%-H").to_i if @work.hours  %>
-    <td><%= @total_hours %>時間</td>
-  </tr>
-  <tr>
-    <th>収入総額</th>
-    <% @recruitment_forms.each do |recruitment_form| %>
-      <% @total += recruitment_form.recruitment.hourly_wage %>
-      <% @total_payment = @total * @total_hours %>
-    <% end %>
-    <td><%= @total_payment %>円</td>
-
-  </tr>
-</table>
-
-<%= form_with model: @work, url: staff_works_path, method: :post, local: true do |f| %>
-  <%= f.hidden_field :work_name,  value: @work.work_name %>
-  <%= f.hidden_field :work_kana,  value: @work.work_kana %>
-  <%= f.hidden_field :whereabouts,  value: @work.whereabouts %>
-  <%= f.hidden_field :date,           value: @work.date %>
-  <%= f.hidden_field :start_time,     value: @work.start_time %>
-  <%= f.hidden_field :finish_time,    value: @work.finish_time %>
-  <%= f.hidden_field :hours,          value: @work.hours %>
-  <%= f.hidden_field :transportation,    value: @work.transportation %>
-  <%= f.hidden_field :payment_method, value: @work.payment_method %>
-  <%= f.hidden_field :introduction,   value: @work.introduction %>
-  <%= f.hidden_field :contact_address,value: @work.contact_address %>
-  <%= f.hidden_field :response_deadline,value: @work.response_deadline %>
-  <%= f.hidden_field :total_payment_amount, value: @total_payment %>
-  <%= f.submit "注文を確定する", class: "btn btn-success" %>
-<% end %>
+ <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <th>会社名</th>
+              <th>フリガナ</th>
+              <th>通勤開始場所</th>
+              <th>希望勤務日時</th>
+              <th>希望勤務時間</th>
+              <th>希望交通手段</th>
+              <th>自己紹介</th>
+              <th>連絡先</th>
+              <tH>返答期限</tH>
+            </thead>
+            <tbody>
+              <% @total = 0 %>
+              <% @total_hours = 0 %>
+              <% @total_payment = 0 %>
+              <% @works.each do |work| %>
+                <tr>
+                  <td><%= work.work_name %></td>
+                  <td><%= work.work_kana %></td>
+                  <td><%= work.whereabouts %></td>
+                  <td>
+                    <%= work.date.strftime("%-m月%-d日") %><%= work.start_time.strftime("%H時%M分") %> <%= work.finish_time.strftime("%H時%M分") %>
+                  </td>
+                  <td><%= work.hours.strftime("%-H") if work.hours %> 時間</td>
+                  <td><%= work.transportation %></td>
+                  <td><%= work.introduction %></td>
+                  <td><%= work.contact_address %></td>
+                  <td><%= work.response_deadline.strftime("%-m月%-d日") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            <table>
+              <tr>
+                <th>受取方法</th>
+                <td><%= @work.payment_method %></td>
+              </tr>
+              <tr>
+                <th>合計勤務時間</th>
+                <% @total_hours += @work.hours.strftime("%-H").to_i if @work.hours  %>
+                <td><%= @total_hours %>時間</td>
+              </tr>
+              <tr>
+                <th>収入総額</th>
+                <% @recruitment_forms.each do |recruitment_form| %>
+                  <% @total += recruitment_form.recruitment.hourly_wage %>
+                  <% @total_payment = @total * @total_hours %>
+                <% end %>
+                <td><%= @total_payment %>円</td>
+            
+              </tr>
+            </table>
+            
+            <%= form_with model: @work, url: staff_works_path, method: :post, local: true do |f| %>
+              <%= f.hidden_field :work_name,  value: @work.work_name %>
+              <%= f.hidden_field :work_kana,  value: @work.work_kana %>
+              <%= f.hidden_field :whereabouts,  value: @work.whereabouts %>
+              <%= f.hidden_field :date,           value: @work.date %>
+              <%= f.hidden_field :start_time,     value: @work.start_time %>
+              <%= f.hidden_field :finish_time,    value: @work.finish_time %>
+              <%= f.hidden_field :hours,          value: @work.hours %>
+              <%= f.hidden_field :transportation,    value: @work.transportation %>
+              <%= f.hidden_field :payment_method, value: @work.payment_method %>
+              <%= f.hidden_field :introduction,   value: @work.introduction %>
+              <%= f.hidden_field :contact_address,value: @work.contact_address %>
+              <%= f.hidden_field :response_deadline,value: @work.response_deadline %>
+              <%= f.hidden_field :total_payment_amount, value: @total_payment %>
+              <%= f.submit "注文を確定する", class: "btn btn-success" %>
+            <% end %>
+          </div>
+      </div>
+    </div>

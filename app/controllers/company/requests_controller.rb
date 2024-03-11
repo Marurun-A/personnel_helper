@@ -4,10 +4,10 @@ class Company::RequestsController < ApplicationController
     @requests = Request.all
     @request = Request.new
 
-    if params[:tag_ids]
+    if params[:tag_name]
       @requests = []
-      params[:tag_ids].each do |key, value|
-        @requests += Tag.find_by(name: key).requests if value == "1"
+      params[:tag_name].each do |key, value|
+        @requests += Tag.find_by(tag_name: key).requests if value == "1"
       end
       @requests.uniq!
     end

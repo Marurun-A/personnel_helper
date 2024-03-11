@@ -1,20 +1,15 @@
 <h4>雇用登録情報</h4>
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-10">
               <div class="card mb-4 shadow-sm">
-                <% if @request.image.attached? %>
-                    <%= image_tag @request.image, size: "100x100" %>
-                  <% else %>
-                    <%= image_tag 'no_image', size: "100x100" %>
-                  <% end %>
-      
-              <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
-      
                 <div class="card-body">
                   <div class="row">
                    <div class="col-md-4">
+                     <%= image_tag @request.image, size: "300x300" %>
+                   </div>
+                   <div class="col-md-3">
                       <p class="card-text">
                         スタッフ名：<%= @request.request_name %>
                       </p>
@@ -42,7 +37,7 @@
                         連絡先：<%= @request.contact_address %>
                       </P>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                       <p class="card-text">
                         業務詳細：<%= @request.introduction %>
                       </P>
