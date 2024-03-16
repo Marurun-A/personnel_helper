@@ -7,11 +7,12 @@ class Company::RequestFormsController < ApplicationController
     request_id = request_form_params[:request_id].to_i
     registered_request_forms = current_company.request_forms
 
-    if registered_request_forms.blank? || registered_request_forms.first.request_id == request_id
+    if registered_request_forms.blank?
+      # || registered_request_forms.first.request_id == request_id
       @request_form.save
       redirect_to company_request_forms_path
     else
-      flash[:notice] = "一度の依頼で送れる依頼は同一スタッフのみです、別のスタッフに依頼を送るには一度依頼を完了してからにしてください。"
+      flash[:notice] = "新しく依頼を送る場合は、依頼フォームの中身を空にするか、依頼を一度完了してからにしてください"
       redirect_to company_requests_path
     end
 

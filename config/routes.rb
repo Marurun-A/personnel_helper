@@ -13,10 +13,6 @@ Rails.application.routes.draw do
   sessions: "company/sessions"
   }
 
-  # devise_scope :companyr do
-  #   get '/company/sign_out' => 'devise/sessions#destroy'
-  # end
-
   root to: "staff/homes#top"
 
    namespace :company do
@@ -28,7 +24,8 @@ Rails.application.routes.draw do
     get 'companys/information/withdraw' => 'companys#withdraw'
     delete '/request_forms/destroy_all' => 'request_forms#destroy_all', as: 'destroy_all_request_forms'
     post 'employments/confirm' => 'employments#confirm'
-    post 'employments/new' => 'employments#new'
+    get 'employments/new' => 'employments#new'
+    # post 'employments/new' => 'employments#new'
     get 'employments/complete' => 'employments#complete'
 
     resources :requests, only: [:index, :show, :new, :create, :update, :edit]
@@ -48,17 +45,15 @@ Rails.application.routes.draw do
     end
   end
 
-
-
   namespace :staff do
 
     root to: "homes#top"
     get 'staffs/my_page' => 'staffs#top'
-    # get 'staffs/my_work' => 'works#index'
     get 'staffs/information/unsubscribe' => 'staffs#unsubscribe'
     get 'staffs/information/withdraw' => 'staffs#withdraw'
     post 'works/confirm' => 'works#confirm'
-    post 'works/new' => 'works#new'
+    get 'works/new' => 'works#new'
+    # post 'works/new' => 'works#new'
     get 'works/complete' => 'works#complete'
     delete '/recruitment_forms/destroy_all' => 'recruitment_forms#destroy_all', as: 'destroy_all_recruitment_forms'
 

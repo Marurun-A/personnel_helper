@@ -1,7 +1,8 @@
 class Company::EmploymentsController < ApplicationController
 
   def new
-    @employments = Employment.new
+    @employment = Employment.new
+    @employment.staff_id = params[:staff_id].to_i
   end
 
   def create
@@ -28,9 +29,12 @@ class Company::EmploymentsController < ApplicationController
 
   def confirm
       @employment = Employment.new(employment_params)
-      @request_forms = current_company.request_forms
       @employment.company_id = current_company.id
-      @employments = [@employment]
+      if @employment.valid?
+        @request_forms = current_company.request_forms
+      else
+        render action: :new
+      end
   end
 
   def complete

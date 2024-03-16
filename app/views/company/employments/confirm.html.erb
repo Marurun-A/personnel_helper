@@ -17,21 +17,21 @@
             <tbody>
             <% @total = 0 %>
             <% @total_hours = 0 %>
-            <% @employments.each do |employment| %>
+            <%# @employments.each do |employment| %>
               <tr>
-                <td><%= employment.employment_name %></td>
-                <td><%= employment.employment_kana %></td>
-                <td><%= employment.place_of_employment %></td>
+                <td><%= @employment.employment_name %></td>
+                <td><%= @employment.employment_kana %></td>
+                <td><%= @employment.place_of_employment %></td>
                 <td>
-                  <%= employment.date.strftime("%-m月%-d日") %><%= employment.start_time.strftime("%H時%M分") %> <%= employment.finish_time.strftime("%H時%M分") %>
+                  <%= @employment.date.strftime("%-m月%-d日") %><%= @employment.start_time.strftime("%H時%M分") %> <%= @employment.finish_time.strftime("%H時%M分") %>
                 </td>
-                <td><%= employment.hours.strftime("%-H") %>時間</td>
-                <td><%= employment.hourly_wage %></td>
-                <td><%= employment.introduction %></td>
-                <td><%= employment.contact_address %></td>
-                <td><%= employment.response_deadline.strftime("%-m月%-d日") %></td>
+                <td><%= @employment.hours.strftime("%-H") %>時間</td>
+                <td><%= @employment.hourly_wage %></td>
+                <td><%= @employment.introduction %></td>
+                <td><%= @employment.contact_address %></td>
+                <td><%= @employment.response_deadline.strftime("%-m月%-d日") %></td>
               </tr>
-            <% end %>
+            <%# end %>
           </tbody>
           <table>
             <tr>

@@ -1,7 +1,8 @@
 class Staff::WorksController < ApplicationController
 
   def new
-    @works = Work.new
+    @work = Work.new
+    @work.company_id = params[:company_id].to_i
   end
 
   def create
@@ -27,11 +28,13 @@ class Staff::WorksController < ApplicationController
   end
 
   def confirm
-      @work = Work.new(work_params)
+    @work = Work.new(work_params)
+    @work.staff_id = current_staff.id
+    if @work.valid?
       @recruitment_forms = current_staff.recruitment_forms
-      @work.staff_id = current_staff.id
-      @works =[@work]
-
+    else
+      render action: :new
+    end
   end
 
   def complete

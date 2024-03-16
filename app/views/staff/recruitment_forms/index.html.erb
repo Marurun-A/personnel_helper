@@ -36,17 +36,14 @@
                   <td><%= recruitment_form.recruitment.contact_address %></td>
                   <td><%= recruitment_form.recruitment.introduction %></td>
                   <td> <%= button_to "削除", staff_recruitment_form_path(recruitment_form.id), method: :delete %></td>
+                  <td> <%= link_to "購入に進む", staff_works_new_path(company_id:recruitment_form.company_id) %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
 
           <div>
-            <%= link_to "依頼を続ける", staff_recruitments_path %>
-            <%# if @recruitmentt_forms.present? %>
-              <%= link_to "購入に進む", staff_works_new_path, method: :post %>
-            <%# end %>
-          </div>
+
         </div>
       </div>
       </div>

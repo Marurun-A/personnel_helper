@@ -4,6 +4,19 @@ class Employment < ApplicationRecord
   has_many :employment_details, dependent: :destroy
   belongs_to :company
   belongs_to :staff
+  
+  validates :payment_method, presence: true
+  validates :employment_name, presence: true
+  validates :employment_kana, presence: true
+  validates :place_of_employment, presence: true
+  validates :date, presence: true
+  validates :start_time, presence: true
+  validates :finish_time, presence: true
+  validates :hours, presence: true
+  validates :hourly_wage, presence: true
+  validates :contact_address, presence: true
+  validates :response_deadline, presence: true
+  validates :introduction, presence: true
 
   enum payment_method: { cash: 0, transfer: 1 }
   enum employment_status: { waiting_for_reply: 0, accepted: 1,  was_denied: 2 }

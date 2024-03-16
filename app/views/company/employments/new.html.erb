@@ -4,16 +4,16 @@
   <div class="row">
     <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h4>依頼情報入力</h4>
-        <% if @employments.errors.any? %>
-          <%= @employments.errors.count %>件のエラーが発生しました
+        <% if @employment.errors.any? %>
+          <%= @employment.errors.count %>件のエラーが発生しました
           <ul>
-            <% @employments.errors.full_messages.each do |message| %>
+            <% @employment.errors.full_messages.each do |message| %>
           <li><%= message %></li>
             <% end %>
           </ul>
         <% end %>
 
-        <%= form_with model: @employments, url: '/company/employments/confirm',  method: :post do |f| %>
+        <%= form_with model: @employment, url: '/company/employments/confirm',  method: :post do |f| %>
           <div class="row">
             <div class="col-6">
               <h4>支払方法</h4>
@@ -36,28 +36,28 @@
               <%= f.text_field :employment_kana, class: "form-control"%>
               <p>雇用場所（住所)</p>
               <%= f.text_field :place_of_employment, class: "form-control" %>
-              <p>勤務日時</p>
-              <%= f.date_field :date, class: "form-control" %><%= f.time_field :start_time, class: "form-control" %><%= f.time_field :finish_time, class: "form-control" %>
+              <p>勤務日</p>
+              <%= f.date_field :date, class: 'form-control' %>
               <p>勤務時間</p>
+              <%= f.time_field :start_time, class: "form-control" %><%= f.time_field :finish_time, class: "form-control" %>
+              <p>労働時間</p>
               <%= f.number_field :hours, in: 1..10, class: "form-control" %>(時間)
             </div>
-            <div class="col-6">  
+            <div class="col-6">
               <p>時給</p>
               <%= f.text_field :hourly_wage, class: "form-control" %>
-              <p></p>
-              <%= f.date_field :start_date, class: 'form-control' %><%= f.date_field :finish_date, class: 'form-control' %>
-            
               <p>連絡先</p>
               <%= f.text_field :contact_address, class: "form-control" %>
               <p>返答期限</p>
               <%= f.date_field :response_deadline, class: "form-control" %>
               <p>業務説明</p>
               <%= f.text_field :introduction, class: "form-control" %>
+              <%= f.hidden_field :staff_id,  value: @employment.staff_id %>
               <%= f.submit '確認画面に進む', class: "btn btn-default" %>
               <% end %>
             </div>
           </div>
-          
+
       </div>
     </div>
   </div>

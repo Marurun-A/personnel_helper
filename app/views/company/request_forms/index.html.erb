@@ -35,15 +35,13 @@
                 <td><%= request_form.request.contact_address %></td>
                 <td><%= request_form.request.introduction %></td>
                 <td> <%= button_to "削除", company_request_form_path(request_form.id), method: :delete %></td>
+                <td><%= link_to "依頼に進む",  company_employments_new_path(staff_id:request_form.staff_id) %></td>
               </tr>
               <% end %>
             </tbody>
           </table>
           <div>
-          <%= link_to "依頼を続ける", company_requests_path %>
-          <%# if @recruitmentt_forms.present? %>
-          <%= link_to "依頼に進む",  company_employments_new_path, method: :post %>
-          <%# end %>
+
           </div>
         </div>
       </div>

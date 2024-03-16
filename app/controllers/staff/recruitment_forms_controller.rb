@@ -7,11 +7,12 @@ class Staff::RecruitmentFormsController < ApplicationController
     recruitment_id = recruitment_form_params[:recruitment_id].to_i
     registered_recruitment_forms = current_staff.recruitment_forms
 
-    if registered_recruitment_forms.blank? || registered_recruitment_forms.first.recruitment_id == recruitment_id
+    if registered_recruitment_forms.blank?
+      # || registered_recruitment_forms.first.recruitment_id == recruitment_id
       @recruitment_form.save
       redirect_to staff_recruitment_forms_path
     else
-      flash[:notice] = "一度の依頼で送れる依頼は同一スタッフのみです、別のスタッフに依頼を送るには一度依頼を完了してからにしてください。"
+      flash[:notice] = "新しく依頼を送る場合は、依頼フォームの中身を空にするか、依頼を一度完了してからにしてください"
       redirect_to staff_recruitments_path
     end
   end
