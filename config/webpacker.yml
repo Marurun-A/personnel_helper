@@ -75,8 +75,7 @@ development:
 test:
   <<: *default
   compile: true
-　extract_css: false
-　cache_manifest: false
+
 
 
   # Compile test packs to a separate directory
@@ -84,6 +83,8 @@ test:
 
 production:
   <<: *default
+  extract_css: false
+　cache_manifest: false
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
