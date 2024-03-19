@@ -8,8 +8,8 @@
 
 tags = ["ホール業務","皿洗い","荷物整理","交通整備","レジ打ち","未経験OK"]
 tags.each do |tag|
-  Tag.find_or_create_by!(name: tag) do |t|
-    t.name = tag
+  Tag.find_or_create_by!(tag_name: tag) do |t|
+    t.tag_name = tag
   end
 end
 
@@ -25,7 +25,7 @@ kubotamikiko= Staff.find_or_create_by!(email: "mikiko@example.com") do |staff|
   staff.address = "滋賀県野洲市菖蒲4-3"
   staff.telephone_number = "0740969492"
   staff.password = "kqBLn3z4"
-  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff1.jpg"), filename:"sample-staff1.jpg")
+  staff.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff1.jpg"), filename:"sample-staff1.jpg")
 end
 
 yanagawamarumi= Staff.find_or_create_by!(email: "marumi@example.com") do |staff|
@@ -38,7 +38,7 @@ yanagawamarumi= Staff.find_or_create_by!(email: "marumi@example.com") do |staff|
   staff.address = "埼玉県川越市西小仙波町3-16-10ステージ西小仙波町408	"
   staff.telephone_number = "0493368604"
   staff.password = "ZpX1zhbs"
-  user.profile_imag = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff2.jpg"), filename:"sample-staff2.jpg")
+  staff.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff2.jpg"), filename:"sample-staff2.jpg")
 end
 
 hukazawatomiko= Staff.find_or_create_by!(email: "tomiko@example.com") do |staff|
@@ -51,7 +51,7 @@ hukazawatomiko= Staff.find_or_create_by!(email: "tomiko@example.com") do |staff|
   staff.address = "和歌山県紀の川市神通1-11-20"
   staff.telephone_number = "0737469561"
   staff.password = "bO0NJENa"
-  user.profile_imag = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff3.jpg"), filename:"sample-staff3.jpg")
+  staff.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff3.jpg"), filename:"sample-staff3.jpg")
 end
 
 ookumamakoto= Staff.find_or_create_by!(email: "makoto@example.com") do |staff|
@@ -64,7 +64,7 @@ ookumamakoto= Staff.find_or_create_by!(email: "makoto@example.com") do |staff|
   staff.address = "鳥取県米子市中町3-6-2	"
   staff.telephone_number = "0858060756"
   staff.password = "Io9S69P"
-  user.profile_imag = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff4.jpg"), filename:"sample-staff4.jpg")
+  staff.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff4.jpg"), filename:"sample-staff4.jpg")
 end
 
 todasiniti= Staff.find_or_create_by!(email: "siniti@example.com") do |staff|
@@ -77,7 +77,7 @@ todasiniti= Staff.find_or_create_by!(email: "siniti@example.com") do |staff|
   staff.address = "新潟県柏崎市西山町中央台1-2-20西山町中央台フォレスト400"
   staff.telephone_number = "0253375415"
   staff.password = "wBwAxF47"
-  user.profile_imag = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff5.jpg"), filename:"sample-staff5.jpg")
+  staff.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff5.jpg"), filename:"sample-staff5.jpg")
 end
 
 isikawaharuo= Staff.find_or_create_by!(email: "haruo@example.com") do |staff|
@@ -90,7 +90,7 @@ isikawaharuo= Staff.find_or_create_by!(email: "haruo@example.com") do |staff|
   staff.address = "滋賀県守山市小島町4-16"
   staff.telephone_number = "0749957069"
   staff.password = "fZCSFTj"
-  user.profile_imag = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff6.jpg"), filename:"sample-staff6.jpg")
+  staff.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-staff6.jpg"), filename:"sample-staff6.jpg")
 end
 
  banndouyutaka= Company.find_or_create_by!(email: "yutaka@example.com") do |company|
@@ -103,7 +103,7 @@ end
   company.address = "兵庫県豊岡市日高町国分寺4-1	"
   company.telephone_number = "0798594470"
   company.password = "zZvdrAHP"
-  company.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company1.jpg"), filename:"sample-company1.jpg")
+  company.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company1.jpg"), filename:"sample-company1.jpg")
 end
 
  sakagamikanata= Company.find_or_create_by!(email: "kanata@example.com") do |company|
@@ -116,7 +116,7 @@ end
   company.address = "高知県幡多郡黒潮町佐賀橘川1-18-11	"
   company.telephone_number = "0889489295"
   company.password = "O7fiqGra"
-  company.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company2.jpg"), filename:"sample-company2.jpg")
+  company.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company2.jpg"), filename:"sample-company2.jpg")
 end
 
  nakamoriyasuyuki= Company.find_or_create_by!(email: "yasuyuki@example.com") do |company|
@@ -129,7 +129,7 @@ end
   company.address = "愛知県長久手市前熊根ノ原4-1-1前熊根ノ原マンション101"
   company.telephone_number = "0562746954"
   company.password = "e9a3ojJ"
-  company.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company3.jpg"), filename:"sample-company3.jpg")
+  company.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company3.jpg"), filename:"sample-company3.jpg")
 end
 
  hujiwaramako= Company.find_or_create_by!(email: "mako@example.com") do |company|
@@ -142,7 +142,7 @@ end
   company.address = "山形県鶴岡市ほなみ町2-19-20ほなみ町の杜317"
   company.telephone_number = "0233837810"
   company.password = "CCtp4wAd"
-  company.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company4.jpg"), filename:"sample-company4.jpg")
+  company.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company4.jpg"), filename:"sample-company4.jpg")
 end
 
  yagutiasako= Company.find_or_create_by!(email: "asako@example.com") do |company|
@@ -155,7 +155,7 @@ end
   company.address = "広島県三次市三原町1-18-11	"
   company.telephone_number = "0826878119"
   company.password = "AaCaseGB"
-  company.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company5.jpg"), filename:"sample-company5.jpg")
+  company.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company5.jpg"), filename:"sample-company5.jpg")
 end
 
  matidakanade= Company.find_or_create_by!(email: "kanade@example.com") do |company|
@@ -165,10 +165,10 @@ end
   company.last_name_kana ="カナデ"
   # company.email = "email"
   company.postal_code = "374-0031"
-  company.address = "群馬県館林市東美園町2-7"
+  company.address = "群馬県館林市東美園町"
   company.telephone_number = "0276059473"
   company.password = "UDQ2ND"
-  company.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company6.jpg"), filename:"sample-company6.jpg")
+  company.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company6.jpg"), filename:"sample-company6.jpg")
 end
 
 Request.find_or_create_by!(request_name: "窪田美貴子") do |request|
@@ -180,7 +180,7 @@ Request.find_or_create_by!(request_name: "窪田美貴子") do |request|
   request.start_time = "18:00"
   request.finish_time = "21:00"
   request.maximum_time = "3"
-  request.place = "滋賀県野洲市菖蒲4-3"
+  request.place = "滋賀県野洲市"
   request.contact_address = "0740969492"
   request.staff = kubotamikiko
    #request.staff_id = "staff_id"
@@ -191,11 +191,11 @@ Request.find_or_create_by!(request_name: "柳川円美") do |request|
   request.request_kana = "ヤナガワマルミ"
   request.introduction = "本屋での業務経験があります。本の陳列から発注まで、本屋に関する業務は一通りできます。"
   request.start_date = "2024-04-20"
-  request.finish_date = "2024-04-31"
+  request.finish_date = "2024-04-30"
   request.start_time = "13:00"
   request.finish_time = "18:00"
   request.maximum_time = "5"
-  request.place = "埼玉県川越市西小仙波町3-16-10ステージ西小仙波町408	"
+  request.place = "埼玉県川越市"
   request.contact_address = "0493368604"
   request.staff = yanagawamarumi
   #request.staff_id = "staff_id"
@@ -210,7 +210,7 @@ Request.find_or_create_by!(request_name: "深沢登美子") do |request|
   request.start_time = "8:00"
   request.finish_time = "17:00"
   request.maximum_time = "8"
-  request.place = "和歌山県紀の川市神通1-11-20"
+  request.place = "和歌山県紀の川市"
   request.contact_address = "0737469561"
   request.staff = hukazawatomiko
   #request.staff_id = "staff_id"
@@ -221,11 +221,11 @@ Request.find_or_create_by!(request_name: "大熊信") do |request|
   request.request_kana = "オオクママコト"
   request.introduction = "土木現場での業務を現在もしています。アルバイトなので掛け持ちで日雇いのバイトを探しいています。体力と力仕事には自信があります"
   request.start_date = "2024-05-21"
-  request.finish_date = "2024^05-30"
+  request.finish_date = "2024-05-30"
   request.start_time = "8:00"
   request.finish_time = "21:00"
   request.maximum_time = "8"
-  request.place = "鳥取県米子市中町3-6-2"
+  request.place = "鳥取県米子市"
   request.contact_address = "0858060756"
   request.staff = ookumamakoto
    #request.staff_id = "staff_id"
@@ -240,7 +240,7 @@ Request.find_or_create_by!(request_name: "戸田進一") do |request|
   request.start_time = "21:00"
   request.finish_time = "24:00"
   request.maximum_time = "3"
-  request.place = "新潟県柏崎市西山町中央台1-2-20西山町中央台フォレスト400"
+  request.place = "新潟県柏崎市"
   request.contact_address = "0253375415"
   request.staff = todasiniti
   #request.staff_id = "staff_id"
@@ -251,81 +251,81 @@ Request.find_or_create_by!(request_name: "石川春夫") do |request|
   request.request_kana = "イシカワハルオ"
   request.introduction = "以前日雇いの交通量調査のバイトを何回か経験しています。忍耐力はあるので単純な作業であればできます"
   request.start_date = "2024-07-21"
-  request.finish_date = "2024-08-31"
+  request.finish_date = "2024-08-30"
   request.start_time = "8:00"
   request.finish_time = "17:00"
   request.maximum_time = "8"
-  request.place = "滋賀県守山市小島町4-16"
+  request.place = "滋賀県守山市"
   request.contact_address = "0749957069"
   request.staff = isikawaharuo
   #request.staff_id = "staff_id"
 end
 
-Recruitment.find_or_create_by!(requruitment_name: "坂東運送") do |recruitment|
+Recruitment.find_or_create_by!(recruitment_name: "坂東運送") do |recruitment|
   recruitment.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company1.jpg"), filename:"sample-recruitment1.jpg")
   recruitment.recruitment_kana = "バンドウウンソウ"
   recruitment.introduction = "配送センターで、荷物の仕分け作業です。現場スタッフの指示にて作業を行ってもらうので、未経験でも可能です。"
   recruitment.hourly_wage = "900"
   recruitment.start_date = "2024-04-01"
-  recruitment.finish_date = "2024-04-31"
+  recruitment.finish_date = "2024-04-30"
   recruitment.start_time = "13:00"
   recruitment.finish_time = "18:00"
-  recruitment.maximum_time = "3"
+  recruitment.minimum_time = "3"
   recruitment.place = "兵庫県豊岡市日高町国分寺4-1"
   recruitment.contact_address = "0798594470"
   recruitment.company = banndouyutaka
   # recruitment.company_id = ""
 end
 
-Recruitment.find_or_create_by!(requruitment_name: "坂上ハンバーグハウス") do |recruitment|
+Recruitment.find_or_create_by!(recruitment_name: "坂上ハンバーグハウス") do |recruitment|
   recruitment.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company2.jpg"), filename:"sample-recruitment2.jpg")
   recruitment.recruitment_kana = "サカガミチステーキハウス"
   recruitment.introduction = "飲食店での皿洗いをお願いしています。経験者で自身のある方はホール業務もお願いしたいです。その場合は時給upします。"
   recruitment.hourly_wage = "1000"
-  recruitment.start_date = "2024-04-31"
-  recruitment.finish_date = "2024-05-31"
+  recruitment.start_date = "2024-04-30"
+  recruitment.finish_date = "2024-05-30"
   recruitment.start_time = "11:00"
   recruitment.finish_time = "14:00"
-  recruitment.maximum_time = "3"
+  recruitment.minimum_time = "3"
   recruitment.place = "高知県幡多郡黒潮町佐賀橘川1-18-11"
   recruitment.contact_address = "0889489295"
   recruitment.company = sakagamikanata
   # recruitment.company_id = ""
 end
 
-Recruitment.find_or_create_by!(requruitment_name: "5イレブン") do |recruitment|
+Recruitment.find_or_create_by!(recruitment_name: "5イレブン") do |recruitment|
   recruitment.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company3.jpg"), filename:"sample-recruitment3.jpg")
   recruitment.recruitment_kana = "ファイブイレブン"
   recruitment.introduction = "レジ対応と商品陳列業務をお願いしています。少人数での業務のため経験者が望ましいです。"
   recruitment.hourly_wage = "1100"
   recruitment.start_date = "2024-03-23"
-  recruitment.finish_date = "2024-05-31"
+  recruitment.finish_date = "2024-05-30"
   recruitment.start_time = "21:00"
   recruitment.finish_time = "6:00"
-  recruitment.maximum_time = "8"
+  recruitment.minimum_time = "8"
   recruitment.place = "愛知県長久手市前熊根ノ原4-1-1前熊根ノ原マンション101"
   recruitment.contact_address = "0562746954"
   recruitment.company = nakamoriyasuyuki
   # recruitment.company_id = ""
 end
 
-Recruitment.find_or_create_by!(requruitment_name: "フワッとヒザ") do |recruitment|
-  recruitment.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company.jpg"), filename:"sample-recruitment.jpg")
+Recruitment.find_or_create_by!(recruitment_name: "フワッとヒザ") do |recruitment|
+  recruitment.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company4.jpg"), filename:"sample-recruitment4.jpg")
   recruitment.recruitment_kana = "フワットピザ"
   recruitment.introduction = "オーダー取りを主に行ってもらい、時折洗い物もしてもらいます。"
   recruitment.hourly_wage = "950"
   recruitment.start_date = "2024-04-01"
-  recruitment.finish_date = "2024-04-31"
+  recruitment.finish_date = "2024-04-30"
   recruitment.start_time = "17:00"
   recruitment.finish_time = "21:00"
-  recruitment.maximum_time = "4"
+  recruitment.minimum_time = "4"
   recruitment.place = "山形県鶴岡市ほなみ町2-19-20ほなみ町の杜317"
   recruitment.contact_address = "0233837810"
   recruitment.company = hujiwaramako
   # recruitment.company_id = ""
 end
 
-Recruitment.find_or_create_by!(requruitment_name: "HAIRYAGUTI") do |recruitment|
+Recruitment.find_or_create_by!(recruitment_name: "HAIRYAGUTI") do |recruitment|
   recruitment.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company5.jpg"), filename:"sample-recruitment5.jpg")
   recruitment.recruitment_kana = "ヘアーヤグチ"
   recruitment.introduction = "お客さんへのお茶だしと店内の掃除を主に行ってもらいます"
@@ -334,23 +334,23 @@ Recruitment.find_or_create_by!(requruitment_name: "HAIRYAGUTI") do |recruitment|
   recruitment.finish_date = "2024-04-30"
   recruitment.start_time = "9:00"
   recruitment.finish_time = "16:00"
-  recruitment.maximum_time = "7"
+  recruitment.minimum_time = "7"
   recruitment.place = "広島県三次市三原町1-18-11"
   recruitment.contact_address = "0826878119"
   recruitment.company = yagutiasako
   # recruitment.company_id = ""
 end
 
-Recruitment.find_or_create_by!(requruitment_name: "株式会社ペット") do |recruitment|
+Recruitment.find_or_create_by!(recruitment_name: "株式会社ペット") do |recruitment|
   recruitment.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-company6.jpg"), filename:"sample-recruitment6.jpg")
   recruitment.recruitment_kana = "カブシキカイシャペット"
   recruitment.introduction = "ラベル貼りと梱包の手伝いを募集しています。未経験の方でも簡単にできます"
   recruitment.hourly_wage = "1100"
   recruitment.start_date = "2024-04-01"
-  recruitment.finish_date = "2024-04-31"
+  recruitment.finish_date = "2024-04-30"
   recruitment.start_time = "9:00"
   recruitment.finish_time = "12:00"
-  recruitment.maximum_time = "3"
+  recruitment.minimum_time = "3"
   recruitment.place = "群馬県館林市東美園町2-7"
   recruitment.contact_address = "0276059473"
   recruitment.company = matidakanade
