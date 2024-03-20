@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h4>商品編集</h4>
+      <h4>募集登録情報編集</h4>
       <% if @recruitment.errors.any? %>
         <%= @recruitment.errors.count %>errors prohibited this item from being saved:
         <ul>
@@ -33,7 +33,7 @@
             <p>時給</p>
             <%= f.text_field :hourly_wage, class: 'form-control' %>
             <P>日付</P>
-            <%= f.date_field :date, class: 'form-control' %>
+            <%= f.date_field :start_date, class: 'form-control' %><%= f.date_field :finish_date, class: 'form-control' %>
           </div>
           <div class="col-6">
             <p>時間</p>
