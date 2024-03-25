@@ -18,8 +18,8 @@
                   カナ：<%= @recruitment.recruitment_kana %>
                 </P>
                 <p class="card-text">
-                  <% @recruitment.tags.each do |tag| %>
-                <span>業務内容：<%= tag.tag_name %></span>
+                  業務内容：<% @recruitment.tags.each do |tag| %>
+                <span><%= tag.tag_name %></span>
                 <% end %>
                 </P>
                 <p class="card-text">

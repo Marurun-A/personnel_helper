@@ -17,8 +17,8 @@
                         カナ：<%= @request.request_kana %>
                       </P>
                       <p class="card-text">
-                        <% @request.tags.each do |tag| %>
-                      <span>可能な業務：<%= tag.tag_name %></span>
+                        可能な業務：<% @request.tags.each do |tag| %>
+                      <span><%= tag.tag_name %></span>
                       <% end %>
                       </P>
                       <p class="card-text">

@@ -32,12 +32,12 @@
                   <td><%= @work.contact_address %></td>
                   <td><%= @work.response_deadline.strftime("%-m月%-d日") %></td>
                 </tr>
-              
+
             </tbody>
             <table>
               <tr>
                 <th>受取方法</th>
-                <td><%= @work.payment_method %></td>
+                <td><%= @work.payment_method_i18n %></td>
               </tr>
               <tr>
                 <th>合計勤務時間</th>
@@ -69,7 +69,7 @@
               <%= f.hidden_field :contact_address,value: @work.contact_address %>
               <%= f.hidden_field :response_deadline,value: @work.response_deadline %>
               <%= f.hidden_field :total_payment_amount, value: @total_payment %>
-              <%= f.submit "注文を確定する", class: "btn btn-success" %>
+              <%= f.submit "応募を確定する", class: "btn btn-success" %>
             <% end %>
           </div>
       </div>

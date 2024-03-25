@@ -1,41 +1,28 @@
-<h2>依頼画面</h2>
+<h2>応募画面</h2>
 
 <%= button_to "応募をリセットする", company_destroy_all_request_forms_path, method: :delete %>
 <div class="col-md-9 mx-auto col-lg-10 px-4">
-      <h4>受信依頼一覧</h4>
+
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
-              <th></th>
               <th>スタッフ名</th>
               <th>フリガナ</th>
-              <th>実施可能業務</th>
               <th>受付期間</th>
               <th>勤務時間</th>
               <th>可能な最大勤務時間</th>
               <th>場所</th>
-              <th>連絡先</th>
-              <th>自己紹介</th>
             </thead>
             <tbody>
               <% @request_forms.each do |request_form| %>
               <tr>
-                <td><%#= image_tag request_form.get_image, size: "100x100" %></td>
                 <td><%= request_form.request.request_name %></td>
                 <td><%= request_form.request.request_kana %></td>
-                <td>
-                  <% request_form.request.tags.each do |tag| %>
-                  <span><%= tag.tag_name %></span>
-                  <% end %>
-                </td>
-                <td><%= request_form.request.start_date.strftime("%-m月%d日") %><%= request_form.request.finish_date.strftime("%-m月%d日") %></td>
-                 <td><%= request_form.request.start_time.strftime("%H時%M分") %><%= request_form.request.finish_time.strftime("%H時%M分") %></td>
+                <td><%= request_form.request.start_date.strftime("%-m月%d日") %> - <%= request_form.request.finish_date.strftime("%-m月%d日") %></td>
+                 <td><%= request_form.request.start_time.strftime("%H時%M分") %> - <%= request_form.request.finish_time.strftime("%H時%M分") %></td>
                 <td><%= request_form.request.maximum_time.strftime("%-H") %></td>
                 <td><%= request_form.request.place %></td>
-                <td><%= request_form.request.contact_address %></td>
-                <td><%= request_form.request.introduction %></td>
-                <td> <%= button_to "削除", company_request_form_path(request_form.id), method: :delete %></td>
-                <td><%= link_to "依頼に進む",  company_employments_new_path(staff_id:request_form.staff_id) %></td>
+                <td><%= link_to "応募に進む",  company_employments_new_path(staff_id:request_form.staff_id) %></td>
               </tr>
               <% end %>
             </tbody>
