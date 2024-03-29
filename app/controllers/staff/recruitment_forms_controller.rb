@@ -3,13 +3,10 @@ class Staff::RecruitmentFormsController < ApplicationController
   def create
     @recruitment_form = RecruitmentForm.new(recruitment_form_params)
     @recruitment_form.staff_id = current_staff.id
-
     recruitment_id = recruitment_form_params[:recruitment_id].to_i
     registered_recruitment_forms = current_staff.recruitment_forms
-
     if registered_recruitment_forms.blank?
-      # || registered_recruitment_forms.first.recruitment_id == recruitment_id
-      @recruitment_form.save
+    @recruitment_form.save
       redirect_to staff_recruitment_forms_path
     else
       flash[:notice] = "新しく依頼を送る場合は、依頼フォームの中身を空にするか、依頼を一度完了してからにしてください"

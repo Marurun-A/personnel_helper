@@ -7,7 +7,11 @@
                 <div class="card-body">
                   <div class="row">
                    <div class="col-md-4">
-                     <%= image_tag @request.image, size: "300x300" %>
+                      <% if @request.image.attached? %>
+                        <%= image_tag @request.image, size: "250x250" %>
+                      <% else %>
+                        <%= image_tag 'no_image', size: "250x250" %>
+                      <% end %>
                    </div>
                    <div class="col-md-3">
                       <p class="card-text">

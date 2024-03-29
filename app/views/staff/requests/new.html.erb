@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-sm-12 col-md8 col-lg-5 px-5 px-sm-0 mx-auto">
         <h4>新規雇用登録</h4>
-        <% if @requests.errors.any? %>
-          <%= @requests.errors.count %>件のエラーが発生しました
+        <% if @request.errors.any? %>
+          <%= @request.errors.count %>件のエラーが発生しました
           <ul>
-            <% @requests.errors.full_messages.each do |message| %>
+            <% @request.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>

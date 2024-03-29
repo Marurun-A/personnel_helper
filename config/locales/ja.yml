@@ -72,9 +72,65 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      work:
+        response_deadline: 返答期限
+        total_payment_amount: 合計金額
+        introduction: 自己紹介
+        transportation: 交通手段
+        hours: 時間
+        date: 日付
+        start_time: 開始時間
+        finish_time: 終了時間
+        whereabouts: 出勤開始場所
+        contact_address: 連絡先
+        payment_method: 支払方法
+        work_status: ステータス
+        work_name: 依頼名
+        work_kana: フリガナ
+      employment:
+        response_deadline: 返答期限
+        total_payment_amount: 合計金額
+        introduction: 業務説明
+        hourly_wage: 時給
+        hours: 時間
+        date: 日付
+        start_time: 開始時間
+        finish_time: 終了時間
+        place_of_employment: 勤務場所
+        contact_address: 連絡先
+        payment_method: 支払方法
+        employment_status: ステータス
+        employment_name: 会社名
+        employment_kana: フリガナ
+      request:
+        request_name: 氏名
+        request_kana: フリガナ
+        introduction: 自己紹介
+        start_date: 受付開始日
+        finish_date: 受付終了日
+        start_time: 勤務可能時間
+        finish_time: 勤務可能時間
+        maximum_time: 可能な最大勤務時間
+        place: 場所
+        contact_address: 連絡先
+      recruitment:
+        recruitment_name: 会社名
+        recruitment_kana: フリガナ
+        introduction: 業務説明
+        hourly_wage: 時給
+        start_date: 募集開始日
+        finish_date: 募集終了日
+        start_time: 業務時間
+        finish_time: 業務時間
+        minimum_time: 最低業務時間
+        place: 勤務場所
+        contact_address: 連絡先
     models:
       staff: スタッフ
       company: 会社
+      work: 依頼
+      employment: 雇用
+
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

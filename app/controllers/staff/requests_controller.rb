@@ -1,4 +1,5 @@
 class Staff::RequestsController < ApplicationController
+   before_action :is_matching_login_staff, only: [:show, :edit, :update]
 
   def new
     @requests = Request.new
@@ -9,12 +10,11 @@ class Staff::RequestsController < ApplicationController
     @request.staff_id = current_staff.id
     tag_list = params[:request][:tag_name].split(',') | params[:request][:tag_ids].compact_blank
     if @request.save
-      @request.save_tags(tag_list)
-      flash[:notice] = "You have created request successfully."
-      redirect_to staff_requests_path(current_staff)
+       @request.save_tags(tag_list)
+       flash[:notice] = "正常に作成されました"
+       redirect_to staff_requests_path(current_staff)
     else
-      @requests = Request.all
-      render action: :new
+       render :new
     end
   end
 
@@ -35,11 +35,24 @@ class Staff::RequestsController < ApplicationController
   end
 
   def update
-    @request = Request.find(params[:id])
-    tag_list=params[:request][:tag_name].split(',') | params[:request][:tag_ids].compact_blank
+      @request = Request.find(params[:id])
+      @request.staff_id = current_staff.id
+      tag_name = params[:request][:tag_name]
+      tag_ids = params[:request][:tag_ids]
+
+      if tag_name.present? && tag_ids.present?
+        tag_list = tag_name.split(',') | tag_ids.compact_blank
+      elsif tag_name.present?
+        tag_list = tag_name.split(',')
+      elsif tag_ids.present?
+        tag_list = tag_ids.compact_blank
+      else
+        tag_list = []
+      end
+
       if @request.update(request_params)
         @request.save_tags(tag_list)
-        flash[:notice] = "You have updated request successfully."
+        flash[:notice] = "正常に更新できました"
         redirect_to staff_request_path(@request)
       else
         render :edit
@@ -58,6 +71,14 @@ class Staff::RequestsController < ApplicationController
     params.require(:request).permit(:image, :request_name, :request_kana, :business, :introduction, :start_date, :finish_date, :start_time, :finish_time, :place, :contact_address, :maximum_time)
   end
 
+  def is_matching_login_staff
+    request = Request.find(params[:id])
+    staff_id = request.staff.id
+    unless staff_id == current_staff.id
+      redirect_to company_requests_path
+      return
+    end
+  end
+
 
 end
-

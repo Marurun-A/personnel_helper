@@ -1,4 +1,6 @@
 class Company::RecruitmentsController < ApplicationController
+  before_action :is_matching_login_company, only: [:show, :edit, :update]
+
   def new
     @recruitments = Recruitment.new
   end
@@ -9,10 +11,9 @@ class Company::RecruitmentsController < ApplicationController
     tag_list = params[:recruitment][:tag_name].split(',') | params[:recruitment][:tag_ids].compact_blank
     if @recruitment.save
       @recruitment.save_tags(tag_list)
-      flash[:notice] = "You have created recruitment successfully."
+      flash[:notice] = "正常に作成されました"
       redirect_to company_recruitments_path(current_company)
     else
-      @recruitments = Recruitment.all
       render action: :new
     end
   end
@@ -35,6 +36,7 @@ class Company::RecruitmentsController < ApplicationController
 
   def update
       @recruitment = Recruitment.find(params[:id])
+      @recruitment.company_id = current_company.id
       tag_name = params[:recruitment][:tag_name]
       tag_ids = params[:recruitment][:tag_ids]
 
@@ -50,7 +52,7 @@ class Company::RecruitmentsController < ApplicationController
 
       if @recruitment.update(recruitment_params)
         @recruitment.save_tags(tag_list)
-        flash[:notice] = "You have updated recruitment successfully."
+        flash[:notice] = "正常に更新できました"
         redirect_to company_recruitment_path(@recruitment)
       else
         render :edit
@@ -67,6 +69,15 @@ class Company::RecruitmentsController < ApplicationController
 
   def recruitment_params
     params.require(:recruitment).permit(:image, :recruitment_name, :recruitment_kana, :business, :introduction, :hourly_wage, :start_date, :finish_date, :start_time, :finish_time, :place, :contact_address, :minimum_time)
+  end
+
+  def is_matching_login_company
+    recruitment = Recruitment.find(params[:id])
+    company_id = recruitment.company.id
+    unless company_id == current_company.id
+      redirect_to staff_recruitments_path
+      return
+    end
   end
 
 end

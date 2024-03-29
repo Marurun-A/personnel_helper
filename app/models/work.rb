@@ -5,18 +5,20 @@ class Work < ApplicationRecord
   belongs_to :staff
   belongs_to :company
 
-  validates :payment_method, presence: true
-  validates :work_name, presence: true
-  validates :work_kana, presence: true
-  validates :whereabouts, presence: true
-  validates :date, presence: true
-  validates :start_time, presence: true
-  validates :finish_time, presence: true
-  validates :hours, presence: true
-  validates :transportation, presence: true
-  validates :contact_address, presence: true
-  validates :response_deadline, presence: true
-  validates :introduction, presence: true
+  with_options presence: true do
+    validates :payment_method
+    validates :work_name
+    validates :work_kana
+    validates :whereabouts
+    validates :date
+    validates :start_time
+    validates :finish_time
+    validates :hours
+    validates :transportation
+    validates :contact_address
+    validates :response_deadline
+    validates :introduction
+  end
 
 
   enum payment_method: { cash: 0, transfer: 1 }

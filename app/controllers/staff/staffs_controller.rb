@@ -1,4 +1,6 @@
 class Staff::StaffsController < ApplicationController
+  before_action :is_matching_login_staff, only: [:show, :edit, :update]
+
   def top
     @staffs = current_staff
     @works = Work.where(staff_id: current_staff.id, work_status: :waiting_for_reply)
@@ -37,21 +39,10 @@ class Staff::StaffsController < ApplicationController
   end
 
   def edit
-    staff = Staff.find(params[:id])
-    unless staff.id == current_staff.id
-      redirect_to current_staff
-    end
-
       @staff = Staff.find(params[:id])
   end
 
   def update
-
-    staff = Staff.find(params[:id])
-    unless staff.id == current_staff.id
-      redirect_to staff_staff_path
-    end
-
     @staff = Staff.find(params[:id])
       if @staff.update(staff_params)
         flash[:notice] = "You have updated staff successfully."
@@ -66,5 +57,14 @@ class Staff::StaffsController < ApplicationController
   def staff_params
     params.require(:staff).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :telephone_number, :email)
   end
+
+  def is_matching_login_staff
+    staff = Staff.find(params[:id])
+    unless staff.id == current_staff.id
+      redirect_to staff_staff_path(@staff.id)
+      return
+    end
+  end
+
 
 end
