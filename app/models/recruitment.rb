@@ -11,7 +11,6 @@ class Recruitment < ApplicationRecord
     validates :recruitment_name
     validates :recruitment_kana
     validates :introduction
-    validates :recruitment
     validates :start_date
     validates :finish_date
     validates :start_time

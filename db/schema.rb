@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.string "recruitment_name", null: false
     t.string "recruitment_kana", null: false
     t.text "introduction", null: false
-    t.integer "recruitment", null: false
+    t.integer "hourly_wage", null: false
     t.date "start_date", null: false
     t.date "finish_date", null: false
     t.time "start_time", null: false
