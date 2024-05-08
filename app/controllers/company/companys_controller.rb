@@ -1,4 +1,5 @@
 class Company::CompanysController < ApplicationController
+  before_action :ensure_guest_company, only: [:edit]
 
   def top
      @companys = current_company
@@ -66,6 +67,17 @@ class Company::CompanysController < ApplicationController
 
   def company_params
     params.require(:company).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :telephone_number, :email)
+  end
+
+  def ensure_guest_company
+    @company = Company.find(params[:id])
+    if @company.guest_company?
+      redirect_to company_companys_my_page_path(current_company) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end
+
+  def guest_company?
+    email == GUEST_COMPANY_EMAIL
   end
 
 end

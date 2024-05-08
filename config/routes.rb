@@ -74,4 +74,8 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :company do
+    post "companys/guest_sign_in", to: "companys/sessions#guest_sign_in"
+  end
+
 end

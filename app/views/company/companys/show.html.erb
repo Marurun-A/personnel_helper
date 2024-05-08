@@ -32,7 +32,9 @@
                    <p class="card-text">
                      メールアドレス <%= company.email %>
                   </P>
-                    <%= link_to "編集する", edit_company_company_path(current_company) %>
+                    <% unless company.guest_company %>
+                     <%= link_to "編集する", edit_company_company_path(current_company) %>
+                    <% end %>
                 </div>
               </div>
             </div>
