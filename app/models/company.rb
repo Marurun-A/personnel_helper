@@ -16,7 +16,14 @@ class Company < ApplicationRecord
   def self.guest
     find_or_create_by!(email: GUEST_COMPANY_EMAIL) do |company|
       company.password = SecureRandom.urlsafe_base64
-      company.name = "guestcompany"
+      company.first_name = "guest"
+      company.last_name = "user"
+      company.first_name_kana ="ゲスト"
+      company.last_name_kana ="ユーザー"
+      # company.email = "email"
+      company.postal_code = "random_unique(:postal_code)"
+      company.address = "random_unique(:address)"
+      company.telephone_number = "random_unique(:telephone_number)"
     end
   end
 

@@ -34,6 +34,12 @@ class Company::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     company_root_path
   end
+  
+  def guest_sign_in
+    company = Company.guest
+    sign_in company
+    redirect_to company_companys_my_page_path, notice: "guestcompanyでログインしました。"
+  end
 
   private
 
@@ -47,4 +53,6 @@ class Company::SessionsController < Devise::SessionsController
       redirect_to new_company_session_path
       end
   end
+
+  
 end
