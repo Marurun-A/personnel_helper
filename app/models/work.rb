@@ -4,6 +4,7 @@ class Work < ApplicationRecord
   has_many :work_details, dependent: :destroy
   belongs_to :staff
   belongs_to :company
+  has_many :staff_notifications, as: :staff_notifiable, dependent: :destroy
 
   with_options presence: true do
     validates :payment_method

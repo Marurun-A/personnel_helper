@@ -6,8 +6,7 @@ class Company::EmploymentsController < ApplicationController
   end
 
   def create
-    @employment = Employment.new(employment_params)
-    @employment.company_id = current_company.id
+    @employment = current_company.employments.new(employment_params)
     @employment.staff_id = current_company.request_forms.first.staff_id
     @employment.employment_status = 0
 
@@ -18,6 +17,9 @@ class Company::EmploymentsController < ApplicationController
           @employment_details.request_id = request_form.request.id
           @employment_details.total_payment_amount = @employment.total_payment_amount
           @employment_details.save
+          @staff = Staff.find(@employment.staff_id)
+          @company_notification = @employment.company_notifications.build(company_id: current_compnay.id, company_notifiable_type: "Employment", company_notifiable_id: @employment.id, staff_id: @staff.id)
+          @company_notification.save
           end
 
       current_company.request_forms.destroy_all

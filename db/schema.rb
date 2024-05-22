@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_19_050647) do
+ActiveRecord::Schema.define(version: 2024_05_19_044037) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_companies_on_email", unique: true
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
+  end
+
+  create_table "company_notifications", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_company_notifications_on_company_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_company_notifications_on_notifiable"
   end
 
   create_table "employment_details", force: :cascade do |t|
@@ -166,6 +177,18 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "staff_notifications", force: :cascade do |t|
+    t.integer "staff_id", null: false
+    t.integer "company_id"
+    t.string "staff_notifiable_type", null: false
+    t.integer "staff_notifiable_id", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_id"], name: "index_staff_notifications_on_staff_id"
+    t.index ["staff_notifiable_type", "staff_notifiable_id"], name: "index_staff_notifications_on_staff_notifiable"
+  end
+
   create_table "staffs", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -223,8 +246,10 @@ ActiveRecord::Schema.define(version: 2024_02_19_050647) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_notifications", "companies"
   add_foreign_key "recruitment_tag_relations", "recruitments"
   add_foreign_key "recruitment_tag_relations", "tags"
   add_foreign_key "request_tag_relations", "requests"
   add_foreign_key "request_tag_relations", "tags"
+  add_foreign_key "staff_notifications", "staffs"
 end

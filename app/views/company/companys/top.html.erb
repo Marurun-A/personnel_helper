@@ -3,6 +3,27 @@
 <div class="container-fluid">
   <div class="row">
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="col-md-9">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+             <div class="row">
+              <div class="col-md-4">
+                <h4>通知情報</h4>
+                <p class="card-text">
+                　<% if current_company.company_notifications.where(read: false).any? %>
+                    直近5件の通知を表示しています
+                    <% current_company.company_notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+                      <%= link_to notification_message(notification), notification_path(notification), method: :patch %>
+                  <% end %>
+                  <% else %>
+                    通知はありません
+                  <% end %>
+                </p>
+              </div>
+             </div>
+           </div>
+         </div>
+        </div>
         <% company = @companys %>
          <div class="col-md-9">
           <div class="card mb-4 shadow-sm">
@@ -13,7 +34,9 @@
                 <p class="card-text">
                  氏名 <%= company.first_name %><%= company.last_name %>
                 </p>
+                 <% if company.email != "guest_company@example.com" %>
                   <%= link_to "ユーザー情報へ", company_company_path(current_company) %>
+                 <% end %>
               </div>
              </div>
            </div>

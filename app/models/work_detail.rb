@@ -1,5 +1,6 @@
 class WorkDetail < ApplicationRecord
-  # has_many :recruitments, dependent: :destroy
   belongs_to :work
   belongs_to :recruitment, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
+
 end

@@ -34,6 +34,12 @@ class Staff::SessionsController < Devise::SessionsController
     staff_root_path
   end
 
+  def guest_sign_in
+    staff = Staff.guest
+    sign_in staff
+    redirect_to staff_staffs_my_page_path, notice: "gueststaffでログインしました。"
+  end
+
   private
    def staff_state
       staff = Staff.find_by(email: params[:staff][:email])

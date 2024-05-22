@@ -10,6 +10,7 @@ class Company < ApplicationRecord
   has_many :request_forms, foreign_key: :company_id, dependent: :destroy
   has_many :works, dependent: :destroy
   has_many :recruitment_forms, foreign_key: :company_id, dependent: :destroy
+  has_many :company_notifications, as: :company_notifiable, dependent: :destroy
 
   GUEST_COMPANY_EMAIL = "guest_company@example.com"
 
@@ -20,10 +21,9 @@ class Company < ApplicationRecord
       company.last_name = "user"
       company.first_name_kana ="ゲスト"
       company.last_name_kana ="ユーザー"
-      # company.email = "email"
-      company.postal_code = "random_unique(:postal_code)"
-      company.address = "random_unique(:address)"
-      company.telephone_number = "random_unique(:telephone_number)"
+      company.postal_code = "000-0000"
+      company.address = "ゲストユーザー"
+      company.telephone_number = "0000000000"
     end
   end
 

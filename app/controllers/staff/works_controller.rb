@@ -6,8 +6,7 @@ class Staff::WorksController < ApplicationController
   end
 
   def create
-    @work = Work.new(work_params)
-    @work.staff_id = current_staff.id
+    @work = current_staff.works.new(work_params)
     @work.company_id = current_staff.recruitment_forms.first.company_id
     @work.work_status = 0
 
@@ -18,7 +17,10 @@ class Staff::WorksController < ApplicationController
           @work_details.recruitment_id = recruitment_form.recruitment.id
           @work_details.total_payment_amount = @work.total_payment_amount
           @work_details.save
-          end
+          @company = Company.find(@work.company_id)
+          @staff_notification = @work.staff_notifications.build(staff_id: current_staff.id, staff_notifiable_type: "Work", staff_notifiable_id: @work.id, company_id: @company.id)
+          @staff_notification.save
+        end
 
       current_staff.recruitment_forms.destroy_all
       redirect_to  staff_works_complete_path

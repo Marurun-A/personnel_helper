@@ -3,6 +3,27 @@
 <div class="container-fluid">
   <div class="row">
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="col-md-9">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+             <div class="row">
+              <div class="col-md-4">
+                <h4>通知情報</h4>
+                <p class="card-text">
+                　<% if current_staff.staff_notifications.where(read: false).any? %>
+                    直近5件の通知を表示しています
+                    <% current_staff.staff_notifications.where(read: false).limit(5).order(created_at: :desc).each do |staff_notification| %>
+                      <%= link_to staff_notification_message(staff_notification), staff_notification_path(staff_notification), method: :patch %>
+                  <% end %>
+                  <% else %>
+                    通知はありません
+                  <% end %>
+                </p>
+              </div>
+             </div>
+           </div>
+         </div>
+        </div>
         <% staff = @staffs %>
          <div class="col-md-9">
           <div class="card mb-4 shadow-sm">
@@ -13,7 +34,9 @@
                 <p class="card-text">
                  氏名 <%= staff.first_name %><%= staff.last_name %>
                 </p>
+                 <% if staff.email != "guest_staff@example.com" %>
                   <%= link_to "ユーザー情報へ", staff_staff_path(current_staff) %>
+                 <% end %>
               </div>
              </div>
            </div>

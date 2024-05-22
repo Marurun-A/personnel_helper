@@ -1,5 +1,6 @@
 class Staff::StaffsController < ApplicationController
   before_action :is_matching_login_staff, only: [:show, :edit, :update]
+  before_action :ensure_guest_staff, only: [:show,:edit]
 
   def top
     @staffs = current_staff
@@ -63,6 +64,13 @@ class Staff::StaffsController < ApplicationController
     unless staff.id == current_staff.id
       redirect_to staff_staff_path(@staff.id)
       return
+    end
+  end
+
+   def ensure_guest_staff
+    @staff = Staff.find(params[:id])
+    if @staff.email == "guest_staff@example.com"
+      redirect_to staff_staffs_my_page_path(current_staff) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 

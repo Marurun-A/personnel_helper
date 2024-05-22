@@ -1,5 +1,6 @@
 class Company::CompanysController < ApplicationController
-  before_action :ensure_guest_company, only: [:edit]
+  before_action :is_matching_login_, only: [:show, :edit, :update]
+  before_action :ensure_guest_company, only: [:show,:edit]
 
   def top
      @companys = current_company
@@ -71,13 +72,13 @@ class Company::CompanysController < ApplicationController
 
   def ensure_guest_company
     @company = Company.find(params[:id])
-    if @company.guest_company?
+    if @company.email == "guest_company@example.com"
       redirect_to company_companys_my_page_path(current_company) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 
-  def guest_company?
-    email == GUEST_COMPANY_EMAIL
-  end
+  # def guest_company?
+  #   email == GUEST_COMPANY_EMAIL
+  # end
 
 end

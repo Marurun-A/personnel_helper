@@ -1,14 +1,14 @@
 
-  
+
 <div class="container">
   <div class="row">
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div>
        <h4>ログインユーザー</h4>
-      </div>  
+      </div>
         <div class="col-md-9">
-          
-        
+
+
           <div class="row">
           <% staff = @staffs %>
            <div class="col-md-9">
@@ -34,13 +34,15 @@
                    <p class="card-text">
                      メールアドレス <%= staff.email %>
                   </P>
+                   <% if staff.email != "guest_staff@example.com" %>
                     <%= link_to "編集する", edit_staff_staff_path(current_staff) %>
-                </div>  
-              </div>    
-            </div>       
-          </div>  
-        </div>    
+                   <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </main>
   </div>
 </div>
-  
+
