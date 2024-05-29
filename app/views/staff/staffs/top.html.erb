@@ -13,7 +13,7 @@
                 　<% if current_staff.staff_notifications.where(read: false).any? %>
                     直近5件の通知を表示しています
                     <% current_staff.staff_notifications.where(read: false).limit(5).order(created_at: :desc).each do |staff_notification| %>
-                      <%= link_to staff_notification_message(staff_notification), staff_notification_path(staff_notification), method: :patch %>
+                      <%= link_to h_staff_notification_message(staff_notification), staff_staff_notification_path(staff_notification), method: :patch %>
                   <% end %>
                   <% else %>
                     通知はありません

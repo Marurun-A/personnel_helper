@@ -12,8 +12,8 @@
                 <p class="card-text">
                 　<% if current_company.company_notifications.where(read: false).any? %>
                     直近5件の通知を表示しています
-                    <% current_company.company_notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
-                      <%= link_to notification_message(notification), notification_path(notification), method: :patch %>
+                    <% current_company.company_notifications.where(read: false).limit(5).order(created_at: :desc).each do |company_notification| %>
+                      <%= link_to h_company_notification_message(company_notification), company_company_notification_path(company_notification), method: :patch %>
                   <% end %>
                   <% else %>
                     通知はありません

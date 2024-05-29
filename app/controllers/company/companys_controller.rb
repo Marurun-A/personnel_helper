@@ -1,5 +1,5 @@
 class Company::CompanysController < ApplicationController
-  before_action :is_matching_login_, only: [:show, :edit, :update]
+  # before_action :is_matching_login_, only: [:show, :edit, :update]
   before_action :ensure_guest_company, only: [:show,:edit]
 
   def top
@@ -76,9 +76,5 @@ class Company::CompanysController < ApplicationController
       redirect_to company_companys_my_page_path(current_company) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
-
-  # def guest_company?
-  #   email == GUEST_COMPANY_EMAIL
-  # end
 
 end

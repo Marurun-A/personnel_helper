@@ -18,8 +18,8 @@ class Company::EmploymentsController < ApplicationController
           @employment_details.total_payment_amount = @employment.total_payment_amount
           @employment_details.save
           @staff = Staff.find(@employment.staff_id)
-          @company_notification = @employment.company_notifications.build(company_id: current_compnay.id, company_notifiable_type: "Employment", company_notifiable_id: @employment.id, staff_id: @staff.id)
-          @company_notification.save
+          @staff_notification = @staff.staff_notifications.build(company_id: current_company.id, staff_notifiable_type: "Employment", staff_notifiable_id: @employment.id)
+          @staff_notification.save
           end
 
       current_company.request_forms.destroy_all

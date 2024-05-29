@@ -10,7 +10,8 @@ class Company < ApplicationRecord
   has_many :request_forms, foreign_key: :company_id, dependent: :destroy
   has_many :works, dependent: :destroy
   has_many :recruitment_forms, foreign_key: :company_id, dependent: :destroy
-  has_many :company_notifications, as: :company_notifiable, dependent: :destroy
+  # has_many :company_notifications, as: :company_notifiable, dependent: :destroy
+  has_many :company_notifications, dependent: :destroy
 
   GUEST_COMPANY_EMAIL = "guest_company@example.com"
 

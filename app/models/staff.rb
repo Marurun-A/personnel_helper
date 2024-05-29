@@ -10,7 +10,8 @@ class Staff < ApplicationRecord
   has_many :recruitment_forms, foreign_key: :staff_id, dependent: :destroy
   has_many :employments, dependent: :destroy
   has_many :request_forms, foreign_key: :company_id, dependent: :destroy
-  has_many :staff_notifications, as: :staff_notifiable, dependent: :destroy
+  # has_many :staff_notifications, as: :staff_notifiable, dependent: :destroy
+  has_many :staff_notifications, dependent: :destroy
 
   GUEST_STAFF_EMAIL = "guest_staff@example.com"
 

@@ -25,13 +25,14 @@ Rails.application.routes.draw do
     delete '/request_forms/destroy_all' => 'request_forms#destroy_all', as: 'destroy_all_request_forms'
     post 'employments/confirm' => 'employments#confirm'
     get 'employments/new' => 'employments#new'
-    # post 'employments/new' => 'employments#new'
     get 'employments/complete' => 'employments#complete'
 
     resources :requests, only: [:index, :show, :new, :create, :update, :edit]
     resources :companys, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :request_forms, only: [:index, :update, :destroy, :create]
     resources :employments, only: [:confirm, :complete, :create, :index, :show]
+    resources :company_notifications, only: [:update]
+    resources :company_notifications, only: [:update]
     resources :works, only: [:index, :show, :update] do
       member do
         patch :update_status
@@ -61,6 +62,8 @@ Rails.application.routes.draw do
     resources :staffs, only: [:top, :show, :edit, :update, :unsubscribe, :withdraw]
     resources :recruitment_forms, only: [:index, :update, :destroy, :create]
     resources :works, only: [:confirm, :complete, :create, :index, :show]
+    resources :staff_notifications, only: [:update]
+    resources :staff_notifications, only: [:update]
     resources :employments, only: [:index, :show, :update] do
       member do
         patch :update_status

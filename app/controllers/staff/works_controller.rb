@@ -18,8 +18,8 @@ class Staff::WorksController < ApplicationController
           @work_details.total_payment_amount = @work.total_payment_amount
           @work_details.save
           @company = Company.find(@work.company_id)
-          @staff_notification = @work.staff_notifications.build(staff_id: current_staff.id, staff_notifiable_type: "Work", staff_notifiable_id: @work.id, company_id: @company.id)
-          @staff_notification.save
+          @company_notification = @company.company_notifications.build(staff_id: current_staff.id, company_notifiable_type: "Work", company_notifiable_id: @work.id)
+          @company_notification.save
         end
 
       current_staff.recruitment_forms.destroy_all

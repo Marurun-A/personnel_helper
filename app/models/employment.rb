@@ -4,7 +4,7 @@ class Employment < ApplicationRecord
   has_many :employment_details, dependent: :destroy
   belongs_to :company
   belongs_to :staff
-  has_many :company_notifications, as: :companyy_notifiable, dependent: :destroy
+  has_many :company_notifications, as: :company_notifiable, dependent: :destroy
 
   validates :payment_method, presence: true
   validates :employment_name, presence: true

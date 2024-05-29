@@ -18,10 +18,13 @@ class Company::WorksController < ApplicationController
   def update_status
     @work = Work.find(params[:id])
     if @work.update(work_params)
-      flash[:notice] = "注文ステータスを更新しました"
+      @staff = Staff.find(@work.staff_id)
+      staff_notifications = @staff.staff_notifications.build(company_id: current_company.id, staff_notifiable_type: "Work", staff_notifiable_id: @work.id)
+      staff_notifications.save
+      flash[:notice] = "ステータスを更新しました"
       redirect_to company_works_path(current_company)
     else
-      flash[:alert] = "注文ステータスの更新に失敗しました"
+      flash[:alert] = "ステータスの更新に失敗しました"
       redirect_to company_works_path(current_company)
     end
   end

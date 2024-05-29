@@ -1,5 +1,5 @@
 class Staff::StaffsController < ApplicationController
-  before_action :is_matching_login_staff, only: [:show, :edit, :update]
+  # before_action :is_matching_login_staff, only: [:show, :edit, :update]
   before_action :ensure_guest_staff, only: [:show,:edit]
 
   def top
