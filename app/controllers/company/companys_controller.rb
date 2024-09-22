@@ -1,5 +1,4 @@
 class Company::CompanysController < ApplicationController
-  # before_action :is_matching_login_, only: [:show, :edit, :update]
   before_action :ensure_guest_company, only: [:show,:edit]
 
   def top

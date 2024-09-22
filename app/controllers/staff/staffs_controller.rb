@@ -1,5 +1,4 @@
 class Staff::StaffsController < ApplicationController
-  # before_action :is_matching_login_staff, only: [:show, :edit, :update]
   before_action :ensure_guest_staff, only: [:show,:edit]
 
   def top
@@ -34,7 +33,6 @@ class Staff::StaffsController < ApplicationController
     @staff = current_staff
     @staff.update(is_active: false)
     sign_out
-
 
       redirect_to staff_root_path
   end
@@ -73,6 +71,5 @@ class Staff::StaffsController < ApplicationController
       redirect_to staff_staffs_my_page_path(current_staff) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
-
 
 end
