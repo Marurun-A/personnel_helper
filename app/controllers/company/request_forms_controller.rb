@@ -8,7 +8,6 @@ class Company::RequestFormsController < ApplicationController
     registered_request_forms = current_company.request_forms
 
     if registered_request_forms.blank?
-      # || registered_request_forms.first.request_id == request_id
       @request_form.save
       redirect_to company_request_forms_path
     else
