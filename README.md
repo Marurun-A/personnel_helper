@@ -26,9 +26,7 @@
 - 普段正規で働いているが、それ以上に働きたい時。
 ​
 ## 設計書
-後ほど作成予定
-カテゴリその他
-https://docs.google.com/spreadsheets/d/1NnUHSQCNF4BOjjRFy2GEIzt3yFNeUv2T-5xsHmCbBeI/edit#gid=375590402
+・https://docs.google.com/spreadsheets/d/1fpsXgRbkcr_YFk_6rYSHg1ubkDOg3tnJeh8cBwU7J10/edit?gid=549108681#gid=549108681
 ​
 ## 開発環境
 ・OS：Linux(CentOS)
@@ -38,5 +36,6 @@ https://docs.google.com/spreadsheets/d/1NnUHSQCNF4BOjjRFy2GEIzt3yFNeUv2T-5xsHmCb
 ・IDE：Cloud9
 ​
 ## 使用素材
-・後ほど追記
+・著作権を考慮し、架空のデータを扱う予定です。
+・なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
 
