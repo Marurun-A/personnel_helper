@@ -21,7 +21,6 @@ class Work < ApplicationRecord
     validates :introduction
   end
 
-
   enum payment_method: { cash: 0, transfer: 1 }
   enum work_status: { waiting_for_reply: 0, accepted: 1,  was_denied: 2 }
 

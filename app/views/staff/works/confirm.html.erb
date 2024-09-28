@@ -18,7 +18,6 @@
               <% @total = 0 %>
               <% @total_hours = 0 %>
               <% @total_payment = 0 %>
-              <%# @works.each do |work| %>
                 <tr>
                   <td><%= @work.work_name %></td>
                   <td><%= @work.work_kana %></td>
@@ -32,7 +31,6 @@
                   <td><%= @work.contact_address %></td>
                   <td><%= @work.response_deadline.strftime("%-m月%-d日") %></td>
                 </tr>
-
             </tbody>
             <table>
               <tr>
@@ -51,7 +49,6 @@
                   <% @total_payment = @total * @total_hours %>
                 <% end %>
                 <td><%= @total_payment %>円</td>
-
               </tr>
             </table>
 

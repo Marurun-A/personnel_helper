@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 tags = ["ホール業務","皿洗い","荷物整理","交通整備","レジ打ち","未経験OK"]
 tags.each do |tag|
   Tag.find_or_create_by!(tag_name: tag) do |t|
@@ -13,14 +5,11 @@ tags.each do |tag|
   end
 end
 
-#tem.image.attach(io: File.open(Rails.root.join("app/assets/images/item-#{i+1}-#{j+1}.jpg")), filename: "item-#{i+1}-#{j+1}.jpg")
-
 kubotamikiko= Staff.find_or_create_by!(email: "mikiko@example.com") do |staff|
   staff.first_name = "窪田"
   staff.last_name = "美貴子"
   staff.first_name_kana ="クボタ"
   staff.last_name_kana ="ミキコ"
-  # staff.email = "email"
   staff.postal_code = "524-0202"
   staff.address = "滋賀県野洲市菖蒲4-3"
   staff.telephone_number = "0740969492"
@@ -33,7 +22,6 @@ yanagawamarumi= Staff.find_or_create_by!(email: "marumi@example.com") do |staff|
   staff.last_name = "円美"
   staff.first_name_kana ="ヤナガワ"
   staff.last_name_kana ="マルミ"
-  # staff.email = "email"
   staff.postal_code = "350-0035"
   staff.address = "埼玉県川越市西小仙波町3-16-10ステージ西小仙波町408	"
   staff.telephone_number = "0493368604"
@@ -46,7 +34,6 @@ hukazawatomiko= Staff.find_or_create_by!(email: "tomiko@example.com") do |staff|
   staff.last_name = "登美子"
   staff.first_name_kana ="フカザワ"
   staff.last_name_kana ="トミコ"
-  # staff.email = "email"
   staff.postal_code = "649-6451"
   staff.address = "和歌山県紀の川市神通1-11-20"
   staff.telephone_number = "0737469561"
@@ -59,7 +46,6 @@ ookumamakoto= Staff.find_or_create_by!(email: "makoto@example.com") do |staff|
   staff.last_name = "信"
   staff.first_name_kana ="オオクマ"
   staff.last_name_kana ="マコト"
-  # staff.email = "email"
   staff.postal_code = "683-0822"
   staff.address = "鳥取県米子市中町3-6-2	"
   staff.telephone_number = "0858060756"
@@ -72,7 +58,6 @@ todasiniti= Staff.find_or_create_by!(email: "siniti@example.com") do |staff|
   staff.last_name = "進一"
   staff.first_name_kana ="トダ"
   staff.last_name_kana ="シンイチ"
-  # staff.email = "email"
   staff.postal_code = "949-4125"
   staff.address = "新潟県柏崎市西山町中央台1-2-20西山町中央台フォレスト400"
   staff.telephone_number = "0253375415"
@@ -85,7 +70,6 @@ isikawaharuo= Staff.find_or_create_by!(email: "haruo@example.com") do |staff|
   staff.last_name = "春夫"
   staff.first_name_kana ="イシカワ"
   staff.last_name_kana ="ハルオ"
-  # staff.email = "email"
   staff.postal_code = "524-0002"
   staff.address = "滋賀県守山市小島町4-16"
   staff.telephone_number = "0749957069"
@@ -98,7 +82,6 @@ end
   company.last_name = "穰"
   company.first_name_kana ="バンドウ"
   company.last_name_kana ="ユタカ"
-  # company.email = "email"
   company.postal_code = "669-5341"
   company.address = "兵庫県豊岡市日高町国分寺4-1	"
   company.telephone_number = "0798594470"
@@ -111,7 +94,6 @@ end
   company.last_name = "彼方"
   company.first_name_kana ="サカガミ"
   company.last_name_kana ="カナタ"
-  # company.email = "email"
   company.postal_code = "789-1702"
   company.address = "高知県幡多郡黒潮町佐賀橘川1-18-11	"
   company.telephone_number = "0889489295"
@@ -124,7 +106,6 @@ end
   company.last_name = "恭之"
   company.first_name_kana ="ナカモリ"
   company.last_name_kana ="ヤスユキ"
-  # company.email = "email"
   company.postal_code = "480-1102"
   company.address = "愛知県長久手市前熊根ノ原4-1-1前熊根ノ原マンション101"
   company.telephone_number = "0562746954"
@@ -137,7 +118,6 @@ end
   company.last_name = "真子"
   company.first_name_kana ="フジワラ"
   company.last_name_kana ="マコ"
-  # company.email = "email"
   company.postal_code = "997-0862"
   company.address = "山形県鶴岡市ほなみ町2-19-20ほなみ町の杜317"
   company.telephone_number = "0233837810"
@@ -150,7 +130,6 @@ end
   company.last_name = "亜抄子"
   company.first_name_kana ="ヤグチ"
   company.last_name_kana ="アサコ"
-  # company.email = "email"
   company.postal_code = "728-0027"
   company.address = "広島県三次市三原町1-18-11	"
   company.telephone_number = "0826878119"
@@ -163,7 +142,6 @@ end
   company.last_name = "奏"
   company.first_name_kana ="マチダ"
   company.last_name_kana ="カナデ"
-  # company.email = "email"
   company.postal_code = "374-0031"
   company.address = "群馬県館林市東美園町"
   company.telephone_number = "0276059473"
@@ -183,7 +161,6 @@ Request.find_or_create_by!(request_name: "窪田美貴子") do |request|
   request.place = "滋賀県野洲市"
   request.contact_address = "0740969492"
   request.staff = kubotamikiko
-   #request.staff_id = "staff_id"
 end
 
 Request.find_or_create_by!(request_name: "柳川円美") do |request|
@@ -198,7 +175,6 @@ Request.find_or_create_by!(request_name: "柳川円美") do |request|
   request.place = "埼玉県川越市"
   request.contact_address = "0493368604"
   request.staff = yanagawamarumi
-  #request.staff_id = "staff_id"
 end
 
 Request.find_or_create_by!(request_name: "深沢登美子") do |request|
@@ -213,7 +189,6 @@ Request.find_or_create_by!(request_name: "深沢登美子") do |request|
   request.place = "和歌山県紀の川市"
   request.contact_address = "0737469561"
   request.staff = hukazawatomiko
-  #request.staff_id = "staff_id"
 end
 
 Request.find_or_create_by!(request_name: "大熊信") do |request|
@@ -228,7 +203,6 @@ Request.find_or_create_by!(request_name: "大熊信") do |request|
   request.place = "鳥取県米子市"
   request.contact_address = "0858060756"
   request.staff = ookumamakoto
-   #request.staff_id = "staff_id"
 end
 
 Request.find_or_create_by!(request_name: "戸田進一") do |request|
@@ -243,7 +217,6 @@ Request.find_or_create_by!(request_name: "戸田進一") do |request|
   request.place = "新潟県柏崎市"
   request.contact_address = "0253375415"
   request.staff = todasiniti
-  #request.staff_id = "staff_id"
 end
 
 Request.find_or_create_by!(request_name: "石川春夫") do |request|
@@ -258,7 +231,6 @@ Request.find_or_create_by!(request_name: "石川春夫") do |request|
   request.place = "滋賀県守山市"
   request.contact_address = "0749957069"
   request.staff = isikawaharuo
-  #request.staff_id = "staff_id"
 end
 
 Recruitment.find_or_create_by!(recruitment_name: "坂東運送") do |recruitment|
@@ -274,7 +246,6 @@ Recruitment.find_or_create_by!(recruitment_name: "坂東運送") do |recruitment
   recruitment.place = "兵庫県豊岡市日高町国分寺4-1"
   recruitment.contact_address = "0798594470"
   recruitment.company = banndouyutaka
-  # recruitment.company_id = ""
 end
 
 Recruitment.find_or_create_by!(recruitment_name: "坂上ハンバーグハウス") do |recruitment|
@@ -290,7 +261,6 @@ Recruitment.find_or_create_by!(recruitment_name: "坂上ハンバーグハウス
   recruitment.place = "高知県幡多郡黒潮町佐賀橘川1-18-11"
   recruitment.contact_address = "0889489295"
   recruitment.company = sakagamikanata
-  # recruitment.company_id = ""
 end
 
 Recruitment.find_or_create_by!(recruitment_name: "5イレブン") do |recruitment|
@@ -306,7 +276,6 @@ Recruitment.find_or_create_by!(recruitment_name: "5イレブン") do |recruitmen
   recruitment.place = "愛知県長久手市前熊根ノ原4-1-1前熊根ノ原マンション101"
   recruitment.contact_address = "0562746954"
   recruitment.company = nakamoriyasuyuki
-  # recruitment.company_id = ""
 end
 
 Recruitment.find_or_create_by!(recruitment_name: "フワッとヒザ") do |recruitment|
@@ -322,7 +291,6 @@ Recruitment.find_or_create_by!(recruitment_name: "フワッとヒザ") do |recru
   recruitment.place = "山形県鶴岡市ほなみ町2-19-20ほなみ町の杜317"
   recruitment.contact_address = "0233837810"
   recruitment.company = hujiwaramako
-  # recruitment.company_id = ""
 end
 
 Recruitment.find_or_create_by!(recruitment_name: "HAIRYAGUTI") do |recruitment|
@@ -338,7 +306,6 @@ Recruitment.find_or_create_by!(recruitment_name: "HAIRYAGUTI") do |recruitment|
   recruitment.place = "広島県三次市三原町1-18-11"
   recruitment.contact_address = "0826878119"
   recruitment.company = yagutiasako
-  # recruitment.company_id = ""
 end
 
 Recruitment.find_or_create_by!(recruitment_name: "株式会社ペット") do |recruitment|
@@ -354,5 +321,4 @@ Recruitment.find_or_create_by!(recruitment_name: "株式会社ペット") do |re
   recruitment.place = "群馬県館林市東美園町2-7"
   recruitment.contact_address = "0276059473"
   recruitment.company = matidakanade
-  # recruitment.company_id = ""
 end

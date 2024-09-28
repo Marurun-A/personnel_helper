@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :companies
-  # devise_for :staffs
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
   devise_for :staffs, skip: [:passwords], controllers: {
   registrations: "staff/registrations",
   sessions: 'staff/sessions'
@@ -54,7 +50,6 @@ Rails.application.routes.draw do
     get 'staffs/information/withdraw' => 'staffs#withdraw'
     post 'works/confirm' => 'works#confirm'
     get 'works/new' => 'works#new'
-    # post 'works/new' => 'works#new'
     get 'works/complete' => 'works#complete'
     delete '/recruitment_forms/destroy_all' => 'recruitment_forms#destroy_all', as: 'destroy_all_recruitment_forms'
 

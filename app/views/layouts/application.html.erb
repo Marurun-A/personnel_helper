@@ -12,7 +12,6 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: orange;">
         <div class="container">
@@ -43,7 +42,6 @@
                    <i class="fa-regular fa-file"></i> フォーム
                   <% end %>
                 </li>
-
               <% elsif staff_signed_in? %>
                 <li class="nav-item">
                   <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-white' %>
@@ -59,7 +57,6 @@
                     <i class="fa-regular fa-file"></i>フォーム
                   <% end %>
                 </li>
-
               <% else %>
                 <li class="nav-item">
                   <%= link_to "会社一覧", staff_recruitments_path, class: 'nav-link text-white' %>
@@ -156,7 +153,6 @@
               </li>
             </ol>
           </div>
-
           <% end %>
         </nav>
       </div>
@@ -170,8 +166,6 @@
           </div>
           <div class="col-md-8">
             <h6 class="text-white mt-2 mb-3"></h6>
-            <!--<ul class="p-0 list-unstyled">-->
-            <!--</ul>-->
           </div>
         </div>
       </div>
